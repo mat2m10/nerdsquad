@@ -37,6 +37,6 @@ class UsersController < ApplicationController
 
   def user_params
     # Celui qui cree le craft c'est le current user
-    params.require(:user).permit(:description, :username, :about, :first_name, :last_name, :photo)
+    params.require(:user).permit(:description, :username, :photo)
   end
 end
