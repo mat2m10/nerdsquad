@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_124036) do
+ActiveRecord::Schema.define(version: 2020_11_15_150945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,19 +48,28 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
   create_table "card_decks", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
-    t.bigint "game_id", null: false
+    t.bigint "card_trays_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_card_decks_on_game_id"
+    t.index ["card_trays_id"], name: "index_card_decks_on_card_trays_id"
+  end
+
+  create_table "card_trays", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.bigint "games_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["games_id"], name: "index_card_trays_on_games_id"
   end
 
   create_table "cards", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
-    t.bigint "card_deck_id", null: false
+    t.bigint "card_decks_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
+    t.index ["card_decks_id"], name: "index_cards_on_card_decks_id"
   end
 
   create_table "dice_trays", force: :cascade do |t|
@@ -153,8 +162,9 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "games"
-  add_foreign_key "card_decks", "games"
-  add_foreign_key "cards", "card_decks"
+  add_foreign_key "card_decks", "card_trays", column: "card_trays_id"
+  add_foreign_key "card_trays", "games", column: "games_id"
+  add_foreign_key "cards", "card_decks", column: "card_decks_id"
   add_foreign_key "dice_trays", "games"
   add_foreign_key "dices", "dice_trays"
   add_foreign_key "games", "users"

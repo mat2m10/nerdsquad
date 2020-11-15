@@ -3,7 +3,7 @@ class CreateCards < ActiveRecord::Migration[6.0]
     create_table :cards do |t|
       t.float :posX
       t.float :posY
-      t.references :card_deck, null: false, foreign_key: true
+      t.references :card_decks, null: false, foreign_key: true
 
       t.timestamps
     end
