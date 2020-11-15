@@ -12,7 +12,8 @@
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "email" }%>
-          <%= f.input :username %>
+          <%= f.input :username,
+                      required: true %>
           <%= f.input :first_name,
                       required: true %>
           <%= f.input :last_name,
@@ -32,7 +33,9 @@
           <label for="user_photo" style="cursor: pointer; position: relative">
             <img src="https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png" style="width: 50px; height: 50px; border-radius: 100%;">
           </label>
+
         </div>
+
         <div class="form-actions">
           <%= f.button :submit, "Sign up" %>
         </div>
