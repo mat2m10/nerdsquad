@@ -1,0 +1,2 @@
+Token
+	belongs_to :token_tray

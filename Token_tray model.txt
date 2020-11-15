@@ -1,0 +1,5 @@
+Token_tray
+	has_many :tokens
+	
+	belongs_to :game
+	

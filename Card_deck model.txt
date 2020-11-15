@@ -1,0 +1,3 @@
+Card_deck
+	has_many :cards
+	belongs_to :card_tray

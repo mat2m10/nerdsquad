@@ -1,0 +1,5 @@
+Piece_tray
+	has_many :pieces
+	
+	belongs_to :game
+	

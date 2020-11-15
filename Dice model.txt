@@ -1,0 +1,2 @@
+Dice
+	belongs_to :dice_tray

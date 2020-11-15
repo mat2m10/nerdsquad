@@ -1,0 +1,2 @@
+Tile
+	belongs_to :board
