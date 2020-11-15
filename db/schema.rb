@@ -48,10 +48,19 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
   create_table "card_decks", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
+    t.bigint "card_tray_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_tray_id"], name: "index_card_decks_on_card_tray_id"
+  end
+
+  create_table "card_trays", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_card_decks_on_game_id"
+    t.index ["game_id"], name: "index_card_trays_on_game_id"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -90,22 +99,22 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
-  create_table "pieces", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
-    t.bigint "pieces_tray_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pieces_tray_id"], name: "index_pieces_on_pieces_tray_id"
-  end
-
-  create_table "pieces_trays", force: :cascade do |t|
+  create_table "piece_trays", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_pieces_trays_on_game_id"
+    t.index ["game_id"], name: "index_piece_trays_on_game_id"
+  end
+
+  create_table "pieces", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.bigint "piece_tray_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["piece_tray_id"], name: "index_pieces_on_piece_tray_id"
   end
 
   create_table "tiles", force: :cascade do |t|
@@ -138,28 +147,27 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "username", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.text "about"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "games"
-  add_foreign_key "card_decks", "games"
+  add_foreign_key "card_decks", "card_trays"
+  add_foreign_key "card_trays", "games"
   add_foreign_key "cards", "card_decks"
   add_foreign_key "dice_trays", "games"
   add_foreign_key "dices", "dice_trays"
   add_foreign_key "games", "users"
-  add_foreign_key "pieces", "pieces_trays"
-  add_foreign_key "pieces_trays", "games"
+  add_foreign_key "piece_trays", "games"
+  add_foreign_key "pieces", "piece_trays"
   add_foreign_key "tiles", "boards"
   add_foreign_key "token_trays", "games"
   add_foreign_key "tokens", "token_trays"

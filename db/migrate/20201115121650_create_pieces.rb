@@ -3,7 +3,7 @@ class CreatePieces < ActiveRecord::Migration[6.0]
     create_table :pieces do |t|
       t.float :posX
       t.float :posY
-      t.references :pieces_tray, null: false, foreign_key: true
+      t.references :piece_tray, null: false, foreign_key: true
 
       t.timestamps
     end
