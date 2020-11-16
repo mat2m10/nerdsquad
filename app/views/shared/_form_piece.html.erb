@@ -1,0 +1,4 @@
+<%= simple_form_for(@piece, url: '/new', remote: true) do |f| %>
+<%= f.input :photo, as: :file %>
+    <%= f.button :submit %>
+<% end %>
