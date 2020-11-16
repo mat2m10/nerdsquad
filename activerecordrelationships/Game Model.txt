@@ -13,7 +13,6 @@ Game
 	has_many :pieces, through :piece_tray
 	
 	has_one :board
-	has_many :tiles, through :board
 	
 	has_one :user, foreign_key: creator_id
 	
