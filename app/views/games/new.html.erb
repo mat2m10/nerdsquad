@@ -10,11 +10,6 @@
     <p>Choose number of players</p>
     
 
-    
-    <%= simple_form_for([game, board], remote: true) do |f| %>
-      <%= f.input :players, collection: 1..6 %>
-      <%= f.button :submit %>
-    <% end %>
 
 </div>
 
