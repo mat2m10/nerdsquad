@@ -1,0 +1,2 @@
+class TileController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class CardDeckController < ApplicationController
+end
