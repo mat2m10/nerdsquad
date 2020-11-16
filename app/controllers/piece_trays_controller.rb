@@ -1,2 +1,0 @@
-class PieceTraysController < ApplicationController
-end

@@ -1,2 +1,0 @@
-Piece
-	belongs_to :piece_tray
