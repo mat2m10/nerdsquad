@@ -117,6 +117,15 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
     t.index ["piece_tray_id"], name: "index_pieces_on_piece_tray_id"
   end
 
+  create_table "tiles", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_tiles_on_board_id"
+  end
+
   create_table "token_trays", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
@@ -159,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
   add_foreign_key "games", "users"
   add_foreign_key "piece_trays", "games"
   add_foreign_key "pieces", "piece_trays"
+  add_foreign_key "tiles", "boards"
   add_foreign_key "token_trays", "games"
   add_foreign_key "tokens", "token_trays"
 end
