@@ -11,20 +11,16 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     @user = current_user
     @board = Board.new
-    @dice = Dice.new
-    @token = Token.new
-    @game.board = @board
-    @game.dice = @dice
-    @game.piece = @piece
-    @game.token = @token
     @game.user = @user
-    if @game.save
-      redirect_to root_path
-    else
-      raise
-    end
+    @game.save
+    redirect_to @game
   end
 
+  def show
+    @game = Game.find(params[:id])
+    @board = Board.new
+    @dice = Dice.new
+  end
   private
 
   def game_params
