@@ -5,12 +5,14 @@ class BoardsController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    @user = current_user
     @board = Board.new(board_params)
-    @board.user = @user
     @board.game = @game
     @board.save
-    redirect_to game_path(@game)
+    if @board.save 
+      redirect_to @game
+    else
+      render 'games/new'
+    end
   end
 
   private
