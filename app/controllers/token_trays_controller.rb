@@ -1,0 +1,2 @@
+class TokenTraysController < ApplicationController
+end
