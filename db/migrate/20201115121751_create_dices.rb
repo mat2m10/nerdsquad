@@ -3,7 +3,8 @@ class CreateDices < ActiveRecord::Migration[6.0]
     create_table :dices do |t|
       t.float :posX
       t.float :posY
-      t.references :dice_tray, null: false, foreign_key: true
+      t.integer :faces, validates: { greater_than_or_equal_to: 1 }
+      t.references :game, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -3,7 +3,7 @@ class CreateTokens < ActiveRecord::Migration[6.0]
     create_table :tokens do |t|
       t.float :posX
       t.float :posY
-      t.references :token_tray, null: false, foreign_key: true
+      t.references :game, null: false, foreign_key: true
       t.timestamps
     end
   end
