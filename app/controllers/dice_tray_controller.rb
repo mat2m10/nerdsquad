@@ -1,0 +1,2 @@
+class DiceTrayController < ApplicationController
+end
