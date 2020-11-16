@@ -5,11 +5,7 @@ class BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user = @user
     @board.game = @game
-    if @board.save
-      redirect_to game_path(@game)
-    else
-      render 'pets/show'
-    end
+    redirect_to game_path(@game)
   end
 
   private
