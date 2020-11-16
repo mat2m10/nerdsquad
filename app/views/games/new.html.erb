@@ -11,7 +11,7 @@
     
 
     
-    <%= simple_form_for(new_game_path, remote: true) do |f| %>
+    <%= simple_form_for([game, board], remote: true) do |f| %>
       <%= f.input :players, collection: 1..6 %>
       <%= f.button :submit %>
     <% end %>

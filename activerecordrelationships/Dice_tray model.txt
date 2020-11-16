@@ -1,3 +1,0 @@
-Dice_tray
-	has_many :dices
-	belongs_to :game
