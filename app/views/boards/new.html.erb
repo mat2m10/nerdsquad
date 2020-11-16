@@ -1,6 +1,15 @@
-<h1>Create your board</h1>
+<div class="container">
+    <h1>Create your board</h1>
 
-<%= simple_form_for([ board, main ], remote: true) do |f| %>
+    <%= link_to  "1", new_board_path, class: "badge badge-pill badge-primary" %>
+    <%= link_to  "2", new_board_path, class: "badge badge-pill badge-primary" %>
+    <%= link_to  "3", new_board_path, class: "badge badge-pill badge-primary" %>
+    <%= link_to  "4", new_board_path, class: "badge badge-pill badge-primary" %>
+    <%= link_to  "5", new_board_path, class: "badge badge-pill badge-primary" %>
+    <%= link_to  "6", new_board_path, class: "badge badge-pill badge-primary" %>
+</div>
+
+<%= simple_form_for(new_board_path, remote: true) do |f| %>
   <%= f.input :content %>
   <%= f.button :submit %>
 <% end %>

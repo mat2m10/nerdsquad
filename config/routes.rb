@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     get "all"
   end
-  resources: 
+  get "boards/new", to: "boards#new", as: :new_board
+
 end
