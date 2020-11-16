@@ -1,3 +1,4 @@
 <%= render  "shared/form_board" unless @game.board%>
 <%# don't show the form if the board exists %>
 <%= render  "shared/form_dice" if @game.board %>
+<div id = board></div>

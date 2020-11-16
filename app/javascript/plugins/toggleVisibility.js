@@ -1,16 +1,14 @@
 const toggleVisibility = () => {
-  var creation1 = document.querySelector("#creation1")
-  const button1 = document.querySelector("#button1")
+  const button1 = document.querySelector("#test")
   button1.addEventListener("click", function(click) {
-    if (isClicked === false) {
-      creation1.style.display = "block";
-      console.log("jour")
-      isClicked = true;
-    } else {
-      console.log("nuit")
-      creation1.style.display = "none";
-      isClicked = false;
-    }
+    console.log("heeeeyy")
+    var x = document.createElement("img");
+    x.setAttribute("src", "https://www.w3schools.com/jsref/img_pulpit.jpg");
+    x.setAttribute("width", "304");
+    x.setAttribute("height", "228");
+    x.setAttribute("alt", "The Pulpit Rock");
+    var src = document.getElementById("board");
+    src.appendChild(x);
   });
 }
 export{ toggleVisibility };
