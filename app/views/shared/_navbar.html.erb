@@ -26,9 +26,14 @@
           <% else %>
           <% github_avatar = URI.open("https://kitt.lewagon.com/placeholder/users/#{current_user.username}") %>
               <%if github_avatar.base_uri.to_s[-6..-1] == "random"%>
+
                 <%= image_tag "https://st3.depositphotos.com/4111759/13425/v/380/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% avatar = URI.open("https://st3.depositphotos.com/4111759/13425/v/380/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg") %> %>
+                <% current_user.photo.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg') %>
               <% else %>
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.username}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% avatar = URI.open("https://kitt.lewagon.com/placeholder/users/#{current_user.username}") %> %>
+                <% current_user.photo.attach(io: avatar, filename: 'avatar.jpg', content_type: 'image/jpg') %>
               <% end %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
