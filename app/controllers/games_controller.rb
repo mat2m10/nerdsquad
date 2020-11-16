@@ -1,7 +1,12 @@
 class GamesController < ApplicationController
   def new
     @game = Game.new
+    @board = Board.new
+    @dice = Dice.new
+    @piece = Piece.new
+    @token = Token.new
   end
+
   def create
     @game = Game.new(game_params)
     @user = current_user
@@ -9,9 +14,9 @@ class GamesController < ApplicationController
     @dice = Dice.new
     @token = Token.new
     @game.board = @board
-    @game.dices = @dices
-    @game.pieces = @pieces
-    @game.tokens = @tokens
+    @game.dice = @dice
+    @game.piece = @piece
+    @game.token = @token
     @game.user = @user
     if @game.save
       redirect_to root_path

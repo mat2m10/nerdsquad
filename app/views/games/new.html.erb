@@ -9,7 +9,15 @@
     <%= link_to  "6", new_game_path, class: "badge badge-pill badge-primary" %>
     <p>Choose number of players</p>
     
+    <%= render  "shared/form_board" %>
+    <%= render  "shared/form_dice" %>
+    <%= render  "shared/form_piece" %>
+    <%= render  "shared/form_token" %>
 
+    <%= simple_form_for(@game, remote: true) do |f| %>
+      <%= f.input :number_of_players, collection: 1..6 %>
+      <%= f.button :submit %>
+    <% end %>
 
 </div>
 
