@@ -29,9 +29,6 @@ import { moveAround } from "../plugins/moveAround"
 import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-  // toggleVisibility();
   moveAround();
   dice;
   initGameroomCable();
