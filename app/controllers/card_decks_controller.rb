@@ -6,7 +6,7 @@ class CardDecksController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    @card_deck = CardDeck.new(params[:card_deck])
+    @card_deck = CardDeck.new(card_deck_params)
     @card_deck.game = @game
     if @card_deck.save
       flash[:success] = "Card deck successfully created"
@@ -16,5 +16,17 @@ class CardDecksController < ApplicationController
       render 'new'
     end
   end
+
+  def edit 
+    @game = Game.find(params[:game_id])
+    @ard
+  end
+
+  private
+
+  def card_deck_params
+    params.require(:card_deck).permit(:name)
+  end
+
   
 end
