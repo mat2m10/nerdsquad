@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     get "all"
   end
-  get "boards/new", to: "boards#new", as: :new_board
-
+  resources :games do
+    resources :boards, only: [:new, :create, :show]
+    resources :dices, only: [:new, :create]
+    resources :cards, only: [:new, :create]
+    resources :pieces, only: [:new, :create]
+    resources :tokens, only: [:new, :create]
+    get "preview"
+  end
 end

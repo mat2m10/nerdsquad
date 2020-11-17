@@ -1,3 +1,3 @@
 class Token < ApplicationRecord
-  belongs_to :token_tray
+  belongs_to :game
 end
