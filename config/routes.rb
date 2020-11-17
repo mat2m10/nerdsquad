@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :games do
     resources :boards, only: [:new, :create]
     resources :dices, only: [:new, :create]
-    resources :cards, only: [:new, :create]
+    resources :card_decks, only: [:new, :create] do
+      resources :cards, only: [:new, :create]
+    end
     resources :pieces, only: [:new, :create]
     resources :tokens, only: [:new, :create]
   end
