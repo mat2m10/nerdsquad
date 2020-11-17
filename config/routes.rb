@@ -12,5 +12,11 @@ Rails.application.routes.draw do
     end
     resources :pieces, only: [:new, :create]
     resources :tokens, only: [:new, :create]
+    get "preview"
+  end
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :boards, only: [ :update ]
+    end
   end
 end

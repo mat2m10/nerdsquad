@@ -1,7 +1,10 @@
 <div class="container">
     <h1>Create your game</h1>
-    <h2>Step 1: how many players maximum should play?</h2>
-  <%= render 'shared/form_number_of_players' %>
+    <%= simple_form_for(@game) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :number_of_players, collection: 1..6 %>
+      <%= f.button :submit %>
+    <% end %>
 </div>
 
 
