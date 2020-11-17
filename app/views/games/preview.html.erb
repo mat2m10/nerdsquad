@@ -1,0 +1,6 @@
+
+<h1>Name of Game: <%= @game.name %> </h1>
+<h1>Number of players: <%= @game.number_of_players %></h1>
+<p>board</p>
+
+<%=cl_image_tag @game.board.photo.key , { class: "board"}%>

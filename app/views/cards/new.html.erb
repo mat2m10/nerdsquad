@@ -1,1 +1,5 @@
-<h1>test</h1>
+<%= simple_form_for([@game, @card_deck, @card]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit %>
+<% end %>

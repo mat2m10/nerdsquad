@@ -1,7 +1,7 @@
 let isClicked = false;
 const moveAround = () => {
 
-    var container = document.querySelector(".container");
+    var container = document.querySelector(".movablecontainer");
     var activeItem = null;
 
     var active = false;
