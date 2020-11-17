@@ -11,6 +11,7 @@ const initGameroomCable = () => {
         },
       });
     }
+    // if (movableContainer)
   }
 
 export { initGameroomCable };
