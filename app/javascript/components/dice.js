@@ -21,4 +21,4 @@ button.onclick = function() {
 };
 
 
-export { dice } ;
+export { dice };
