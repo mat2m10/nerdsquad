@@ -14,6 +14,19 @@
         <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
     <% end %>
   </section>
+  
+  <section id="display-tokens">
+    <% @game.tokens.each do |token| %>
+      <h2><%= token.name %></h2>
+      <% if token.photo.attached? %>
+        <%= cl_image_tag token.photo.key, width: '120px', height: '200px' %>
+      <% else %>
+        <p>This token should have an image</p>
+      <% end %>
+    <% end %>
+    <%= link_to "Add new token", new_game_token_path(@game) %>
+  </section>
+
   <section id="display-pieces">
     <% @game.pieces.each do |piece| %>
       <h2><%= piece.name %></h2>
@@ -25,6 +38,7 @@
     <% end %>
     <%= link_to "Add new piece", new_game_piece_path(@game) %>
   </section>
+  
   <%= link_to "add deck", new_game_card_deck_path(@game) %>
   <%= link_to "add board", new_game_board_path(@game) %>
   <%= link_to "add dices", new_game_dice_path(@game) %>
