@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     resources :tokens, only: [:new, :create]
     get "preview"
   end
+  resources :gamerooms, only: :show do
+    resources :messages, only: :create
+  end
 end

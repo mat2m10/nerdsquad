@@ -1,0 +1,15 @@
+<h1><%= @gameroom.name %></h1>
+
+<div class="gameroom-container" data-gameroom-id="<%= @gameroom.id %>">
+hi
+</div>
+
+<div id="messages" data-gameroom-id="<%= @gameroom.id %>">
+  <% @gameroom.messages.each do |message| %>
+    <%= render 'messages/message', message: message %>
+  <% end %>
+</div>
+
+<%= simple_form_for [ @gameroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
+<% end %>
