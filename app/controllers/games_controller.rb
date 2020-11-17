@@ -37,7 +37,7 @@ class GamesController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def preview
     @game = Game.find(params[:game_id])
   end
@@ -45,6 +45,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:number_of_players)
+    params.require(:game).permit(:number_of_players, :name, :description)
   end
 end

@@ -32,5 +32,5 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   // toggleVisibility();
   moveAround();
-  dice();
+  dice;
 });
