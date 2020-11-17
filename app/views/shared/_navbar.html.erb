@@ -16,24 +16,24 @@
       <nav>
         <ul class="menu-links">
         <% if user_signed_in? %>
-          <li><%= link_to "Home", "#", class: "nav-link" %><span id="QC-info">
+          <li><%= link_to "Home", "#", class: "nav-link" %><span class="items">
             <p>+1 418-640-3300</p>
           </span>            
           </li>
 
-        <ul class="menu-links navbar-nav mr-auto">
-          <li><%= link_to "Messages", "#", class: "nav-link" %><span id="QC-info">
+        <ul class="menu-links">
+          <li><%= link_to "Games", "#", class: "nav-link" %><span class="items">
             <p>+1 418-640-3300</p>
           </span>            
           </li>
 
-        <ul class="menu-links nav-item active">
-          <li><%= link_to "Messages", "#", class: "nav-link" %><span class="items">
+        <ul class="menu-links">
+          <li><%= link_to "Create", "#", class: "nav-link" %><span class="items">
             <p>+1 418-640-3300</p>
           </span>            
           </li>
 
-        <ul class="menu-links nav-item dropdown">
+        <ul class="menu-links">
           <li><%= link_to "Messages", "#", class: "nav-link" %><span class="items">
             <% if current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -43,7 +43,7 @@
           </span>            
           </li>
         <% else %>
-          <li class="nav-item">
+          <li class="menu-links">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
