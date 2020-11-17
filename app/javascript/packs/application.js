@@ -25,9 +25,10 @@ require("channels")
 // External imports
 import "bootstrap";
 import { toggleVisibility } from "../plugins/toggleVisibility"
-
+import { moveAround } from "../plugins/moveAround"
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  toggleVisibility();
+  // toggleVisibility();
+  moveAround();
 });
