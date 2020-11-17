@@ -8,7 +8,6 @@ class BoardsController < ApplicationController
     @game = Game.find(params[:game_id])
     @board = Board.new(board_params)
     @board.game = @game
-    @board.save
     if @board.save
       redirect_to game_board_path(params[:game_id],@board.id)
     else
