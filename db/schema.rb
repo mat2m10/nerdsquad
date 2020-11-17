@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_124036) do
+ActiveRecord::Schema.define(version: 2020_11_17_141502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
   create_table "card_decks", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
-
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["game_id"], name: "index_card_decks_on_game_id"
   end
 
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_124036) do
     t.bigint "card_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
   end
 
