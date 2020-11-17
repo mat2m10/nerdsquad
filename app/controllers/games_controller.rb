@@ -23,6 +23,21 @@ class GamesController < ApplicationController
     @dice = Dice.new
   end
 
+  def edit
+    @game = Game.find(game_params)
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    if @game.update_attributes(params[:game])
+      flash[:success] = "Game was successfully updated"
+      redirect_to @game
+    else
+      flash[:error] = "Something went wrong"
+      render 'edit'
+    end
+  end
+  
   def preview
     @game = Game.find(params[:game_id])
   end
