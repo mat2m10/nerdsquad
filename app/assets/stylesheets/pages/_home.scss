@@ -29,7 +29,9 @@
     position: relative;
     display: inline-block;
     cursor: pointer;  
-    margin: 30px;   
+    margin: 30px;
+    border: 0;
+    outline: none;   
     vertical-align: middle; // vertically aligned in the middle of the parent container
     text-decoration: none;
     font-size: 24px;
@@ -45,6 +47,7 @@
     background: var(--colorShadeE);
     transform-style: preserve-3d; // preserve position
     transition: all 175ms cubic-bezier(0, 0, 1, 1);
+    outline:none;
   }
   button.big-button::before {
     position: absolute;
@@ -73,10 +76,48 @@
   
   button.big-button:active {
     transform: translate(0em, 16px);
+    text-decoration:none;
   }
   
   button.big-button:active::before {
     transform: translate3d(0, 0, -16px);
-    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.4px 0 0 var(--colorShadeB);
-  
+    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.4px 0 0 var(--colorShadeB);  
+    text-decoration:none;
   }
+
+
+
+  // Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .options .intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .options .intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .options .intro {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .options .intro {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .options .intro {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
