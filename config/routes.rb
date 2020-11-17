@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :cards, only: [:new, :create]
     resources :pieces, only: [:new, :create]
     resources :tokens, only: [:new, :create]
+    get "preview"
   end
 end

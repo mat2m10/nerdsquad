@@ -22,6 +22,11 @@ class GamesController < ApplicationController
     @board = Board.new
     @dice = Dice.new
   end
+
+  def preview
+    @game = Game.find(params[:game_id])
+  end
+
   private
 
   def game_params
