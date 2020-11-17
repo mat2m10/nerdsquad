@@ -21,9 +21,17 @@ class BoardsController < ApplicationController
     @game = Game.find(params[:game_id])
   end
 
+  def update
+    @board = Board.find(params[:id])
+    @board.update(board_params)
+    redirect_to game_path(params[:game_id])
+  end
+
   private
 
   def board_params
-    params.require(:board).permit(:photo)
+    params.require(:board).permit(:photo, :posX, :posY)
   end
 end
+
+
