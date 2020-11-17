@@ -1,18 +1,31 @@
 <div class="container">
   <h1><%= @game.name %></h1>
-  <% @game.card_decks.each do |card_deck| %>
+  <section id="display-decks">
+    <% @game.card_decks.each do |card_deck| %>
 
-    <h2><%= card_deck.name %></h2>
+      <h2><%= card_deck.name %></h2>
 
-    <% card_deck.cards.each do |card| %>
-      <%= card.name %>
-      <% if card.photo.attached? %>
-        <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
-      <% end %>    
+      <% card_deck.cards.each do |card| %>
+        <%= card.name %>
+        <% if card.photo.attached? %>
+          <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
+        <% end %>    
+      <% end %>
+        <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
     <% end %>
-      <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
-  <% end %>
-
+  </section>
+  <section id="display-pieces">
+    <% @game.pieces.each do |piece| %>
+      <h2><%= piece.name %></h2>
+      <% if piece.photo.attached? %>
+        <%= cl_image_tag piece.photo.key, width: '120px', height: '200px' %>
+      <% else %>
+        <p>This piece should ahve an image</p>
+      <% end %>
+    <% end %>
+    <%= link_to "Add new piece", new_game_piece_path(@game) %>
+  </section>
+  <%= link_to "add deck", new_game_card_deck_path(@game) %>
   <%= link_to "add board", new_game_board_path(@game) %>
   <%= link_to "add dices", new_game_dice_path(@game) %>
   <%= link_to "add token", new_game_token_path(@game) %>
