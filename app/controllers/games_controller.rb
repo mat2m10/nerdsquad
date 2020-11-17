@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   def new
     @game = Game.new
+    @game.user = current_user
     @board = Board.new
     @dice = Dice.new
     @piece = Piece.new
