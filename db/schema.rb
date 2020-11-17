@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_122839) do
   create_table "card_decks", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
+
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
