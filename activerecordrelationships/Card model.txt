@@ -1,2 +1,0 @@
-Card
-	belongs_to :card_deck

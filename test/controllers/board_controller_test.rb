@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TokenTrayTest < ActiveSupport::TestCase
+class BoardControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

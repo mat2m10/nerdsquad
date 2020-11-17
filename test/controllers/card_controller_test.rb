@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DiceTrayTest < ActiveSupport::TestCase
+class CardControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

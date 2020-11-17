@@ -1,0 +1,8 @@
+<%#= render  "shared/form_board" unless @game.board%>
+<%# don't show the form if the board exists %>
+<%#= render  "shared/form_dice" if @game.board %>
+<%= link_to "add board", new_game_board_path(@game) %>
+<%= link_to "add dices", new_game_dice_path(@game) %>
+<%= link_to "add cards", new_game_card_path(@game) %>
+<%= link_to "add token", new_game_token_path(@game) %>
+<%= link_to "add pieces", new_game_piece_path(@game) %>

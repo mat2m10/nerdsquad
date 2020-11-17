@@ -1,0 +1,5 @@
+<h2>Create your shitty-ass BOARD</h2>
+<%= simple_form_for([@game, @board], remote: true) do |f| %>
+<%= f.input :photo, as: :file %>
+    <%= f.button :submit, id: "test"  %>
+<% end %>

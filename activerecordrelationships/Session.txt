@@ -1,4 +1,0 @@
-Session
-	belongs_to :game
-	has_one :user, foreign_key :host_id
-	has_many :users, class-name: :players (syntaxe?)
