@@ -37,6 +37,10 @@ class GamesController < ApplicationController
       render 'edit'
     end
   end
+  
+  def preview
+    @game = Game.find(params[:game_id])
+  end
 
   private
 

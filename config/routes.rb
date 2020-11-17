@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     get "all"
   end
   resources :games do
-    resources :boards, only: [:new, :create]
+    resources :boards, only: [:new, :create, :show]
     resources :dices, only: [:new, :create]
     resources :card_decks, only: [:new, :create] do
       resources :cards, only: [:new, :create]
     end
     resources :pieces, only: [:new, :create]
     resources :tokens, only: [:new, :create]
+    get "preview"
   end
 end

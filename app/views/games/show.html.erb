@@ -14,3 +14,11 @@
   <br>
   <%= link_to "New card deck", new_game_card_deck_path(@game)  %>
 </div>
+
+<%= link_to "add board", new_game_board_path(@game) %>
+<%= link_to "add dices", new_game_dice_path(@game) %>
+<%= link_to "add cards", new_game_card_path(@game) %>
+<%= link_to "add token", new_game_token_path(@game) %>
+<%= link_to "add pieces", new_game_piece_path(@game) %>
+<%= link_to "Game preview", game_preview_path(@game) %>
+
