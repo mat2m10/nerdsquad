@@ -2,6 +2,8 @@ let isClicked = false;
 const moveAround = () => {
 
     var container = document.querySelector(".movablecontainer");
+    // var posX = document.querySelector("#board_posX")
+    // var posY = document.querySelector("#board_posY")
     var activeItem = null;
 
     var active = false;
@@ -70,6 +72,7 @@ const moveAround = () => {
 
         setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       }
+      container.insertAdjacentHTML('beforeend', tile_to_insert.outerHTML);
     }
 
     function setTranslate(xPos, yPos, el) {
