@@ -1,6 +1,8 @@
 <div class = "movablecontainer">
-  <div>
-    <%= cl_image_tag @board.photo.key , { class: "movable"} %>
+  <div class = table>
+    <div>
+    <%= cl_image_tag @board.photo.key , { class: "movable board"} %>
+    </div>
   </div>
   <%= link_to "Save board position", game_path(@game) %>
 </div>
