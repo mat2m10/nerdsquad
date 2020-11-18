@@ -77,9 +77,6 @@ const moveAround = () => {
 
     active = false;
     activeItem = null;
-    // initX = 0;
-    // initY = 0;
-    // name = "";
   }
 
   function drag(e) {
