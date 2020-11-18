@@ -22,8 +22,13 @@ class BoardsController < ApplicationController
 
   def update
     @board = Board.find(params[:id])
-    @board.update(board_params)
-    redirect_to game_path(params[:game_id])
+    @board.update!(board_params)
+    GameroomChannel.broadcast_to(
+      @board.game.gamerooms.last,
+      "moved"
+    )
+    redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
+    
   end
 
   private
