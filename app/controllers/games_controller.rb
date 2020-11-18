@@ -1,4 +1,9 @@
 class GamesController < ApplicationController
+  def index
+    @games = Game.all
+    @boards = Board.all
+  end
+  
   def new
     @game = Game.new
     @game.user = current_user
