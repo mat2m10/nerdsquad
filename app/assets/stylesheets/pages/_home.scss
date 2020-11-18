@@ -1,11 +1,11 @@
 // Specific CSS for your home-page
-// BUTTONS NOT RESPONSIVE
+
 .homepage {   
-    --colorShadeA: #112d4e;
-    --colorShadeB: #3f72af;
-    --colorShadeC: #93abd3;
-    --colorShadeD: #dbe2ef;
-    --colorShadeE: #f9f7f7;  
+    --colorShadeA: #374863;
+    --colorShadeB: #325389;
+    --colorShadeC :#6987ac;
+    --colorShadeD: #e6dbcd; 
+    --colorShadeE: #e0dfdd;  
 
   body {
     display: flex;
@@ -16,14 +16,26 @@
     background-color: #ebcfc4;
   }
 
+  .background {
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0;
+  }
+
   .intro{
       margin: 80px;
   }
-
-  h1, h2 {
-    color: #112d4e
+  .intro h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 100px;
+  }
+  h1 {
+    color: #112d4e;
   }
   
+  h2 {
+    color: var( --colorShadeA);
+  }
   button {
     position: relative;
     display: inline-block;
@@ -33,9 +45,9 @@
     outline: none;   
     vertical-align: middle; // vertically aligned in the middle of the parent container
     text-decoration: none;
-    font-size: 24px;
+    font-size: 24px;    
     color:var(--colorShadeA);
-    font-weight: 500;    
+    font-weight: 900;    
     font-family: $body-font , sans-serif;
   }
   
