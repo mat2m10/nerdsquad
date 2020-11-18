@@ -45,6 +45,9 @@ const moveAround = () => {
   }
   
   function dragEnd(e) {
+    e.currentTarget.querySelector("#posX").value = activeItem.currentX;
+    e.currentTarget.querySelector("#posY").value = activeItem.currentY;
+    e.currentTarget.querySelector("form").submit();
     if (activeItem !== null) {
       activeItem.initialX = activeItem.currentX;
       activeItem.initialY = activeItem.currentY;

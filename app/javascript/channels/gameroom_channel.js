@@ -7,11 +7,12 @@ const initGameroomCable = () => {
   
       consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
         received(data) {
-            messagesContainer.insertAdjacentHTML('beforeend', data);
+          console.log(data);  
+          Turbolinks.visit(window.location.pathname);
+            
         },
       });
     }
-    // if (movableContainer)
   }
 
 export { initGameroomCable };

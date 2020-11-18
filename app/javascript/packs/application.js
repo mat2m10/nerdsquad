@@ -28,8 +28,17 @@ import { toggleVisibility } from "../plugins/toggleVisibility"
 import { moveAround } from "../plugins/moveAround"
 import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
+const positionElement = () => { 
+  document.querySelectorAll(".movablecontainer").forEach((div) => {
+    console.log(div);
+    let xPos = div.dataset.posx
+    let yPos = div.dataset.posy
+    div.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+  })
+}
 document.addEventListener('turbolinks:load', () => {
   moveAround();
   dice;
   initGameroomCable();
+  positionElement();
 });
