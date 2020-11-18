@@ -1,6 +1,9 @@
-<h2>Add a token to your game</h2>
-<%= simple_form_for([@game, @token], url: game_tokens_path) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+  <h2>Add a token to your game</h2>
+  <%= simple_form_for([@game, @token]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :photo, as: :file %>
+    <%= f.input :number_of_tokens, collection: 1..30 %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
