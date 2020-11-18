@@ -3,7 +3,7 @@
     <div>
     <%= cl_image_tag @board.photo.key , { class: "movable board"} %>
     </div>
-  </div>
+</div>
 
 <%= simple_form_for([@game, @board]) do |f| %>
     <%= f.input :posX, id: "posX" %>

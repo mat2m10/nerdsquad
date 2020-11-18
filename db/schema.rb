@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 2020_11_17_172022) do
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
 
+  create_table "gamerooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "game_id"
+    t.index ["game_id"], name: "index_gamerooms_on_game_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -84,6 +92,16 @@ ActiveRecord::Schema.define(version: 2020_11_17_172022) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "gameroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gameroom_id"], name: "index_messages_on_gameroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "pieces", force: :cascade do |t|
@@ -127,7 +145,10 @@ ActiveRecord::Schema.define(version: 2020_11_17_172022) do
   add_foreign_key "card_decks", "games"
   add_foreign_key "cards", "card_decks"
   add_foreign_key "dices", "games"
+  add_foreign_key "gamerooms", "games"
   add_foreign_key "games", "users"
+  add_foreign_key "messages", "gamerooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "pieces", "games"
   add_foreign_key "tokens", "games"
 end
