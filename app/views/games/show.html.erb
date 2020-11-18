@@ -11,13 +11,13 @@
           <br>
           <%= cl_image_tag card.photo.key, width: '120px', height: '200px' %>
           <br>
-        <% end %>    
+        <% end %>
       <% end %>
         <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
     <% end %>
     <%= link_to "add deck", new_game_card_deck_path(@game) %>
   </section>
-  
+
   <section id="display-tokens">
     <% @game.tokens.each do |token| %>
       <h2><%= token.name %></h2>
@@ -27,11 +27,11 @@
       <% else %>
         <p>This token should have an image</p>
       <% end %>
-    
+
 
       <br>
       <% end %>
-    
+
     <br>
     <%= link_to "Add new token", new_game_token_path(@game) %>
   </section>
@@ -49,21 +49,21 @@
     <br>
     <%= link_to "Add new piece", new_game_piece_path(@game) %>
   </section>
-  
+
   <section id="display-board">
     <% if @game.board %>
       <% if @game.board.photo.attached? %>
-        <%= cl_image_tag @game.board.photo.key %>
+        <%= cl_image_tag @game.board.photo.key , { class: "board"}%>
       <% end %>
     <% end %>
-        
+
     <% if @game.board %>
     <br>
-      <%= link_to "Edit board", new_game_board_path(@game) %>  
+      <%= link_to "Edit board", new_game_board_path(@game) %>
     <% else %>
-      <%= link_to "Add board", new_game_board_path(@game) %>  
+      <%= link_to "Add board", new_game_board_path(@game) %>
     <% end %>
-        
+
   </section>
 
 <section id="display-dices">

@@ -31,7 +31,7 @@ class CardDecksController < ApplicationController
   def card_deck_params
     params.require(:card_deck).permit(:name)
   end
-
+  
   def set_game
     @game = Game.find(params[:game_id])
   end
