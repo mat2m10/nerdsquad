@@ -20,7 +20,7 @@ class CardDecksController < ApplicationController
   def edit; end
 
   def show
-    @card_deck = CardDeck.find()
+    @card_deck = CardDeck.find(params[:id])
   end
 
   def draw!(deck, number)
