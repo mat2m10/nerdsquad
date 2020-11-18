@@ -19,7 +19,12 @@ class CardDecksController < ApplicationController
   def edit; end
 
   def draw!(deck, number)
-    @card_deck.cards.last(number)
+    temp = CardDeck.new(game: @game, name: 'temp')
+    drawn_cards = deck.cards.pop(number)
+    drawn_cards.each do |card|
+      card.deck = temp
+    end
+    temp.save
   end
 
   def shuffle!
