@@ -17,7 +17,7 @@ class CardDecksController < ApplicationController
     end
   end
 
-  def edit 
+  def edit
     @game = Game.find(params[:game_id])
   end
 
@@ -27,5 +27,5 @@ class CardDecksController < ApplicationController
     params.require(:card_deck).permit(:name)
   end
 
-  
+
 end
