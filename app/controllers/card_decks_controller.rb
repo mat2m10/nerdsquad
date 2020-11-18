@@ -1,5 +1,6 @@
 class CardDecksController < ApplicationController
-  before_action :set_game, only: %i[new create edit shuffle! draw]
+  before_action :set_game, only: %i[new create edit shuffle! draw show]
+
   def new
     @card_deck = CardDeck.new
   end
@@ -18,6 +19,10 @@ class CardDecksController < ApplicationController
 
   def edit; end
 
+  def show
+    @card_deck = CardDeck.find()
+  end
+
   def draw!(deck, number)
     @card_deck.cards.last(number)
   end
@@ -31,7 +36,7 @@ class CardDecksController < ApplicationController
   def card_deck_params
     params.require(:card_deck).permit(:name)
   end
-  
+
   def set_game
     @game = Game.find(params[:game_id])
   end
