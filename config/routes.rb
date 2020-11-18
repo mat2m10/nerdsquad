@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   end
   resources :games do
     resources :boards, only: [:new, :create, :show, :update]
-    resources :dices, only: [:new, :create]
-    resources :card_decks, only: [:new, :create] do
-      resources :cards, only: [:new, :create]
+    resources :dices, only: [:new, :create, :show, :update]
+    resources :card_decks, only: [:new, :create, :show, :update] do
+      resources :cards, only: [:new, :create, :show, :update]
     end
-    resources :pieces, only: [:new, :create]
-    resources :tokens, only: [:new, :create]
+    resources :pieces, only: [:new, :create, :show, :update]
+    resources :tokens, only: [:new, :create, :show, :update]
     get "preview"
   end
   resources :gamerooms, only: [:new, :create, :show, :update] do
