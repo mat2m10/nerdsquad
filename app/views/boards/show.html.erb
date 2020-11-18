@@ -3,6 +3,7 @@
 
   <%= cl_image_tag @board.photo.key , { class: "board"} %>
 
+</div>
 
   <%= simple_form_for([@game, @board]) do |f| %>
     <%= f.input :posX, id: "posX" %>
@@ -10,6 +11,6 @@
     <%= f.button :submit, class: "btn btn-primary bottom-right"  %>
   <% end %>
 
-</div>
+
 <div class = "table">
 </div>

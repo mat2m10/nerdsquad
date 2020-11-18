@@ -57,9 +57,19 @@ const moveAround = () => {
   function dragEnd(e) {
     activeItem.xOffset = activeItem.currentX;
     activeItem.yOffset = activeItem.currentY;
-    e.currentTarget.querySelector("#posX").value = getOffset(activeItem).left;
-    e.currentTarget.querySelector("#posY").value = getOffset(activeItem).top;
-    e.currentTarget.querySelector("form").submit();
+    console.log(e.currentTarget)
+    if (e.currentTarget.querySelector("#posX") !== null){
+      e.currentTarget.querySelector("#posX").value = getOffset(activeItem).left;
+    }
+
+    if (e.currentTarget.querySelector("#posY") !== null) {
+      e.currentTarget.querySelector("#posY").value = getOffset(activeItem).top;
+    }
+
+    if (e.currentTarget.querySelector("form") !== null) {
+      e.currentTarget.querySelector("form").submit();
+    }
+
     if (activeItem !== null) {
       activeItem.initialX = activeItem.currentX;
       activeItem.initialY = activeItem.currentY;
@@ -67,9 +77,9 @@ const moveAround = () => {
 
     active = false;
     activeItem = null;
-    initX = 0;
-    initY = 0;
-    name = "";
+    // initX = 0;
+    // initY = 0;
+    // name = "";
   }
 
   function drag(e) {
@@ -88,7 +98,7 @@ const moveAround = () => {
       activeItem.yOffset = activeItem.currentY;
 
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
-      var form2 = document.querySelector((hash.concat(name)).concat(strX)).setAttribute("value", getOffset(activeItem).left);
+      var form1 = document.querySelector((hash.concat(name)).concat(strX)).setAttribute("value", getOffset(activeItem).left);
       var form2 = document.querySelector((hash.concat(name)).concat(strY)).setAttribute("value", getOffset(activeItem).top);
     }
   }
