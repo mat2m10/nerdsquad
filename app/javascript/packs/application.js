@@ -33,7 +33,8 @@ const positionElement = () => {
     console.log(div);
     let xPos = div.dataset.posx
     let yPos = div.dataset.posy
-    div.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    div.style.left = xPos + 'px'
+    div.style.top = yPos + 'px'
   })
 }
 document.addEventListener('turbolinks:load', () => {
