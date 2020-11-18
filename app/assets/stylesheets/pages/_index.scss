@@ -1,2 +1,21 @@
 // Import page-specific CSS files here.
  @import "home";
+
+ .index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    margin: 50px;
+  }
+
+  .title {
+    text-align: center;
+    padding: 7px;
+  }
+
+  .games {
+    display: grid;
+    grid-template-columns: 1fr -2fr;
+    grid-gap: 16px;
+    margin: 20px;
+  }
