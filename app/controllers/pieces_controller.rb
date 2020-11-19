@@ -1,6 +1,6 @@
 class PiecesController < ApplicationController
-  before_action :set_game, only: %i[new create show edit update]
-  before_action :set_piece, only: %i[show edit update]
+  before_action :set_game, only: %i[new create show edit update destroy]
+  before_action :set_piece, only: %i[show edit update destroy]
   def new
     @piece = Piece.new
   end
@@ -10,7 +10,7 @@ class PiecesController < ApplicationController
     @piece.game = @game
     if @piece.save
       flash[:success] = "Piece successfully created"
-      redirect_to game_path(@game)
+      redirect_to game_piece_path(@game, @piece)
     else
       flash[:error] = "Something went wrong"
       redirect_to @piece
@@ -24,26 +24,18 @@ class PiecesController < ApplicationController
   end
 
   def update
-    if @piece.update_attributes(piece_params)
-      flash[:success] = "Piece was successfully updated"
-      redirect_to @game
-    else
-      flash[:error] = "Something went wrong"
-      render 'edit'
-    end
+    @piece.update!(piece_params)
+    redirect_to @game
   end
 
   def destroy
-    @object = Object.find(params[:id])
-    if @object.destroy
-      flash[:success] = 'Object was successfully deleted.'
-      redirect_to objects_url
+    if @piece.destroy
+      flash[:success] = 'Piece was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
-      redirect_to objects_url
     end
+    redirect_to @game
   end
-  
 
   private
 

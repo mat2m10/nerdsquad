@@ -20,6 +20,22 @@ class TokensController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def update
+    @token = Token.find(params[:id])
+    @token.update!(token_params)
+    if @token.game.gamerooms.last
+      GameroomChannel.broadcast_to(
+        @token.game.gamerooms.last,
+        "moved"
+      )
+    else
+      redirect_to game_path(params[:game_id])
+    end
+    if @token.game.gamerooms.last
+      redirect_back(fallback_location: gameroom_path(@token.game.gamerooms.last))
+    end
+  end
+
   private
 
   def set_game

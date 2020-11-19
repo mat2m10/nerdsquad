@@ -1,16 +1,15 @@
-<div class = "movablecontainer">
-
-
-  <%= cl_image_tag @board.photo.key , { class: "board"} %>
-
-</div>
-
-  <%= simple_form_for([@game, @board]) do |f| %>
-    <%= f.input :posX, id: "posX" , as: :hidden %>
-    <%= f.input :posY, id: "posY", as: :hidden %>
-    <%= f.button :submit, class: "btn btn-primary bottom-right"  %>
-  <% end %>
-
-
 <div class = "table">
+  <div class="container">
+    <h1>Board preview</h1>
+    <h2><%= @board.game.number_of_players %> players</h2>
+
+    <div class="movablecontainer">
+      <%= cl_image_tag @board.photo.key , { class: "board" , style: "position: relative;"} %>
+    </div>
+    <%= simple_form_for([@game, @board]) do |f| %>
+      <%= f.input :posX, id: "posX" , as: :hidden %>
+      <%= f.input :posY, id: "posY", as: :hidden %>
+      <%= f.button :submit, class: "btn btn-primary bottom-right"  %>
+    <% end %>
+  </div>
 </div>
