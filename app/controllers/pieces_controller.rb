@@ -1,5 +1,6 @@
 class PiecesController < ApplicationController
-  before_action :set_game, only: %i[new create show]
+  before_action :set_game, only: %i[new create show edit update]
+  before_action :set_piece, only: %i[show edit update]
   def new
     @piece = Piece.new
   end
@@ -17,13 +18,41 @@ class PiecesController < ApplicationController
   end
 
   def show
-    @piece = Piece.find(params[:id])
   end
+
+  def edit
+  end
+
+  def update
+    if @piece.update_attributes(piece_params)
+      flash[:success] = "Piece was successfully updated"
+      redirect_to @game
+    else
+      flash[:error] = "Something went wrong"
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @object = Object.find(params[:id])
+    if @object.destroy
+      flash[:success] = 'Object was successfully deleted.'
+      redirect_to objects_url
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to objects_url
+    end
+  end
+  
 
   private
 
   def set_game
     @game = Game.find(params[:game_id])
+  end
+
+  def set_piece
+    @piece = Piece.find(params[:id])
   end
 
   def piece_params
