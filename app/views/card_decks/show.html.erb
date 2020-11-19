@@ -1,21 +1,21 @@
-
-  <% if  @game.board %>
-    <%#= cl_image_tag @game.board.photo.key , { class: "board"} %>
+<h2>Place your deck around the board</h2>
+<%# @game.board to display board as a background %>
+  <% if @game.board %>
+    <%= cl_image_tag @game.board.photo.key, { class: "board"} %>
   <% end %>
 
-    <%= link_to "add deck", new_game_card_deck_path(@game) %>
-
+<%# div.table for background %>
 <div class = "table">
 </div>
 
-
-
+<%# form to submit deck position %>
 <%= simple_form_for([@game, @card_deck]) do |f| %>
   <%= f.input :posX, id: "posX", as: :hidden %>
   <%= f.input :posY, id: "posY", as: :hidden %>
   <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
-
 <% end %>
+
+<%# deck (represented by its first card) to be positioned %>
 <div class = "movablecontainer">
-  <%= cl_image_tag @card_deck.cards.first.photo.key %>
+  <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "card_deck", width: '120px'} %>
 </div>
