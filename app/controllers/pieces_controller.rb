@@ -19,6 +19,6 @@ class PiecesController < ApplicationController
   private
 
   def piece_params
-    params.require(:piece).permit(:photo)
+    params.require(:piece).permit(:photo, :name, :posX, :posY)
   end
 end

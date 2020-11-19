@@ -14,6 +14,6 @@ class DicesController < ApplicationController
   private
 
   def dice_params
-    params.require(:dice).permit(:faces)
+    params.require(:dice).permit(:faces, :posX, :posY)
   end
 end

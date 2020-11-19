@@ -23,6 +23,6 @@ class TokensController < ApplicationController
   private
 
   def token_params
-    params.require(:token).permit(:photo, :name, :number_of_tokens)
+    params.require(:token).permit(:photo, :name, :number_of_tokens, :posX, :posY)
   end
 end

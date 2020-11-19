@@ -1,15 +1,15 @@
-<div class = "movablecontainer">
+<div class = "table">
 
   <% if  @game.board %>
-    <%= cl_image_tag @game.board.photo.key , { class: "card_deck"} %>
+    <%= cl_image_tag @game.board.photo.key , { class: "board"} %>
   <% end %>
-  <% binding.pry %>
   <%= simple_form_for([@game, @card_deck]) do |f| %>
-    <%= f.input :posX, id: "posX" %>
+    <%= f.input :posX, id: "posX", as: :hidden %>
     <%= f.input :posY, id: "posY", as: :hidden %>
-    <%= f.button :submit, class: "btn btn-primary bottom-right"  %>
+    <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
   <% end %>
+  <div class = "movablecontainer">
+    <%= cl_image_tag @card_deck.cards.first.photo.key %>
+  </div>
 
-</div>
-<div class = "table">
 </div>
