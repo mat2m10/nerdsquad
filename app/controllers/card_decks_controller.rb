@@ -21,7 +21,7 @@ class CardDecksController < ApplicationController
   def show; end
 
   def edit; end
-  
+
   def update
     @card_deck = CardDeck.find(params[:id])
     @card_deck.update!(card_deck_params)
@@ -30,12 +30,9 @@ class CardDecksController < ApplicationController
         @board.game.gamerooms.last,
         "moved"
       )
-    else
-      redirect_to game_path(params[:game_id])
-    end
-    if @card_deck.game.gamerooms.last
       redirect_back(fallback_location: gameroom_path(@card_deck.game.gamerooms.last))
     end
+    redirect_to game_path(params[:game_id])
   end
 
   def draw!(deck, number)

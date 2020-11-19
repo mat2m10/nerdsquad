@@ -1,4 +1,5 @@
 <h2>Place your deck around the board</h2>
+
 <%# @game.board to display board as a background %>
   <% if @game.board %>
     <%= cl_image_tag @game.board.photo.key, { class: "board"} %>
