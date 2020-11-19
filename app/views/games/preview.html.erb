@@ -1,28 +1,29 @@
 <div class="table">
-  <div class="container">
+</div>
+
     <h1><%= @game.name %> game preview </h1>
     <h2><%= @game.number_of_players %> players</h2>
 
     <% if @game.board %>
-      <%=cl_image_tag @game.board.photo.key , { class: "board"} %>
+      <%=cl_image_tag @game.board.photo.key , { class: "board", style: "position: absolute; left: #{@game.board.posX}; top: #{@game.board.posY}px;"} %>
     <% end %>
 
     <div class="movablecontainer">
       <% unless @game.pieces.empty? %>
         <% @game.pieces.each do |piece| %>
-          <%= cl_image_tag piece.photo.key, width: '60px' %>
+          <%= cl_image_tag piece.photo.key, { class: "piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}px;", width: '60px'}%>
         <% end %>
       <% end %>
 
       <% unless @game.tokens.empty? %>
         <% @game.tokens.each do |token| %>
-          <%= cl_image_tag token.photo.key, width: '40px' %>
+          <%= cl_image_tag token.photo.key, { class: "token", style: "position: absolute; left: #{token.posX}; top: #{token.posY}px;", width: '40px'}%>
         <% end %>
       <% end %>
 
       <%# unless @game.dices.empty? %>
         <%#= cl_image_tag("dices.png", :quality=>50, :width=>72, :crop=>"scale") %>
-        <%# <ul> %> 
+        <%# <ul> %>
           <%# @game.dices.each do |dice| %>
           <%# <li><%#= dice.faces %>   <%#faces</li> %>
           <%# end %>
@@ -38,6 +39,4 @@
         <% end %>
       <% end %>
 
-    </div>
   </div>
-</div>
