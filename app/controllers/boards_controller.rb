@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_game, only: %i[new create show update]
   before_action :set_board, only: %i[show update]
+
   def new
     @board = Board.new
   end
@@ -43,5 +44,3 @@ class BoardsController < ApplicationController
     params.require(:board).permit(:photo, :posX, :posY)
   end
 end
-
-
