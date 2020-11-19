@@ -44,7 +44,8 @@
       <% else %>
         <p>This piece should have an image and/or a name</p>
       <% end %>
-        <%= link_to "Edit this piece", edit_game_piece_path(@game, piece) %>
+        <%= link_to "Edit", edit_game_piece_path(@game, piece) %>
+        <%= link_to "Delete", game_piece_path(@game, piece), method: :delete %>
     <% end %>
     <br>
     <%= link_to "Add new piece", new_game_piece_path(@game) %>

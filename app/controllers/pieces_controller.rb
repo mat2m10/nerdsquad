@@ -1,6 +1,6 @@
 class PiecesController < ApplicationController
-  before_action :set_game, only: %i[new create show edit update]
-  before_action :set_piece, only: %i[show edit update]
+  before_action :set_game, only: %i[new create show edit update destroy]
+  before_action :set_piece, only: %i[show edit update destroy]
   def new
     @piece = Piece.new
   end
@@ -34,16 +34,13 @@ class PiecesController < ApplicationController
   end
 
   def destroy
-    @object = Object.find(params[:id])
-    if @object.destroy
-      flash[:success] = 'Object was successfully deleted.'
-      redirect_to objects_url
+    if @piece.destroy
+      flash[:success] = 'Piece was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
-      redirect_to objects_url
     end
+    redirect_to @game
   end
-  
 
   private
 
