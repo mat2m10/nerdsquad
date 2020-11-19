@@ -42,9 +42,9 @@
       <% if piece.photo.attached? %>
         <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %>
       <% else %>
-        <p>This piece should have an image</p>
-        <%= link_to "Add an image", edit_game_piece_path(@game, piece) %>
+        <p>This piece should have an image and/or a name</p>
       <% end %>
+        <%= link_to "Edit this piece", edit_game_piece_path(@game, piece) %>
     <% end %>
     <br>
     <%= link_to "Add new piece", new_game_piece_path(@game) %>

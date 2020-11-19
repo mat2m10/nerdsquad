@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :card_decks, only: [:new, :create, :show, :update] do
       resources :cards, only: [:new, :create, :show, :update]
     end
-    resources :pieces, only: [:new, :create, :show, :edit, :update]
+    resources :pieces, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :tokens, only: [:new, :create, :show, :update]
     get "preview"
   end
