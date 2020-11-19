@@ -2,7 +2,6 @@ var initX = 0;
 var initY = 0;
 var name = "";
 var test = 100;
-const hash = "#";
 const strX = "_posX";
 const strY = "_posY";
 const moveAround = () => {
@@ -57,7 +56,6 @@ const moveAround = () => {
   function dragEnd(e) {
     activeItem.xOffset = activeItem.currentX;
     activeItem.yOffset = activeItem.currentY;
-    console.log(e.currentTarget)
     if (e.currentTarget.querySelector("#posX") !== null){
       e.currentTarget.querySelector("#posX").value = getOffset(activeItem).left;
     }
@@ -82,6 +80,7 @@ const moveAround = () => {
   function drag(e) {
     if (active) {
       if (e.type === "touchmove") {
+        name = activeItem.className;
         e.preventDefault();
 
         activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
@@ -95,9 +94,8 @@ const moveAround = () => {
       activeItem.yOffset = activeItem.currentY;
 
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
-      console.log((hash.concat(name)).concat(strX))
-      var form1 = document.querySelector((hash.concat(name)).concat(strX)).setAttribute("value", getOffset(activeItem).left);
-      var form2 = document.querySelector((hash.concat(name)).concat(strY)).setAttribute("value", getOffset(activeItem).top);
+      document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
+      document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
     }
   }
 
