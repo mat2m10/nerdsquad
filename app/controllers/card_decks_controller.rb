@@ -23,6 +23,22 @@ class CardDecksController < ApplicationController
     @card_deck = CardDeck.find(params[:id])
   end
 
+  def update
+    @card_deck = CardDeck.find(params[:id])
+    @card_deck.update!(card_deck_params)
+    if @card_deck.game.gamerooms.last
+      GameroomChannel.broadcast_to(
+        @board.game.gamerooms.last,
+        "moved"
+      )
+    else
+      redirect_to game_path(params[:game_id])
+    end
+    if @card_deck.game.gamerooms.last
+      redirect_back(fallback_location: gameroom_path(@card_deck.game.gamerooms.last))
+    end
+  end
+
   def draw!(deck, number)
     temp = CardDeck.new(game: @game, name: 'temp')
     drawn_cards = deck.cards.pop(number)

@@ -24,7 +24,6 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @board.update!(board_params)
     if @board.game.gamerooms.last
-      binding.pry
       GameroomChannel.broadcast_to(
         @board.game.gamerooms.last,
         "moved"
