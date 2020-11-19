@@ -1,43 +1,45 @@
 <div class="index">
-  <div class="title">
-    <h1>Select a game to play</h1>
-  </div>
-  <div class="row">
+  <div class="left d-flex flex-column">
 
-    <div class="col-sm-8">
+    <div class="title">
+      <h1>Select a game to play</h1>
+    </div>
 
-    <%= form_tag games_path, method: :get do %>
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a game"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      
-  <% end %>
+      <%= form_tag games_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a game"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+  
+  </div>  
 
+  <div class="right">  
+ 
+    <div class="games">
+      <table>
+          <thead>
+          <tr>
+          <th>GAME</th>
+          <th>PREVIEW</th> 
+          <th colspan="2"></th>
+          </tr>
+      </thead>
+
+          <tbody>
+          <% @games.each do |game| %>
+              <tr>
+              <td><%= link_to "#{game.name}", game_path(game) %></td>
+              <% if game.board%>
+              <td><%= cl_image_tag game.board.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %></td>
+              <% end %>
+              </tr>
+          <% end %>
+          </tbody>
+      </table>
     </div>
   </div>
-  <div class="games">
-    <table>
-        <thead>
-        <tr>
-        <th>GAME</th>
-        <th>PREVIEW</th> 
-        <th colspan="2"></th>
-        </tr>
-    </thead>
 
-        <tbody>
-        <% @games.each do |game| %>
-            <tr>
-            <td><%= link_to "#{game.name}", game_path(game) %></td>
-            <% if game.board%>
-            <td><%= cl_image_tag game.board.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %></td>
-            <% end %>
-            </tr>
-        <% end %>
-        </tbody>
-    </table>
-  </div>
 </div>
