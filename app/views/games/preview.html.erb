@@ -3,10 +3,8 @@
     <h1><%= @game.name %> game preview </h1>
     <h2><%= @game.number_of_players %> players</h2>
 
-    <% unless @game.board.empty? %>
-      <% @game.board.each do |piece| %>
-        <%=cl_image_tag @game.board.photo.key , { class: "board"}, %>
-      <% end %>
+    <% if @game.board %>
+      <%=cl_image_tag @game.board.photo.key , { class: "board"} %>
     <% end %>
 
     <div class="movablecontainer">

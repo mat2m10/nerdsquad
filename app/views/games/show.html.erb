@@ -47,7 +47,6 @@
         <%= link_to "Edit", edit_game_piece_path(@game, piece) %>
         <%= link_to "Delete", game_piece_path(@game, piece), method: :delete %>
     <% end %>
-    <br>
     <%= link_to "Add new piece", new_game_piece_path(@game) %>
   </section>
 
@@ -59,7 +58,6 @@
     <% end %>
 
     <% if @game.board %>
-    <br>
       <%= link_to "Edit board", new_game_board_path(@game) %>
     <% else %>
       <%= link_to "Add board", new_game_board_path(@game) %>

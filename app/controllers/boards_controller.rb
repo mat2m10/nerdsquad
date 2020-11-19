@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.game = @game
     if @board.save
-      redirect_to game_board_path(params[:game_id],@board.id)
+      redirect_to game_board_path(params[:game_id], @board.id)
     else
       render 'games/new'
     end
