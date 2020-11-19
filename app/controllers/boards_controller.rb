@@ -24,10 +24,9 @@ class BoardsController < ApplicationController
     @board.update!(board_params)
     if @board.game.gamerooms.last
       GameroomChannel.broadcast_to(@board.game.gamerooms.last, "moved")
-    else
-      redirect_to game_path(params[:game_id])
+      redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
     end
-    redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last)) if @board.game.gamerooms.last
+    redirect_to game_path(params[:game_id])
   end
 
   private
