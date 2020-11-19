@@ -1,19 +1,28 @@
 <h1><%= @gameroom.name %></h1>
 
 <div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" >
-<%= cl_image_tag @gameroom.game.board.photo.key, { class: "movable board"} %>
-<%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
-    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-<% end %>
-  </div>
 
-<div class="container">
-<%= simple_form_for gameroom_path(@gameroom) do |f| %>
-    <%= f.input :posX, input_html: { id: "board_posX" } %>
-    <%= f.input :posY, input_html: { id: "board_posY" } %>
-    <%= f.button :submit, value: "Validate moves", class: "btn btn-primary"  %>
-<% end %>
+  <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable_board" %>
+
+  <%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+  <% end %>
+
+</div>
+
+<div class="movablecontainer" data-posx="<%= @gameroom.game.tokens[0].posX %>" data-posy="<%= @gameroom.game.tokens[0].posY %>" >
+
+  <%= cl_image_tag @gameroom.game.tokens[0].photo, class: "movable_token" %>
+
+  <% raise %>
+
+  <%= simple_form_for [@gameroom.game, @gameroom.game.tokens[0]] do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+  <% end %>
+
+</div>
 
 <div class ="mt-5" id="messages" data-gameroom-id="<%= @gameroom.id %>">
   <% @gameroom.messages.each do |message| %>
