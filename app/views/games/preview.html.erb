@@ -2,7 +2,12 @@
   <div class="container">
     <h1><%= @game.name %> game preview </h1>
     <h2><%= @game.number_of_players %> players</h2>
-    <%=cl_image_tag @game.board.photo.key , { class: "board"}%>
+
+    <% unless @game.board.empty? %>
+      <% @game.board.each do |piece| %>
+        <%=cl_image_tag @game.board.photo.key , { class: "board"}, %>
+      <% end %>
+    <% end %>
 
     <div class="movablecontainer">
       <% unless @game.pieces.empty? %>
