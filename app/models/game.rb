@@ -8,4 +8,11 @@ class Game < ApplicationRecord
   has_many :pieces
   has_many :gamerooms
   has_many :users, through: :session
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name,
+  against: [ :name ],
+  using: {
+  tsearch: { prefix: true } 
+}
 end
