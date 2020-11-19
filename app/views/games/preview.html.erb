@@ -5,19 +5,19 @@
     <h2><%= @game.number_of_players %> players</h2>
 
     <% if @game.board %>
-      <%=cl_image_tag @game.board.photo.key , { class: "board", style: "position: absolute; left: #{@game.board.posX}; top: #{@game.board.posY}px;"} %>
+      <%=cl_image_tag @game.board.photo.key , { class: "board", style: "position: absolute; left: #{@game.board.posX}px; top: #{@game.board.posY}px;"} %>
     <% end %>
 
     <div class="movablecontainer">
       <% unless @game.pieces.empty? %>
         <% @game.pieces.each do |piece| %>
-          <%= cl_image_tag piece.photo.key, { class: "piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}px;", width: '60px'}%>
+          <%= cl_image_tag piece.photo.key, { class: "piece", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px;", width: '60px'}%>
         <% end %>
       <% end %>
 
       <% unless @game.tokens.empty? %>
         <% @game.tokens.each do |token| %>
-          <%= cl_image_tag token.photo.key, { class: "token", style: "position: absolute; left: #{token.posX}; top: #{token.posY}px;", width: '40px'}%>
+          <%= cl_image_tag token.photo.key, { class: "token", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
         <% end %>
       <% end %>
 
