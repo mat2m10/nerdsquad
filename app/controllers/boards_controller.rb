@@ -31,11 +31,11 @@ class BoardsController < ApplicationController
 
   private
 
-  def set_game
+  def set_board
     @board = Board.find(params[:id])
   end
 
-  def set_board
+  def set_game
     @game = Game.find(params[:game_id])
   end
 
