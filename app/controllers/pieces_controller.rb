@@ -10,7 +10,7 @@ class PiecesController < ApplicationController
     @piece.game = @game
     if @piece.save
       flash[:success] = "Piece successfully created"
-      redirect_to game_path(@game)
+      redirect_to game_piece_path(@game, @piece)
     else
       flash[:error] = "Something went wrong"
       redirect_to @piece
@@ -24,13 +24,8 @@ class PiecesController < ApplicationController
   end
 
   def update
-    if @piece.update_attributes(piece_params)
-      flash[:success] = "Piece was successfully updated"
-      redirect_to @game
-    else
-      flash[:error] = "Something went wrong"
-      render 'edit'
-    end
+    @piece.update!(piece_params)
+    redirect_to @game
   end
 
   def destroy
