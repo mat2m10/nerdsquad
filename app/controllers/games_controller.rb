@@ -50,6 +50,13 @@ class GamesController < ApplicationController
     @game = Game.find(params[:game_id])
   end
 
+  def destroy
+    authorize @game
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to @game
+  end
+
   private
 
   def game_params
