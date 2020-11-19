@@ -1,13 +1,12 @@
 class CardsController < ApplicationController
+  before_action :set_game, only: %i[new create update]
+  before_action :set_card_deck, only: %i[new create show update]
+
   def new
-    @game = Game.find(params[:game_id])
-    @card_deck = CardDeck.find(params[:card_deck_id])
     @card = Card.new
   end
 
   def create
-    @game = Game.find(params[:game_id])
-    @card_deck = CardDeck.find(params[:card_deck_id])
     @card = Card.new(card_params)
     @card.card_deck = @card_deck
     @card.position = @card_deck.cards.count + 1
@@ -21,34 +20,28 @@ class CardsController < ApplicationController
   end
 
   def update
-    @game = Game.find(params[:game_id])
-    @card_deck = CardDeck.find(params[:card_deck_id])
-    @card = Card.find(params[:id])
     @card.update!(card_params)
-    if @card.card_deck.game.gamerooms.last
-      GameroomChannel.broadcast_to(
-      @card.card_deck.game.gamerooms.last,
-      "moved"
-    )
-    else
+    return unless @card.card_deck.game.gamerooms.last
 
-      # redirect_to game_path(params[:game_id])
-    end
-    if @card.card_deck.game.gamerooms.last
-      redirect_back(fallback_location: gameroom_path(@card.game.gamerooms.last))
-    end
+    GameroomChannel.broadcast_to(@card.card_deck.game.gamerooms.last, "moved")
+    redirect_back(fallback_location: gameroom_path(@card.game.gamerooms.last))
+    # else
+    # redirect_to game_path(params[:game_id])
   end
 
-
-  def show
-    @card_deck = CardDeck.find(params[:card_deck_id])
-  end
-
+  def show; end
 
   private
+
+  def set_game
+    @game = Game.find(params[:game_id])
+  end
+
+  def set_card_deck
+    @card_deck = CardDeck.find(params[:card_deck_id])
+  end
 
   def card_params
     params.require(:card).permit(:photo, :name, :position, :posX, :posY)
   end
-
 end
