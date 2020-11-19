@@ -1,0 +1,16 @@
+<div class="table">
+  <% if  @game.board %>
+    <%= cl_image_tag @game.board.photo.key , { class: "board"} %>
+  <% end %>
+  
+  <% @game.pieces.each do |piece| %>
+    <div class="movablecontainer">
+      <%= cl_image_tag piece.photo.key, width: '60px' %>
+    </div>
+    <%= simple_form_for([@game, piece]) do |f| %>
+      <%= f.input :posX, id: "posX", as: :hidden %>
+      <%= f.input :posY, id: "posY", as: :hidden %>
+      <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
+    <% end %>
+  <% end %>
+</div>

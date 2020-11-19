@@ -1,4 +1,6 @@
 class DicesController < ApplicationController
+  before_action :set_game, only: %i[new create show]
+
   def new
     @dice = Dice.new
   end
@@ -12,6 +14,10 @@ class DicesController < ApplicationController
   end
 
   private
+
+  def set_game
+    @game = Game.find(params[:game_id])
+  end
 
   def dice_params
     params.require(:dice).permit(:faces, :posX, :posY)
