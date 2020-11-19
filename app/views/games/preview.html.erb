@@ -33,7 +33,7 @@
         <% @game.card_decks.each do |deck| %>
           <div>
             <%= deck.name %>
-            <%= cl_image_tag deck.cards.first.photo.key %>
+            <%= cl_image_tag deck.cards.first.photo.key, {width: '120px'} %>
           </div>
         <% end %>
       <% end %>
