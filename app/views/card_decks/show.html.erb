@@ -1,17 +1,7 @@
+
   <% if  @game.board %>
     <%#= cl_image_tag @game.board.photo.key , { class: "board"} %>
   <% end %>
-
-
-    <% @game.card_decks.each do |card_deck| %>
-
-      <h2><%= card_deck.name %></h2>
-      <%= simple_form_for([@game, card_deck]) do |f| %>
-        <%= f.input :posX, input_html: { id: "#{card_deck[:id]}-card_deck_posX" }%>
-        <%= f.input :posY, input_html: { id: "#{card_deck[:id]}-card_deck_posY" }, as: :hidden %>
-        <%= f.button :submit, class: "btn btn-primary bottom-right"  %>
-      <% end %>
-    <% end %>
 
     <%= link_to "add deck", new_game_card_deck_path(@game) %>
 
@@ -19,17 +9,13 @@
 </div>
 
 
-  <input type="button" value="Click Me!" onclick="submitForms()" />
 
-  <script>
-    submitForms = function(){
-    <% @game.card_decks.each do |card_deck| %>
-      <% card_deck.cards.each do |card| %>
-        console.log("test")
-        console.log(document.getElementById(<%="#{card[:id]}-submit"%>))
-        document.getElementById(<%="#{card[:id]}-submit"%>);
-      <% end %>
-    <% end %>
-  }
+<%= simple_form_for([@game, @card_deck]) do |f| %>
+  <%= f.input :posX, id: "posX", as: :hidden %>
+  <%= f.input :posY, id: "posY", as: :hidden %>
+  <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
 
-  </script>
+<% end %>
+<div class = "movablecontainer">
+  <%= cl_image_tag @card_deck.cards.first.photo.key %>
+</div>

@@ -10,6 +10,7 @@ class CardsController < ApplicationController
     @card_deck = CardDeck.find(params[:card_deck_id])
     @card = Card.new(card_params)
     @card.card_deck = @card_deck
+    @card.position = @card_deck.cards.count + 1
     if @card.save
       flash[:success] = "Card successfully created"
       redirect_to game_card_deck_path(@game, @card_deck)
@@ -47,7 +48,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:photo, :name, :posX, :posY)
+    params.require(:card).permit(:photo, :name, :position, :posX, :posY)
   end
 
 end
