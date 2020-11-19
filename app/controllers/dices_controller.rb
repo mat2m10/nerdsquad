@@ -7,18 +7,17 @@ class DicesController < ApplicationController
   end
 
   def create
-    number_of_dices = params[:dices][:number_of_dices].to_i
+    number_of_dices = params[:dice][:number_of_dices].to_i
     # number_of_faces = params[:faces][:number_of_faces].to_i
     @game = Game.find(params[:game_id])
     number_of_dices.times do      
-    @dice = Dice.new(dice_params)
-    @dice.game = @game
-    if @dice.save
-      flash[:success] = "Dice successfully created"
-      redirect_to game_path(@game)
-    else
-      flash[:error] = "Something went wrong"
-      render 'new'
+      @dice = Dice.new(dice_params)
+      @dice.game = @game
+      if @dice.save
+        flash[:success] = "Dice successfully created"      
+      else
+        flash[:error] = "Something went wrong"
+        render 'new'
       end
     end
     redirect_to game_path(@game)
