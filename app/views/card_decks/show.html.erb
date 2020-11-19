@@ -1,3 +1,4 @@
+
 <div class = "table">
 
   <% if  @game.board %>
@@ -7,9 +8,9 @@
     <%= f.input :posX, id: "posX", as: :hidden %>
     <%= f.input :posY, id: "posY", as: :hidden %>
     <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
+
   <% end %>
   <div class = "movablecontainer">
     <%= cl_image_tag @card_deck.cards.first.photo.key %>
   </div>
-
 </div>

@@ -20,18 +20,23 @@ class CardDecksController < ApplicationController
 
   def show; end
 
+  def edit; end
+  
   def update
     @card_deck = CardDeck.find(params[:id])
-    if @card_deck.update_attributes(card_deck_params)
-      flash[:success] = "Deck was successfully updated"
-      redirect_to @game
+    @card_deck.update!(card_deck_params)
+    if @card_deck.game.gamerooms.last
+      GameroomChannel.broadcast_to(
+        @board.game.gamerooms.last,
+        "moved"
+      )
     else
-      flash[:error] = "Something went wrong"
-      render 'edit'
+      redirect_to game_path(params[:game_id])
+    end
+    if @card_deck.game.gamerooms.last
+      redirect_back(fallback_location: gameroom_path(@card_deck.game.gamerooms.last))
     end
   end
-
-  def edit; end
 
   def draw!(deck, number)
     temp = CardDeck.new(game: @game, name: 'temp')

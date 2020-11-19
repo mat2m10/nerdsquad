@@ -95,6 +95,7 @@ const moveAround = () => {
       activeItem.yOffset = activeItem.currentY;
 
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
+      console.log((hash.concat(name)).concat(strX))
       var form1 = document.querySelector((hash.concat(name)).concat(strX)).setAttribute("value", getOffset(activeItem).left);
       var form2 = document.querySelector((hash.concat(name)).concat(strY)).setAttribute("value", getOffset(activeItem).top);
     }
