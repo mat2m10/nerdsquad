@@ -12,6 +12,18 @@
     font-family: 'Permanent Marker', cursive;
     font-size: 80px;
   }
+
+  h2 {
+    color: #112d4e;
+    font-family: $body-font , sans-serif;
+    
+  }
+
+  p {
+    color: #112d4e;
+    font-family: $body-font , sans-serif;
+    font-weight: bolder;
+  }
   
   .flex-column {
     flex-direction: column;
