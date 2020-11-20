@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get "all"
   end
   resources :games do
-    resources :boards, only: [:new, :create, :show, :update]
+    resources :boards, only: [:new, :create, :show, :update, :destroy]
     resources :dices, only: [:new, :create, :show, :update]
     resources :card_decks, only: [:new, :create, :show, :update] do
       resources :cards, only: [:new, :create, :show, :update]

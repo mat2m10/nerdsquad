@@ -1,5 +1,6 @@
 class TokensController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
+
   before_action :set_token, only: %i[update destroy]
 
   def new
@@ -37,6 +38,16 @@ class TokensController < ApplicationController
   def destroy
     if @token.destroy
       flash[:success] = 'Object was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to @game
+  end
+
+  def destroy
+    @token = Token.find(params[:id])
+    if @token.destroy
+      flash[:success] = 'Piece was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
     end
