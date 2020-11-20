@@ -1,0 +1,18 @@
+<div class="user">
+  <h1>Dashboard</h1>
+  <div class="settings">
+    <h2>Settings</h2>
+  </div>
+
+  <div class="history">
+    <h2>My games</h2>
+      <% if @games != nil %>
+        <% @games.each do |game| %>
+          <li><%= link_to "#{game.name}", game_preview_path(game) %></li>
+        <% end %>
+      <% end %>
+
+  </div>
+
+
+</div>
