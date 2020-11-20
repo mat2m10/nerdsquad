@@ -27,14 +27,14 @@
       <h4><%= card_deck.name %></h4>
       <div class="d-flex justify-content-left">
         <% card_deck.cards.each do |card| %>
-          <div>
-            <p><%= card.name %></p>
+          <div class="mx-3">
+            <p><%= card.name %> <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_card_deck_card_path(@game, card_deck, card), method: :delete %></p>
             <% if card.photo.attached? %>
               <%= cl_image_tag card.photo.key , class: 'rounded img-fluid', width: '90px', height: '150px' %>
             <% end %>
           </div>
         <% end %>
-        <p><%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %></p>
+        <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_game_card_deck_card_path(@game, card_deck) %>
       </div>
     <% end %>
   </div>
@@ -62,13 +62,14 @@
       <h3>Pieces</h3>
       <% @game.pieces.each do |piece| %>
         <div class="d-flex justify-content-center">
-          <h3><%= piece.name %></h3>
+          <h4><%= piece.name %></h4>
           <% if piece.photo.attached? %>
             <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %>
           <% else %>
             <p>This piece should have an image and/or a name</p>
           <% end %>
-          <%= link_to "Delete", game_piece_path(@game, piece), method: :delete, class: "btn btn-primary" %>
+          <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
+          <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
         </div>
       <% end %>
     </div>
