@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :cards, only: [:new, :create, :show, :update]
     end
     resources :pieces, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :tokens, only: [:new, :create, :show, :update]
+    resources :tokens, only: [:new, :create, :show, :edit, :update]
     get "preview"
   end
   resources :gamerooms, only: [:new, :create, :show, :update] do
