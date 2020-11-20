@@ -1,8 +1,4 @@
-// Import page-specific CSS files here.
- @import "home";
- @import "gameroom";
- @import "browse";
- .index {
+.index {
     display: grid;
     grid-template-columns: 1fr 1fr; 
  
