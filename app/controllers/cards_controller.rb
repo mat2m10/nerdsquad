@@ -10,12 +10,10 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     @card.card_deck = @card_deck
     @card.position = @card_deck.cards.count + 1
-    if @card.save
-      flash[:success] = "Card successfully created"
-      redirect_to game_card_deck_path(@game, @card_deck)
+    if @card.save && @card_deck.cards.count > 1
+      redirect_to @game
     else
-      flash[:error] = "Something went wrong"
-      render 'new'
+      redirect_to game_card_deck_path(@game, @card_deck)
     end
   end
 
@@ -25,8 +23,6 @@ class CardsController < ApplicationController
 
     GameroomChannel.broadcast_to(@card.card_deck.game.gamerooms.last, "moved")
     redirect_back(fallback_location: gameroom_path(@card.game.gamerooms.last))
-    # else
-    # redirect_to game_path(params[:game_id])
   end
 
   def show; end

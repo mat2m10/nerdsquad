@@ -1,73 +1,89 @@
 <div class="container">
-  <h1><%= @game.name %></h1>
-
-    <div id="display-board" style = "left: 10%; top: 10%; position: absolute; width: 20px; height: 20px">
-    <% if @game.board %>
-      <% if @game.board.photo.attached? %>
-      <h2>Board</h2>
-        <%= cl_image_tag @game.board.photo.key , { class: "board rounded img-fluid", alt: "Responsive image", width: '20px', height: '20px', style: "position: relative;"}%>
-      <% end %>
-      <%= link_to "Delete", game_board_path(@game, @game.board), method: :delete %>
-    <% end %>
-  </div>
-
-  <div id="display-decks" style = "left: 10%; top: 20%; position: absolute; width: 20px; height: 20px; display: flex;">
-    <% @game.card_decks.each do |card_deck| %>
-      <h2><%= card_deck.name %></h2>
-      <% card_deck.cards.each do |card| %>
-        <%= card.name %>
-        <% if card.photo.attached? %>
-          <%= (cl_image_tag card.photo.key , class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px', transformation: {:y=>50, :x=>50}) %>
-        <% end %>
-      <% end %>
-        <%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %>
-    <% end %>
-  </div>
-
-  <div id="display-tokens" style = "left: 10%; top: 30%; position: absolute; width: 20px; height: 20px; display: flex;">
-    <% if @game.tokens %>
-    <h2>Tokens</h2>
-    <% end %>
-    <% @game.tokens.each do |token| %>
-      <h2><%= token.name %></h2>
-        <% if token.photo.attached? %>
-          <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '60px', height: '60px' %>
-          <%= link_to "", game_token_path(@game, token), method: :delete, class: "btn btn-danger close", style: "width: 20px; height: 20px;" %>
-        <% else %>
-          <p>This token should have an image</p>
-        <% end %>
-      <% end %>
-  </div>
-
-
-  <div id="display-pieces" style = "left: 10%; top: 40%; position: absolute; width: 20px; height: 20px display: flex;">
-    <% if @game.pieces %>
-    <h2>Pieces</h2>
-    <% end %>
-    <% @game.pieces.each do |piece| %>
-      <h2><%= piece.name %></h2>
-      <% if piece.photo.attached? %>
-        <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %>
-      <% else %>
-        <p>This piece should have an image and/or a name</p>
-      <% end %>
-        <%= link_to "Delete", game_piece_path(@game, piece), method: :delete, class: "btn btn-primary" %>
-    <% end %>
-  </div>
-
-
-<div id="display-dices" style = "left: 10%; top: 50%; position: absolute; width: 20px; height: 20px">
-  <ul>
-    <% @game.dices.each do |dice| %>
-      <li>A dice that rolls <%= dice.faces %> faces.</li>
-    <% end %>
-  </ul>
-</div>
+  <h1 class="show-title"><%= @game.name %> box</h1>
+  <h2><%= @game.name %> is played with:</h2>
   <%= link_to "Board", new_game_board_path(@game), class: "btn btn-primary" %>
   <%= link_to "Deck", new_game_card_deck_path(@game), class: "btn btn-primary" %>
   <%= link_to "Piece", new_game_piece_path(@game), class: "btn btn-primary" %>
   <%= link_to "Dice", new_game_dice_path(@game), class: "btn btn-primary" %>
   <%= link_to "Game preview", game_preview_path(@game), class: "btn btn-primary" %>
 </div>
+
+<div class="container justify-content-left">
+  <div id="display-board" class="mb-5">
+  <% if @game.board %>
+    <% if @game.board.photo.attached? %>
+      <h3>Board</h3>
+      <p><%= cl_image_tag @game.board.photo.key , { width: '120px' } %></p>
+      <%= link_to '<i class="fas fa-edit"></i>'.html_safe, new_game_board_path(@game, @game.board) %>
+      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_board_path(@game, @game.board), method: :delete %>
+    <% end %>
+  <% end %>
+  </div>
+
+
+  <div id="display-decks">
+    <h3>Card decks</h3>
+    <% @game.card_decks.each do |card_deck| %>
+      <h4><%= card_deck.name %></h4>
+      <div class="d-flex justify-content-left">
+        <% card_deck.cards.each do |card| %>
+          <div>
+            <p><%= card.name %></p>
+            <% if card.photo.attached? %>
+              <%= cl_image_tag card.photo.key , class: 'rounded img-fluid', width: '90px', height: '150px' %>
+            <% end %>
+          </div>
+        <% end %>
+        <p><%= link_to "Add new card in #{card_deck.name}", new_game_card_deck_card_path(@game, card_deck) %></p>
+      </div>
+    <% end %>
+  </div>
+
+
+  <% unless @game.tokens.empty? %>
+    <div id="display-tokens">
+      <h3>Tokens</h3>
+      <% @game.tokens.each do |token| %>
+        <div class="d-flex justify-content-center">
+          <h4><%= token.name %></h4>
+          <% if token.photo.attached? %>
+            <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '60px', height: '60px' %>
+            <%= link_to "", game_token_path(@game, token), method: :delete, class: "btn btn-danger close", style: "width: 20px; height: 20px;" %>
+          <% else %>
+            <p>This token should have an image</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless @game.pieces.empty? %>
+    <div id="display-pieces">
+      <h3>Pieces</h3>
+      <% @game.pieces.each do |piece| %>
+        <div class="d-flex justify-content-center">
+          <h3><%= piece.name %></h3>
+          <% if piece.photo.attached? %>
+            <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %>
+          <% else %>
+            <p>This piece should have an image and/or a name</p>
+          <% end %>
+          <%= link_to "Delete", game_piece_path(@game, piece), method: :delete, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <div id="display-dices">
+    <ul>
+    <% @game.dices.each do |dice| %>
+      <li>A dice that rolls <%= dice.faces %> faces.</li>
+    <% end %>
+    </ul>
+  </div>
+
+</div>
+
 
 
