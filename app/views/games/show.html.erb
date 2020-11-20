@@ -39,6 +39,7 @@
       <% end %>
   </div>
 
+
   <div id="display-pieces" style = "left: 10%; top: 40%; position: absolute; width: 20px; height: 20px display: flex;">
     <% if @game.pieces %>
     <h2>Pieces</h2>
@@ -50,9 +51,11 @@
       <% else %>
         <p>This piece should have an image and/or a name</p>
       <% end %>
+
         <%= link_to "Delete", game_piece_path(@game, piece), method: :delete, class: "btn btn-primary" %>
     <% end %>
   </div>
+
 
 <div id="display-dices" style = "left: 10%; top: 50%; position: absolute; width: 20px; height: 20px">
   <ul>
