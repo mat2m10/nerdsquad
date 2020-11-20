@@ -18,16 +18,17 @@
   <section id="display-tokens">
     <% @game.tokens.each do |token| %>
       <h2><%= token.name %></h2>
-      <br>
       <% if token.photo.attached? %>
         <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '60px', height: '60px' %>
       <% else %>
         <p>This token should have an image</p>
       <% end %>
-      <br>
-      <% end %>
-    <br>
-    <%= link_to "Add new token", new_game_token_path(@game) %>
+      <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_token_path(@game, token) %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_token_path(@game, token), method: :delete %>
+    <% end %>
+    <p>
+      <%= link_to "Add new token", new_game_token_path(@game) %>
+    </p>
   </section>
 
   <section id="display-pieces">
@@ -38,10 +39,12 @@
       <% else %>
         <p>This piece should have an image and/or a name</p>
       <% end %>
-        <%= link_to "Edit", edit_game_piece_path(@game, piece) %>
-        <%= link_to "Delete", game_piece_path(@game, piece), method: :delete %>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
     <% end %>
-    <%= link_to "Add new piece", new_game_piece_path(@game) %>
+    <p>
+      <%= link_to "Add new piece", new_game_piece_path(@game) %>
+    </p>
   </section>
 
   <section id="display-board">
