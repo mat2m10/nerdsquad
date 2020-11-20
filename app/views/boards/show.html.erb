@@ -2,8 +2,7 @@
   <%= cl_image_tag @board.photo.key , { class: "board" , style: "position: relative;"} %>
 </div>
 
-<h1>Board preview</h1>
-<h2><%= @board.game.number_of_players %> players</h2>
+<h1 class = "componentplacement">Place your board on the table</h1>
 
 <%= simple_form_for([@game, @board]) do |f| %>
   <%= f.input :posX, id: "posX" , as: :hidden %>

@@ -81,7 +81,6 @@ const moveAround = () => {
     if (active) {
       if (e.type === "touchmove") {
         name = activeItem.className;
-        console.log(name)
         e.preventDefault();
 
         activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
