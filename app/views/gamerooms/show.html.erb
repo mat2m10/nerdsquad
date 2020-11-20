@@ -2,7 +2,7 @@
 
 <div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" >
 
-  <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable_board" %>
+  <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable-board" %>
 
   <%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -13,7 +13,7 @@
 
 <div class="movablecontainer" data-posx="<%= @gameroom.game.tokens[0].posX %>" data-posy="<%= @gameroom.game.tokens[0].posY %>" >
 
-  <%= cl_image_tag @gameroom.game.tokens[0].photo, class: "movable_token" %>
+  <%= cl_image_tag @gameroom.game.tokens[0].photo, class: "movable-token" %>
 
   <% raise %>
 
