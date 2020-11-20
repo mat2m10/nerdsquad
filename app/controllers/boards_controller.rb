@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
-  before_action :set_game, only: %i[new create show update]
-  before_action :set_board, only: %i[show update]
+  before_action :set_game, only: %i[new create show update destroy]
+  before_action :set_board, only: %i[show update destroy]
 
   def new
     @board = Board.new
@@ -27,6 +27,15 @@ class BoardsController < ApplicationController
       redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
     end
     redirect_to game_path(params[:game_id])
+  end
+
+  def destroy
+    if @board.destroy
+      flash[:success] = 'board was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to @game
   end
 
   private
