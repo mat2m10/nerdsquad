@@ -1,5 +1,5 @@
 class TokensController < ApplicationController
-  before_action :set_game, only: %i[new create show]
+  before_action :set_game, only: %i[new create show update]
 
   def new
     @token = Token.new
@@ -17,12 +17,19 @@ class TokensController < ApplicationController
         render 'new'
       end
     end
-    redirect_to game_path(@game)
+    redirect_to game_token_path(params[:game_id], @token.id)
   end
 
   def update
     @token = Token.find(params[:id])
     @token.update!(token_params)
+    num = @token.number_of_tokens
+    @game.tokens[(-@token.number_of_tokens+1)..-2].each do |token|
+      token.posX = @token.posX + num
+      token.posY = @token.posY + num
+      num -= 1
+      token.save
+    end
     if @token.game.gamerooms.last
       GameroomChannel.broadcast_to(
         @token.game.gamerooms.last,

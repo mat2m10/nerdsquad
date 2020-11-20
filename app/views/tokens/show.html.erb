@@ -1,16 +1,29 @@
-<div class="table">
-  <% if  @game.board %>
-    <%= cl_image_tag @game.board.photo.key , { class: "board"} %>
+<% if @game.board %>
+      <%=cl_image_tag @game.board.photo.key , { class: "board greyed", style: "position: absolute; left: #{@game.board.posX}px; top: #{@game.board.posY}px;"} %>
+<% end %>
+
+<% unless @game.pieces.empty? %>
+  <% @game.pieces.each do |piece| %>
+    <%= cl_image_tag piece.photo.key, { class: "piece greyed", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px;", width: '60px'}%>
   <% end %>
-  
-  <% @game.tokens.each do |token| %>
-    <div class="movablecontainer">
-      <%= cl_image_tag token.photo.key, width: '60px' %>
-    </div>
-    <%= simple_form_for([@game, token]) do |f| %>
+<% end %>
+
+<% unless @game.tokens.empty? %>
+  <% @game.tokens[0..-2].each do |token| %>
+    <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
+  <% end %>
+<% end %>
+
+
+<div class="movablecontainer">
+  <%= cl_image_tag @game.tokens.last.photo.key, {width: '60px', class: "token", style: "position: relative;" }%>
+</div>
+
+    <%= simple_form_for([@game, @game.tokens.last]) do |f| %>
       <%= f.input :posX, id: "posX", as: :hidden %>
       <%= f.input :posY, id: "posY", as: :hidden %>
       <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
     <% end %>
-  <% end %>
+
+<div class="table">
 </div>
