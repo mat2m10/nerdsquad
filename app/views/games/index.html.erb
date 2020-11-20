@@ -1,5 +1,5 @@
 <div class="index">
-  <div class="left d-flex flex-column">
+  <div class="left">
 
     <div class="title">
       <h1>Select a game to play</h1>
@@ -8,10 +8,11 @@
       <%= form_tag games_path, method: :get do %>      
           <%= text_field_tag :query,
           params[:query],
-          class: "form-control"         
+          class: "form-control",
+          placeholder: "Press enter to browse!"         
           %>      
       <% end %>  
-
+    <br>
     <div class= "button">
       <%= link_to "Homepage", "/", class: "btn btn-flat" %>     
     </div>
