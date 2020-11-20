@@ -1,6 +1,7 @@
 .index {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
+    background-color: #1d2d4f;   
  
   h1 {
     color: #f3d9bb;
@@ -8,28 +9,20 @@
     font-size: 80px;   
   }
 
-  .right {
-  display:grid;
-  }
-
-  .left {
-    position:sticky;
-    top:0;
-  }
-
-  .left, .right {
-    background-color: #1d2d4f;    
-  }
-  
   h2 {
     color: #f3d9bb;
-    font-family: $body-font , sans-serif;    
+    font-family: 'Permanent Marker', cursive;  
   }
 
-  p {
-    color: #112d4e;
-    font-family: $body-font , sans-serif;
-    font-weight: bolder;
+  .right {
+  display:grid;
+  max-height: 100vh;
+  overflow: scroll;
+  }
+
+  .left{
+    border: 2px solid white;
+    margin: 50px;
   }
 
   a {
@@ -49,18 +42,7 @@
     background: #e6dbcd;
     color: white;
   }
-  
-  .flex-column {
-    flex-direction: column;
-  }
-  .d-flex {
-    display: flex;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 40px;
-    margin: -8px;
-  }
-
+ 
   .title {
     text-align: center;
     padding: 40px;
