@@ -1,0 +1,104 @@
+
+.index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  margin: 50px;
+
+h1 {
+  color: #112d4e;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 80px;
+}
+
+h2 {
+  color: #112d4e;
+  font-family: $body-font , sans-serif;
+  
+}
+
+p {
+  color: #112d4e;
+  font-family: $body-font , sans-serif;
+  font-weight: bolder;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.d-flex {
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  margin: -8px;
+}
+
+.title {
+  text-align: center;
+  padding: 7px;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: 1fr -2fr;
+  grid-gap: 16px;
+  margin: 20px;
+}
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #1d2d4f;   
+ 
+  h1 {
+    color: #f3d9bb;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;   
+  }
+
+  h2 {
+    color: #f3d9bb;
+    font-family: 'Permanent Marker', cursive;  
+  }
+
+  .right {
+  display:grid;
+  max-height: 100vh;
+  overflow: scroll;
+  }
+
+  .left{
+    border: 2px solid white;
+    margin: 50px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #e6dbcd;
+  }
+
+  .btn-flat {
+    color: white;
+    padding: 8px 24px;
+    border-radius: 4px;
+    background: #6987ac;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-flat:hover {
+    background: #e6dbcd;
+    color: white;
+  }
+ 
+  .title {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .games {
+    display: grid;
+    grid-template-columns: 1fr -2fr;
+    grid-gap: 16px;
+    margin: 20px;
+  }
+}
