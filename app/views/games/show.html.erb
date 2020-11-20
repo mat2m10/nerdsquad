@@ -50,7 +50,7 @@
   <section id="display-board">
     <% if @game.board %>
       <% if @game.board.photo.attached? %>
-        <%= cl_image_tag @game.board.photo.key , { class: "board rounded img-fluid", alt: "Responsive image", width: '500px', height: '500px', style: "position: relative;"}%>
+        <%= cl_image_tag @game.board.photo.key , { class: "board rounded img-fluid", width: '500px', height: '500px', style: "position: relative;"}%>
       <% end %>
     <% end %>
     <% if @game.board %>

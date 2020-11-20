@@ -1,6 +1,6 @@
 class CardDecksController < ApplicationController
-  before_action :set_game, only: %i[new create edit update shuffle! draw show]
-  before_action :find_deck, only: %i[show]
+  before_action :set_game, only: %i[new create show edit update shuffle! draw]
+  before_action :set_deck, only: %i[show edit update shuffle!]
 
   def new
     @card_deck = CardDeck.new
@@ -23,7 +23,6 @@ class CardDecksController < ApplicationController
   def edit; end
 
   def update
-    @card_deck = CardDeck.find(params[:id])
     @card_deck.update!(card_deck_params)
     if @card_deck.game.gamerooms.last
       GameroomChannel.broadcast_to(
@@ -58,7 +57,7 @@ class CardDecksController < ApplicationController
     @game = Game.find(params[:game_id])
   end
 
-  def find_deck
+  def set_deck
     @card_deck = CardDeck.find(params[:id])
   end
 end
