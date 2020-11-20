@@ -1,5 +1,5 @@
 class TokensController < ApplicationController
-  before_action :set_game, only: %i[new create show update]
+  before_action :set_game, only: %i[new create show update destroy]
 
   def new
     @token = Token.new
@@ -41,6 +41,16 @@ class TokensController < ApplicationController
     if @token.game.gamerooms.last
       redirect_back(fallback_location: gameroom_path(@token.game.gamerooms.last))
     end
+  end
+
+  def destroy
+    @token = Token.find(params[:id])
+    if @token.destroy
+      flash[:success] = 'Piece was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to @game
   end
 
   private
