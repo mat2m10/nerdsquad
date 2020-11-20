@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    authorize @user
-    @crafts = @user.crafts
+   # authorize @user
+    @games = @user.games
   end
 
   def all
     @user = User.find(params[:user_id])
     authorize @user
-    @crafts = @user.crafts
+    @games = @user.games
   end
 
   def index
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    # Celui qui cree le craft c'est le current user
+    # Celui qui cree le game c'est le current user
     params.require(:user).permit(:description, :username, :photo)
   end
 end
