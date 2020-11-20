@@ -81,6 +81,7 @@ const moveAround = () => {
     if (active) {
       if (e.type === "touchmove") {
         name = activeItem.className;
+        console.log(name)
         e.preventDefault();
 
         activeItem.currentX = e.touches[0].clientX - activeItem.initialX;
@@ -92,7 +93,7 @@ const moveAround = () => {
 
       activeItem.xOffset = activeItem.currentX;
       activeItem.yOffset = activeItem.currentY;
-
+      console.log(activeItem)
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
       document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
