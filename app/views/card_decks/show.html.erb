@@ -30,7 +30,7 @@
 
 <%# form to submit deck position %>
 <%= simple_form_for([@game, @card_deck]) do |f| %>
-  <%= f.input :posX, id: "posX" %>
+  <%= f.input :posX, id: "posX", as: :hidden %>
   <%= f.input :posY, id: "posY", as: :hidden %>
   <%= f.button :submit, class: "btn btn-primary bottom-right" %>
 <% end %>

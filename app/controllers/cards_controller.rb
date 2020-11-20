@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
-  before_action :set_game, only: %i[new create update]
-  before_action :set_card_deck, only: %i[new create show update]
+  before_action :set_game, only: %i[new create update destroy]
+  before_action :set_card_deck, only: %i[new create show update destroy]
+  before_action :set_card, only: %i[destroy]
 
   def new
     @card = Card.new
@@ -27,6 +28,12 @@ class CardsController < ApplicationController
 
   def show; end
 
+  def destroy
+    @card.destroy
+    @card_deck.destroy if @card_deck.cards.empty?
+    redirect_to @game
+  end
+
   private
 
   def set_game
@@ -35,6 +42,10 @@ class CardsController < ApplicationController
 
   def set_card_deck
     @card_deck = CardDeck.find(params[:card_deck_id])
+  end
+
+  def set_card
+    @card = Card.find(params[:id])
   end
 
   def card_params
