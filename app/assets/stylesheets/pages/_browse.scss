@@ -44,4 +44,78 @@ p {
   grid-gap: 16px;
   margin: 20px;
 }
+=======
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+ 
+  h1 {
+    color: #f3d9bb;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;   
+  }
+
+  .right {
+  display:grid;
+  }
+
+  .left {
+    position:sticky;
+    top:0;
+  }
+
+  .left, .right {
+    background-color: #1d2d4f;    
+  }
+  
+  h2 {
+    color: #f3d9bb;
+    font-family: $body-font , sans-serif;    
+  }
+
+  p {
+    color: #112d4e;
+    font-family: $body-font , sans-serif;
+    font-weight: bolder;
+  }
+
+  a {
+    text-decoration: none;
+    color: #e6dbcd;
+  }
+
+  .btn-flat {
+    color: white;
+    padding: 8px 24px;
+    border-radius: 4px;
+    background: #6987ac;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-flat:hover {
+    background: #e6dbcd;
+    color: white;
+  }
+  
+  .flex-column {
+    flex-direction: column;
+  }
+  .d-flex {
+    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin: -8px;
+  }
+
+  .title {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .games {
+    display: grid;
+    grid-template-columns: 1fr -2fr;
+    grid-gap: 16px;
+    margin: 20px;
+  }
 }

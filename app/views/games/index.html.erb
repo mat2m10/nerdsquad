@@ -10,11 +10,12 @@
           params[:query],
           class: "form-control"         
           %>      
-      <% end %>
-      <p>Find a game</p>
-    <div>
-      <a href="/">Back to homepage</a>
+      <% end %>  
+
+    <div class= "button">
+      <%= link_to "Homepage", "/", class: "btn btn-flat" %>     
     </div>
+
   </div>  
 
   <div class="right">  
@@ -34,7 +35,7 @@
               <tr>
               <td><%= link_to "#{game.name}", game_path(game) %></td>
               <% if game.board%>
-              <td><%= cl_image_tag game.board.photo.key, class: 'rounded img-fluid', alt: "Responsive image", width: '120px', height: '200px' %></td>
+              <td><%= cl_image_tag game.board.photo.key, width: '100px', height: '100px' %></td>
               <% end %>
               </tr>
           <% end %>

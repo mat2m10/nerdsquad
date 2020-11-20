@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+  
   def index
     if params[:query].present?
       @games = Game.search_by_name(params[:query])
