@@ -11,17 +11,6 @@ class UsersController < ApplicationController
     @games = @user.games
   end
 
-  def index
-    @user = current_user
-    @clients = policy_scope(User)
-
-    @clients = @clients.where("bookings.created_at > ?", Time.at(params[:created_after].to_f)) if params[:created_after]
-    respond_to do |format|
-      format.html
-      format.json { render json: { clients: @clients } }
-    end
-  end
-
   def edit
     authorize current_user
   end
@@ -30,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     authorize @user
-    redirect_to @user, notice: 'Your ad was successfully updated 😃'
+    redirect_to @user, notice: 'Successfully updated 😃'
   end
 
   private
