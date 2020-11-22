@@ -68,7 +68,7 @@
               <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', width: '100px' %>
             <% else %>
               <p>This piece should have an image and/or a name</p>
-            <% end %>
+            <% end %>            
             <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
             <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
           </div>

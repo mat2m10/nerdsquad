@@ -2,21 +2,36 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
+  text-align: center;
+  margin: 20px;
+  
 
-.setting, .history {
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
+.settings, .history {
+  list-style-type: none;
+  overflow: hidden;
+  background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 16px;
+  border: 2px solid white;
+  
 }
+
+h1 {
+  color: #374863;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 80px;   
+}
+
+h2 {
+  color: #374863;
+  font-family: 'Permanent Marker', cursive !important; 
+}
+
+a {
+  text-decoration: none;
+  color: #374863; 
+}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
