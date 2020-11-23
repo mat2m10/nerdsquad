@@ -1,3 +1,4 @@
+
 <% if @game.board %>
       <%=cl_image_tag @game.board.photo.key , { class: "board greyed", style: "position: absolute; left: #{@game.board.posX}px; top: #{@game.board.posY}px;"} %>
 <% end %>
@@ -9,7 +10,7 @@
 <% end %>
 
 <div class="movablecontainer" data-posx="<%= @game.tokens.last.posX %>" data-posy="<%= @game.tokens.last.posY %>" >
-  <%= cl_image_tag @game.tokens.last.photo.key, {width: '60px', class: "token", style: "position: relative;" }%>
+  <%= cl_image_tag @game.tokens.last.photo.key, {width: '60px', class: "token"}%>
   <%= simple_form_for([@game, @game.tokens.last]) do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
