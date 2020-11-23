@@ -1,28 +1,37 @@
 <h1><%= @gameroom.name %></h1>
 
+
+
+
 <div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" >
 
-  <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable-board" %>
+  <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable board" %>
 
   <%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
-      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
   <% end %>
 
 </div>
 
-<div class="movablecontainer" data-posx="<%= @gameroom.game.tokens[0].posX %>" data-posy="<%= @gameroom.game.tokens[0].posY %>" >
+<% @gameroom.game.pieces.each do |piece| %>
+  
+  <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>">
 
-  <%= cl_image_tag @gameroom.game.tokens[0].photo, class: "movable-token" %>
+    <%= cl_image_tag piece.photo.key, class: "movable piece" %>
 
-  <% raise %>
-
-  <%= simple_form_for [@gameroom.game, @gameroom.game.tokens[0]] do |f| %>
+    <%= simple_form_for [@gameroom.game, piece] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
       <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-  <% end %>
+    <% end %>
 
-</div>
+  </div>
+
+<% end %>
+
+
+
+
 
 <div class ="mt-5" id="messages" data-gameroom-id="<%= @gameroom.id %>">
   <% @gameroom.messages.each do |message| %>

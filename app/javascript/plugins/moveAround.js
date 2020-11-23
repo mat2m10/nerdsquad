@@ -60,6 +60,8 @@ const moveAround = () => {
     activeItem.yOffset = activeItem.currentY;
     if (e.currentTarget.querySelector("#posX") !== null){
       e.currentTarget.querySelector("#posX").value = getOffset(activeItem).left;
+      console.log("beforesending")
+      console.log(e.currentTarget.querySelector("#posX").value)
     }
 
     if (e.currentTarget.querySelector("#posY") !== null) {
@@ -95,10 +97,12 @@ const moveAround = () => {
       activeItem.xOffset = activeItem.currentX;
       activeItem.yOffset = activeItem.currentY;
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
-      if (document.getElementById(name.concat(strX))) {
-        document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
-        document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
-      }
+      // if (document.getElementById(name.concat(strX))) {
+        e.currentTarget.querySelector("#posX").setAttribute("value", getOffset(activeItem).left);
+        console.log("drag")
+        console.log(e.currentTarget.querySelector("#posX").value)
+        e.currentTarget.querySelector("#posY").setAttribute("value", getOffset(activeItem).top);
+      // }
     }
   }
 
