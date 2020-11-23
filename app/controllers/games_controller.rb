@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   
   def index
+    @user = current_user
     if params[:query].present?
       @games = Game.search_by_name(params[:query])
     else
@@ -29,6 +30,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @user = current_user
     @game = Game.find(params[:id])
     @board = Board.new
   end
@@ -48,7 +50,7 @@ class GamesController < ApplicationController
     end
   end
 
-  def preview
+  def preview    
     @game = Game.find(params[:game_id])
   end
 
