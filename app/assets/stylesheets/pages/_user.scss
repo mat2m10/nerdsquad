@@ -6,14 +6,21 @@
   margin: 20px;
   
 
-.settings, .history {
+.settings, .history, .user-info {
   list-style-type: none;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 16px;
-  border: 2px solid white;
-  
+  border: 2px solid white;  
+}
+
+.user-info {
+  margin: 0 100px 0 100px; 
+}
+
+.row {
+  margin: 10px;
 }
 
 h1 {
