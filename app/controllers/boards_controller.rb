@@ -25,8 +25,9 @@ class BoardsController < ApplicationController
     if @board.game.gamerooms.last
       GameroomChannel.broadcast_to(@board.game.gamerooms.last, "moved")
       redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
+    else
+      redirect_to game_path(params[:game_id])
     end
-    redirect_to game_path(params[:game_id])
   end
 
   def destroy
