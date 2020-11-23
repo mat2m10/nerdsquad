@@ -5,18 +5,20 @@ var test = 100;
 const strX = "_posX";
 const strY = "_posY";
 const moveAround = () => {
-  var container = document.querySelector(".movablecontainer");
+  var containers = document.querySelectorAll(".movablecontainer");
   var activeItem = null;
 
   var active = false;
-  if (container) {
-    container.addEventListener("touchstart", dragStart, false);
-    container.addEventListener("touchend", dragEnd, false);
-    container.addEventListener("touchmove", drag, false);
+  if (containers) {
+      containers.forEach((container) => {
+      container.addEventListener("touchstart", dragStart, false);
+      container.addEventListener("touchend", dragEnd, false);
+      container.addEventListener("touchmove", drag, false);
 
-    container.addEventListener("mousedown", dragStart, false);
-    container.addEventListener("mouseup", dragEnd, false);
-    container.addEventListener("mousemove", drag, false);
+      container.addEventListener("mousedown", dragStart, false);
+      container.addEventListener("mouseup", dragEnd, false);
+      container.addEventListener("mousemove", drag, false);
+    })
   }
 
   function dragStart(e) {
@@ -93,8 +95,10 @@ const moveAround = () => {
       activeItem.xOffset = activeItem.currentX;
       activeItem.yOffset = activeItem.currentY;
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
-      document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
-      document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
+      if (document.getElementById(name.concat(strX))) {
+        document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
+        document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
+      }
     }
   }
 
