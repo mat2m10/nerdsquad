@@ -1,10 +1,10 @@
 <h1><%= @gameroom.name %></h1>
 
-<div class="d-flex">
+<div class="main-container">
   <div class="the-game">
     <div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" id="elements" data-gameroom-id="<%= @gameroom.id %>" >
 
-      <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable board" %>
+      <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable board grab" %>
 
       <%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
         <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -17,7 +17,7 @@
       
       <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>">
 
-        <%= cl_image_tag piece.photo.key, class: "movable piece" %>
+        <%= cl_image_tag piece.photo.key, class: "movable piece grab" %>
 
         <%= simple_form_for [@gameroom.game, piece] do |f| %>
           <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -32,7 +32,7 @@
       
       <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>">
 
-        <%= cl_image_tag token.photo.key, class: "movable token" %>
+        <%= cl_image_tag token.photo.key, class: "movable token grab" %>
 
         <%= simple_form_for [@gameroom.game, token] do |f| %>
           <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -44,16 +44,21 @@
     <% end %>
   </div>
 
-  <div class="chat-container" id="messages">
-        <% @gameroom.messages.each do |message| %>
-          <%= render "messages/message", message: message %>
-        <% end %>
-  </div>
+  <div class="the-chat d-flex">
+    <div class="chat-container" id="messages">
+          <% @gameroom.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+    </div>
 
-  <div class="message-form">
-    <%= simple_form_for [ @gameroom, @message ] do |f| %>
-      <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
-    <% end %>
+    <div class="message-form">
+      <%= simple_form_for [ @gameroom, @message ] do |f| %>
+        <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
+      <% end %>
+    </div>
   </div>
 
 </div>
+
+<%# <p class="btn btn-primary" id="bigger">Increase size</p>
+<p class="btn btn-primary" id="smaller">Decrease size</p> %>
