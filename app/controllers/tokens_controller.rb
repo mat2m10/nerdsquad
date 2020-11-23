@@ -19,7 +19,7 @@ class TokensController < ApplicationController
   def update
     @token.update!(token_params)
     num = @token.number_of_tokens + 1
-    @game.tokens[(-@token.number_of_tokens) + 1..-2].each do |token|
+    @game.tokens[(-@token.number_of_tokens)..-2].each do |token|
       token.posX = @token.posX + num*5
       token.posY = @token.posY + num*5
       num -= 1
@@ -32,7 +32,7 @@ class TokensController < ApplicationController
       )
       redirect_back(fallback_location: gameroom_path(@token.game.gamerooms.last))
     end
-    redirect_to game_path(params[:game_id])
+    redirect_to request.referrer
   end
 
   def destroy

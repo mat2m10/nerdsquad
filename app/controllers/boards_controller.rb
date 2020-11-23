@@ -26,7 +26,7 @@ class BoardsController < ApplicationController
       GameroomChannel.broadcast_to(@board.game.gamerooms.last, "moved")
       redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
     else
-      redirect_to game_path(params[:game_id])
+      redirect_to request.referrer
     end
   end
 
