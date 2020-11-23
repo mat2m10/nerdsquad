@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :pieces, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :tokens, only: [:new, :create, :show, :edit, :update, :destroy]
     get "preview"
+    resources :clones, only: [:new, :create, :show]
   end
   resources :gamerooms, only: [:new, :create, :show, :update] do
     resources :messages, only: :create
