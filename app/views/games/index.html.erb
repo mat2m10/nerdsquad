@@ -5,40 +5,44 @@
       <h1>Select a game to play</h1>
     </div>
 
-      <%= form_tag games_path, method: :get do %>      
+      <%= form_tag games_path, method: :get do %>
           <%= text_field_tag :query,
           params[:query],
           class: "form-control",
-          placeholder: "Press enter to browse!"         
-          %>      
-      <% end %>  
+          placeholder: "Press enter to browse!"
+          %>
+      <% end %>
     <br>
     <div class= "button">
-      <%= link_to "Homepage", "/", class: "btn btn-flat" %>     
+      <%= link_to "Homepage", "/", class: "btn btn-flat" %>
     </div>
 
-  </div>  
+  </div>
 
-  <div class="right">  
- 
+  <div class="right">
+
     <div class="games">
       <table>
           <thead>
           <tr>
           <th><h2>Game</h2></th>
-          <th><h2>Preview</h2></th> 
+          <th><h2>Preview</h2></th>
           <th colspan="2"></th>
           </tr>
       </thead>
 
           <tbody>
           <% @games.each do |game| %>
+          <% if game.saved == true %>
               <tr>
-              <td><%= link_to "#{game.name}", game_path(game) %></td>
+
+              <td><%= link_to "Play #{game.name}",  new_game_clone_path(game)%></td>
+
               <% if game.board%>
               <td><%= cl_image_tag game.board.photo.key, width: '100px', height: '100px' %></td>
               <% end %>
               </tr>
+            <% end %>
           <% end %>
           </tbody>
       </table>

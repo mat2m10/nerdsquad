@@ -8,11 +8,12 @@ class Game < ApplicationRecord
   has_many :pieces, dependent: :destroy
   has_many :gamerooms, dependent: :destroy
   has_many :users, through: :session
+  has_many :clones, dependent: :destroy
 
   include PgSearch::Model
   pg_search_scope :search_by_name,
   against: [ :name ],
   using: {
-  tsearch: { prefix: true } 
+  tsearch: { prefix: true }
 }
 end

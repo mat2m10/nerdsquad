@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  
+
   def index
     if params[:query].present?
       @games = Game.search_by_name(params[:query])
@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     end
       @boards = Board.all
   end
-  
+
   def new
     @game = Game.new
     @game.user = current_user
@@ -39,9 +39,9 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    if @game.update_attributes(params[:game])
+    if @game.update_attributes(game_params)
       flash[:success] = "Game was successfully updated"
-      redirect_to @game
+      redirect_to games_path
     else
       flash[:error] = "Something went wrong"
       render 'edit'
@@ -62,6 +62,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:number_of_players, :name, :description)
+    params.require(:game).permit(:number_of_players, :name, :description, :saved)
   end
 end

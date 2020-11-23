@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_091516) do
+ActiveRecord::Schema.define(version: 2020_11_23_151641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 2020_11_19_091516) do
     t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
   end
 
+  create_table "clones", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "number_of_players"
+    t.integer "connected_players"
+    t.bigint "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_clones_on_game_id"
+  end
+
   create_table "dices", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
@@ -93,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_091516) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "saved", default: false
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -147,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_091516) do
   add_foreign_key "boards", "games"
   add_foreign_key "card_decks", "games"
   add_foreign_key "cards", "card_decks"
+  add_foreign_key "clones", "games"
   add_foreign_key "dices", "games"
   add_foreign_key "gamerooms", "games"
   add_foreign_key "games", "users"
