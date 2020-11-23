@@ -26,3 +26,18 @@
 
 <% end %>
 
+<% @gameroom.game.tokens.each do |token| %>
+  
+  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>">
+
+    <%= cl_image_tag token.photo.key, class: "movable token" %>
+
+    <%= simple_form_for [@gameroom.game, token] do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <% end %>
+
+  </div>
+
+<% end %>
+

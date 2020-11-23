@@ -31,8 +31,9 @@ class TokensController < ApplicationController
         "moved"
       )
       redirect_back(fallback_location: gameroom_path(@token.game.gamerooms.last))
+    else
+      redirect_to request.referrer
     end
-    redirect_to request.referrer
   end
 
   def destroy
