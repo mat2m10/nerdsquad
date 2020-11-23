@@ -12,22 +12,34 @@
     height: 25px;
   }
 
+.the-chat {
+  position: absolute;
+  right: 35px;
+  top: 15%;
+  width: 22%;
+  flex-direction: column;
+}
+
 .chat-container {
-  height: 400px;
-  width: 25%;
+  height: 450px;
   overflow: auto;
   direction: ltr;
-  position: absolute;
-  right: 50px;
-  top: 19%;
   background-color: white;
+  border: 1px solid rgb(212, 212, 212);
+}
+
+.message-container {
+  text-align: left;
+  margin: 7px;
+}
+
+.content-container {
+  text-align: left;
+  margin: 7px;
 }
 
 .message-form {
-  width: 25%;
-  position:absolute;
-  right: 50px;
-  top: 78%;
+  margin-top: 5px;
 }
 
 #messages {

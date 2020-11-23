@@ -1,18 +1,18 @@
-// const resize = () => {
-//   console.log("hello");
-//   var img = document.querySelector('.board');
-//   img.onmouseover = function(event) {
-//     console.log(event.clientX);
-//     console.log(img.offsetLeft);
-//     console.log(img.offsetTop);
-//   }
+let el = document.querySelectorAll(".piece");
 
-//   function getOffset(el) {
-//     const rect = el.getBoundingClientRect();
-//     return {
-//       left: rect.left + window.scrollX,
-//       top: rect.top + window.scrollY
-//     };
-//   };
-// }
-// export {resize};
+const incsize = () => {
+    el.forEach((i) => {
+        let theheight = i.height;
+        let newHeight = theheight/100 + 1;
+        i.style.transform = `scale(${newHeight})`;
+    })
+}
+const decsize = () => {
+    el.forEach((i) => {
+        let theheight = i.height;
+        let newHeight = theheight/100 - 1;
+        i.style.transform = `scale(${newHeight})`;
+    })
+}
+
+export {incsize, decsize}
