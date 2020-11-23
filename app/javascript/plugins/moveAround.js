@@ -92,7 +92,6 @@ const moveAround = () => {
 
       activeItem.xOffset = activeItem.currentX;
       activeItem.yOffset = activeItem.currentY;
-      console.log(activeItem)
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       document.getElementById(name.concat(strX)).setAttribute("value", getOffset(activeItem).left);
       document.getElementById(name.concat(strY)).setAttribute("value", getOffset(activeItem).top);
@@ -105,10 +104,10 @@ const moveAround = () => {
 
   function getOffset(el) {
   const rect = el.getBoundingClientRect();
-  return {
-    left: rect.left + window.scrollX,
-    top: rect.top + window.scrollY
+    return {
+      left: rect.left + window.scrollX,
+      top: rect.top + window.scrollY
+    };
   };
-}
 }
 export{ moveAround };

@@ -16,10 +16,11 @@ import { moveAround } from "../plugins/moveAround";
 import { positionElement } from "../plugins/positionElement";
 import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
-
+import {resize } from "../plugins/resizing";
 document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
   initGameroomCable();
+  resize();
   // dice;
 });
