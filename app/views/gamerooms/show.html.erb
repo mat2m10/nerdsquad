@@ -29,16 +29,3 @@
 
 <% end %>
 
-
-
-
-
-<div class ="mt-5" id="messages" data-gameroom-id="<%= @gameroom.id %>">
-  <% @gameroom.messages.each do |message| %>
-    <%= render 'messages/message', message: message %>
-  <% end %>
-</div>
-
-<%= simple_form_for [ @gameroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
-<% end %>
