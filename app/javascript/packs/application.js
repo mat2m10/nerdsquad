@@ -25,3 +25,4 @@ document.addEventListener('turbolinks:load', () => {
   // dice;
 });
 
+import { navbar } from '../components/navbar';
