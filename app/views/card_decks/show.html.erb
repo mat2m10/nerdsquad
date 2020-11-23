@@ -34,3 +34,7 @@
     <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
   <% end %>
 <% end %>
+
+<div class = "bottom-right btn btn-primary">
+  <%= link_to "Save card deck placement", game_path(params[:game_id]) %>
+</div>

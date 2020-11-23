@@ -66,5 +66,6 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Added Gems
+gem 'carrierwave', '~> 2.0'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'

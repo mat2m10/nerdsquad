@@ -1,0 +1,2 @@
+class CdicesController < ApplicationController
+end
