@@ -11,3 +11,25 @@
     width: 25px;
     height: 25px;
   }
+
+.chat-container {
+  height: 400px;
+  width: 20%;
+  overflow: auto;
+  direction: ltr;
+  position: absolute;
+  right: 50px;
+  top: 20%;
+  background-color: white;
+}
+
+.message-form {
+  width: 20%;
+  position:absolute;
+  right: 50px;
+  top: 75%;
+}
+
+#messages {
+  font-size: 15px;
+}
