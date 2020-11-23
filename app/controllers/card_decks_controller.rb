@@ -29,17 +29,17 @@ class CardDecksController < ApplicationController
       card.posX = @card_deck.posX + num
       card.posY = @card_deck.posY + num
       num -= 1
-      card.save
     end
+    card.save
 
-    if @card_deck.game.gamerooms.last
+    if @game.gamerooms.last
       GameroomChannel.broadcast_to(
-        @board.game.gamerooms.last,
+        @game.gamerooms.last,
         "moved"
       )
-      redirect_back(fallback_location: gameroom_path(@card_deck.game.gamerooms.last))
+      redirect_back(fallback_location: gameroom_path(@game.gamerooms.last)) and return
     end
-    redirect_to game_path(params[:game_id])
+    redirect_to @game
   end
 
   def draw!(deck, number)

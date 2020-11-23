@@ -4,9 +4,16 @@
 <div class = "table">
 </div>
 
-<%# deck (represented by its first card) to be positioned %>
-<div class = "movablecontainer">
+<div class = "movablecontainer" data-posx="<%= @card_deck.posX %>" data-posy="<%= @card_deck.posY %>">
+  <%# deck (represented by its first card) to be positioned %>
   <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "card-deck", width: '120px'} %>
+
+  <%# form to submit deck position %>
+    <%= simple_form_for [@game, @card_deck] do |f| %>
+    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+  <% end %>
+
 </div>
 
 <%# @game.board to display board in its position %>
@@ -27,13 +34,3 @@
     <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
   <% end %>
 <% end %>
-
-<%# form to submit deck position %>
-<%= simple_form_for([@game, @card_deck]) do |f| %>
-  <%= f.input :posX, id: "posX", as: :hidden %>
-  <%= f.input :posY, id: "posY", as: :hidden %>
-  <%= f.button :submit, class: "btn btn-primary bottom-right" %>
-<% end %>
-
-
-
