@@ -29,8 +29,8 @@ class CardDecksController < ApplicationController
       card.posX = @card_deck.posX + num
       card.posY = @card_deck.posY + num
       num -= 1
+      card.save
     end
-    card.save
 
     if @game.gamerooms.last
       GameroomChannel.broadcast_to(
@@ -39,7 +39,7 @@ class CardDecksController < ApplicationController
       )
       redirect_back(fallback_location: gameroom_path(@game.gamerooms.last)) and return
     end
-    redirect_to @game
+    redirect_to request.referrer
   end
 
   def draw!(deck, number)

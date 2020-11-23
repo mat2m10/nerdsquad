@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_164822) do
+ActiveRecord::Schema.define(version: 2020_11_23_223334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_164822) do
     t.bigint "ccard_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["ccard_deck_id"], name: "index_ccards_on_ccard_deck_id"
   end
 
@@ -235,5 +236,4 @@ ActiveRecord::Schema.define(version: 2020_11_23_164822) do
   add_foreign_key "messages", "users"
   add_foreign_key "pieces", "games"
   add_foreign_key "tokens", "games"
-
 end
