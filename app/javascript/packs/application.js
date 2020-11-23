@@ -21,7 +21,7 @@ document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
   initGameroomCable();
-  resize();
+  // resize();
   // dice;
 });
 
