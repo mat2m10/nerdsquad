@@ -96,10 +96,10 @@ const moveAround = () => {
 
       activeItem.xOffset = activeItem.currentX;
       activeItem.yOffset = activeItem.currentY;
-      console.log(e.currentTarget)
       setTranslate(activeItem.currentX, activeItem.currentY, activeItem);
       if (document.getElementById(name.concat(strX))) {
         e.currentTarget.querySelector("#posX").setAttribute("value", getOffset(activeItem).left);
+        console.log("drag")
         console.log(e.currentTarget.querySelector("#posX").value)
         e.currentTarget.querySelector("#posY").setAttribute("value", getOffset(activeItem).top);
       }
