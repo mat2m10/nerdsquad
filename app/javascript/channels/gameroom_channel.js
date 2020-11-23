@@ -1,9 +1,10 @@
 import consumer from "./consumer";
 
 const initGameroomCable = () => {
+    const elementsContainer = document.getElementById('elements');
     const messagesContainer = document.getElementById('messages');
-    if (messagesContainer) {
-      const id = messagesContainer.dataset.gameroomId;
+    if (elementsContainer) {
+      const id = elementsContainer.dataset.gameroomId;
   
       consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
         received(data) {
@@ -12,6 +13,14 @@ const initGameroomCable = () => {
             
         },
       });
+
+      consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
+        received(data) {
+          console.log(data);
+          messagesContainer.insertAdjacentHTML('beforeend', data);
+        }
+      });
+
     }
   }
 
