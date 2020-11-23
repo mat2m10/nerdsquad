@@ -44,12 +44,10 @@
     <% end %>
   </div>
 
-  <div class="chat-container">
-      <div id="messages">
+  <div class="chat-container" id="messages">
         <% @gameroom.messages.each do |message| %>
           <%= render "messages/message", message: message %>
         <% end %>
-      </div>
   </div>
 
   <div class="message-form">

@@ -8,19 +8,15 @@ const initGameroomCable = () => {
   
       consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
         received(data) {
-          console.log(data);  
-          Turbolinks.visit(window.location.pathname);
-            
+          console.log(data); 
+          if (data.message) {
+            messagesContainer.insertAdjacentHTML('beforeend', data.message);
+            messagesContainer.lastChild.scrollIntoView();
+          } else {
+            Turbolinks.visit(window.location.pathname);
+          }
         },
       });
-
-      consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
-        received(data) {
-          console.log(data);
-          messagesContainer.insertAdjacentHTML('beforeend', data);
-        }
-      });
-
     }
   }
 
