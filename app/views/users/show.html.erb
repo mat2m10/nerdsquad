@@ -1,23 +1,51 @@
-<div class="user">
-  <h1>Dashboard</h1>
-  <br>
-  <div class="settings">
-    <h2>Settings</h2>
-    <li><%= link_to "Create a new game", new_game_path, class: "btn btn-user" %></li>    
+<% require "open-uri" 
+%>
+
+<% if @user == current_user %>
+  <div class="user">
+    <div class="row">
+      <h1>Dashboard</h1>
+          <% if current_user.photo.attached? != false %>
+            <!-- If user has a photo attached, use this photo -->
+            <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <% github_avatar = URI.open("https://kitt.lewagon.com/placeholder/users/#{current_user.username}") %>
+              <%if github_avatar.base_uri.to_s[-6..-1] == "random"%>
+                <%= image_tag "https://st3.depositphotos.com/4111759/13425/v/380/depositphotos_134255626-stock-illustration-avatar-male-profile-gray-person.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.username}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
+          <% end %>
+  
+    </div>
+    <br>
+
+    <div class="settings">
+      <h2>Settings</h2>
+      <div class="user-info">     
+        <%= "Username: #{@user.username} Email: #{@user.email}" %>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_path %>    
+      </div>
+      <br>
+
+      <li><%= link_to "Create a new game", new_game_path, class: "btn btn-user" %></li>    
+    </div>
+
+    <div class="history">
+      <h2>My games</h2>
+        <% if @games != nil %>
+          <% @games.each do |game| %>
+            <li><%= link_to "#{game.name}", game_preview_path(game) %></li>     
+            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>                
+          <% end %>
+        <% else %>      
+          <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   
+      <% end %>
+
+    </div>
+
   </div>
-
-  <div class="history">
-    <h2>My games</h2>
-      <% if @games != nil %>
-        <% @games.each do |game| %>
-          <li><%= link_to "#{game.name}", game_preview_path(game) %></li>     
-          <%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>                
-        <% end %>
-      <% else %>      
-        <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   
-     <% end %>
-
-  </div>
-
-
-</div>
+<% else %>
+   <p>You cannot access this page.</p>
+  <p><%= link_to "Homepage", "/", class: "btn btn-user" %></p>
+<% end %>
