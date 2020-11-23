@@ -4,13 +4,20 @@
       <div class="menu-icon">
         <i class="fa fa-bars fa-2x"></i>
       </div>
+      <div class="logo">
+      NERD SQUAD
+      </div>
 
       <div class="menu">
         <ul>
           <li><a href='<%= root_path %>'>Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href='<%= games_path %>'>Games</a></li>
-          <li><a href='<%= user_path(@user) %>'>Dashboard</a></li>
+          <% if user_signed_in?  %>
+            <li><a href='<%= user_path(@user) %>'>Dashboard</a></li>
+          <% else %>
+            <li><a href='#'>Dashboard</a></li>
+          <% end %>          
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
