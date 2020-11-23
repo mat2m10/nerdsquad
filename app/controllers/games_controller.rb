@@ -12,6 +12,7 @@ class GamesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @game = Game.new
     @game.user = current_user
     @board = Board.new
