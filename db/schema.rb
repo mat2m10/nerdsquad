@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_151641) do
+ActiveRecord::Schema.define(version: 2020_11_23_164822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_151641) do
 
   create_table "cards", force: :cascade do |t|
     t.float "posX"
-    t.float "posY"
+    t.float "posYµ"
     t.string "visibility"
     t.bigint "card_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -65,6 +65,47 @@ ActiveRecord::Schema.define(version: 2020_11_23_151641) do
     t.string "name"
     t.integer "position"
     t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
+  end
+
+  create_table "cboards", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.bigint "clone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clone_id"], name: "index_cboards_on_clone_id"
+  end
+
+  create_table "ccard_decks", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.string "name"
+    t.bigint "clone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clone_id"], name: "index_ccard_decks_on_clone_id"
+  end
+
+  create_table "ccards", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.string "visibility"
+    t.string "name"
+    t.bigint "ccard_deck_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ccard_deck_id"], name: "index_ccards_on_ccard_deck_id"
+  end
+
+  create_table "cdices", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.integer "faces"
+    t.integer "number_of_dices"
+    t.bigint "clone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clone_id"], name: "index_cdices_on_clone_id"
   end
 
   create_table "clones", force: :cascade do |t|
@@ -76,6 +117,27 @@ ActiveRecord::Schema.define(version: 2020_11_23_151641) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_clones_on_game_id"
+  end
+
+  create_table "cpieces", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.string "name"
+    t.bigint "clone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clone_id"], name: "index_cpieces_on_clone_id"
+  end
+
+  create_table "ctokens", force: :cascade do |t|
+    t.float "posX"
+    t.float "posY"
+    t.string "name"
+    t.integer "number_of_tokens"
+    t.bigint "clone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clone_id"], name: "index_ctokens_on_clone_id"
   end
 
   create_table "dices", force: :cascade do |t|
@@ -159,7 +221,13 @@ ActiveRecord::Schema.define(version: 2020_11_23_151641) do
   add_foreign_key "boards", "games"
   add_foreign_key "card_decks", "games"
   add_foreign_key "cards", "card_decks"
+  add_foreign_key "cboards", "clones"
+  add_foreign_key "ccard_decks", "clones"
+  add_foreign_key "ccards", "ccard_decks"
+  add_foreign_key "cdices", "clones"
   add_foreign_key "clones", "games"
+  add_foreign_key "cpieces", "clones"
+  add_foreign_key "ctokens", "clones"
   add_foreign_key "dices", "games"
   add_foreign_key "gamerooms", "games"
   add_foreign_key "games", "users"
@@ -167,4 +235,5 @@ ActiveRecord::Schema.define(version: 2020_11_23_151641) do
   add_foreign_key "messages", "users"
   add_foreign_key "pieces", "games"
   add_foreign_key "tokens", "games"
+
 end

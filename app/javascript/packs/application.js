@@ -32,3 +32,4 @@ document.addEventListener('turbolinks:load', () => {
 // smaller.addEventListener('click', decsize)
 
 
+import { navbar } from '../components/navbar';

@@ -1,52 +1,29 @@
-<div class="menu-container navbar">
-  
-  <input type="checkbox" id="openmenu" class="hamburger-checkbox">
-  
-  <div class="hamburger-icon">
-    <label for="openmenu" id="hamburger-label">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>    
-  </div>
+<div class="wrapper">
+  <header>
+    <nav>
+      <div class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+      </div>
+      <div class="logo">
+      NERD SQUAD
+      </div>
 
-
-    <div class="menu-pane">
-
-      
-      <nav>
-        <ul class="menu-links">
-        <% if user_signed_in? %>
-          <li><%= link_to "Home", "#", class: "nav-link" %><span class="items">
-          </span>            
-          </li>
-
-        <ul class="menu-links">
-          <li><%= link_to "Games", "#", class: "nav-link" %><span class="items">            
-          </span>            
-          </li>
-
-        <ul class="menu-links">
-          <li><%= link_to "Create", "#", class: "nav-link" %><span class="items">
-          </span>            
-          </li>
-
-        <ul class="menu-links">
-          <li><%= link_to "Messages", "#", class: "nav-link" %><span class="items">
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-           <% end %>
-          </span>            
-          </li>
-        <% else %>
-          <li class="menu-links">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-
-      </nav>
-    </div>
+      <div class="menu">
+        <ul>
+          <li><a href='<%= root_path %>'>Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href='<%= games_path %>'>Games</a></li>
+          <% if user_signed_in?  %>
+            <li><a href='<%= user_path(@user) %>'>Dashboard</a></li>
+          <% else %>
+            <li><a href='#'>Dashboard</a></li>
+          <% end %>          
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 </div>
+
+
+
