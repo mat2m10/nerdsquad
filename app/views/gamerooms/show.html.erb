@@ -1,9 +1,6 @@
 <h1><%= @gameroom.name %></h1>
 
-
-
-
-<div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" >
+<div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" id="messages" data-gameroom-id="<%= @gameroom.id %>" >
 
   <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable board" %>
 
