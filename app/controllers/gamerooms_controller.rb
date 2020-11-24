@@ -1,31 +1,28 @@
 class GameroomsController < ApplicationController
   def new
-    @gameroom = Gameroom.new
+      @gameroom = Gameroom.new
   end
 
   def create
-    @game = Game.find(params[:game_id])
-    @clone = Clone.find(params[:clone_id])
-    @gameroom = Gameroom.new(gameroom_params)
-    @gameroom.save
+      @gameroom = Gameroom.new(gameroom_params)
   end
 
   def show
-    @game = Game.find(params[:game_id])
-    @gameroom = Gameroom.find(params[:id])
-    @clone = @gameroom.clone
-    @message = Message.new
+      @gameroom = Gameroom.find(params[:id])
+      @clone = @gameroom.clone
+      @game = @clone.game
+      @message = Message.new
   end
 
   def update
-    @gameroom = Gameroom.find(params[:id])
-    @gameroom.update(gameroom_params)
-    redirect_to gameroom_path(params[:id])
+      @gameroom = Gameroom.find(params[:id])
+      @gameroom.update(gameroom_params)
+      redirect_to gameroom_path(params[:id])
   end
 
   private
 
   def gameroom_params
-    params.require(:gameroom).permit(:name, :game, :clone)
+    params.require(:gameroom).permit(:name)
   end
 end

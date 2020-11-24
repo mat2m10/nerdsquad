@@ -1,6 +1,6 @@
 
 <% if @clone.cboard %>
-  <div class="movablecontainer" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
+  <div class="movablecontainer" id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
     <%=cl_image_tag @clone.cboard.photo.key , { class: "movable board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};"} %>
     <%= simple_form_for [@game, @clone, @clone.cboard] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -35,7 +35,6 @@
 
 <% unless @clone.ccard_decks.empty? %>
   <% @clone.ccard_decks.each do |deck| %>
-  <%= link_to "Shuffle!", game_gameroom_path(@game, @clone.gameroom, params: { shuffle: true }) %>
     <% deck.ccards.each do |card| %>
       <div class="movablecontainer">
         <%= cl_image_tag card.photo.key, { class: "card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px; z-index: #{card.position + 1}", width: '120px'} %>
@@ -56,7 +55,7 @@
     </div>
 
     <div class="message-form">
-      <%= simple_form_for [ @game, @clone, @gameroom, @message ], url: game_gameroom_messages_path(@game, @clone, @gameroom) do |f| %>
+      <%= simple_form_for [ @gameroom, @message ] do |f| %>
         <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
       <% end %>
     </div>

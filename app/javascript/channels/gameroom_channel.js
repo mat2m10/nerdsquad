@@ -7,6 +7,7 @@ const initGameroomCable = () => {
       const id = elementsContainer.dataset.gameroomId;
       consumer.subscriptions.create({ channel: "GameroomChannel", id: id }, {
         received(data) {
+          console.log(data)
           if (data.message) {
             messagesContainer.insertAdjacentHTML('beforeend', data.message);
             messagesContainer.lastChild.scrollIntoView();

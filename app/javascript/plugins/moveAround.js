@@ -60,8 +60,6 @@ const moveAround = () => {
     activeItem.yOffset = activeItem.currentY;
     if (e.currentTarget.querySelector("#posX") !== null){
       e.currentTarget.querySelector("#posX").value = getOffset(activeItem).left;
-      console.log("beforesending")
-      console.log(e.currentTarget.querySelector("#posX").value)
     }
 
     if (e.currentTarget.querySelector("#posY") !== null) {
