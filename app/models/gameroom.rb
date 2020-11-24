@@ -1,4 +1,4 @@
 class Gameroom < ApplicationRecord
-    has_many :messages, dependent: :destroy
-    has_one :clone
+  has_many :messages, dependent: :destroy
+  belongs_to :clone
 end

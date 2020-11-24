@@ -26,18 +26,10 @@ class TokensController < ApplicationController
         num -= 1
         token.save
       end
-    redirect_to current_path
+      redirect_to current_path
     else
       @token.update!(token_params)
-      if @token.game.gamerooms.last
-        GameroomChannel.broadcast_to(
-          @token.game.gamerooms.last,
-          "moved"
-        )
-        redirect_back(fallback_location: gameroom_path(@token.game.gamerooms.last))
-      else
-        redirect_to current_path
-      end
+      redirect_to current_path
     end
   end
 
