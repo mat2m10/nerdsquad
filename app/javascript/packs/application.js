@@ -14,10 +14,9 @@ import "bootstrap";
 // import { toggleVisibility } from "../plugins/toggleVisibility"
 import { moveAround } from "../plugins/moveAround";
 import { positionElement } from "../plugins/positionElement";
-import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
-import { incsize } from "../plugins/resizing";
-// import { decsize } from "../plugins/resizing";
+import { dice } from '../components/dice';
+import { navbar } from '../components/navbar';
 document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
@@ -25,10 +24,54 @@ document.addEventListener('turbolinks:load', () => {
   // dice;
 });
 
-// const smaller = document.querySelector('#smaller')
-// smaller.addEventListener('click', decsize)
-const bigger = document.querySelector('#bigger')
-bigger.addEventListener('click', incsize)
+let board = document.querySelectorAll(`.board`);
+let heightBoard = document.getElementById('board_height')
+let widthBoard = document.getElementById('board_width')
+let angleBoard = document.getElementById('board_angle')
 
+board.forEach((board) => {
+  heightBoard.addEventListener('input', (e) => {
+    board.style.height = `${e.currentTarget.value}px`
+  })
+  widthBoard.addEventListener('input', (e) => {
+    board.style.width = `${e.currentTarget.value}px`
+  })
+  angleBoard.addEventListener('input', (e) => {
+    board.style.transform = `rotate(${e.currentTarget.value}deg)`
+  })
+})
 
-import { navbar } from '../components/navbar';
+let piece = document.querySelectorAll(`.piece`);
+let heightPiece = document.getElementById('piece_height')
+let widthPiece = document.getElementById('piece_width')
+let anglePiece = document.getElementById('piece_angle')
+
+piece.forEach((piece) => {
+  heightPiece.addEventListener('input', (e) => {
+    piece.style.height = `${e.currentTarget.value}px`
+  })
+  widthPiece.addEventListener('input', (e) => {
+    piece.style.width = `${e.currentTarget.value}px`
+  })
+  anglePiece.addEventListener('input', (e) => {
+    piece.style.transform = `rotate(${e.currentTarget.value}deg)`
+  })
+})
+
+let token = document.querySelectorAll(`.token`);
+let heightToken = document.getElementById('token_height')
+let widthToken = document.getElementById('token_width')
+let angleToken = document.getElementById('token_angle')
+
+token.forEach((token) => {
+  heightToken.addEventListener('input', (e) => {
+    token.style.height = `${e.currentTarget.value}px`
+  })
+  widthToken.addEventListener('input', (e) => {
+    token.style.width = `${e.currentTarget.value}px`
+  })
+  angleToken.addEventListener('input', (e) => {
+    token.style.transform = `rotate(${e.currentTarget.value}deg)`
+  })
+})
+  
