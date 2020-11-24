@@ -4,43 +4,38 @@ class ClonesController < ApplicationController
 
   def create
     # Copy Game
-    @clone = Clone.new(game: @game, name: @game.name, description: @game.description)
+    @clone = Clone.new(
+      game: @game,
+      name: @game.name,
+      description: @game.description
+    )
 
     # Copy Board
-    @cboard = Cboard.create(clone: @clone, posX: @game.board.posX, posY: @game.board.posY)
-    @cboard.photo.attach(@game.board.photo.blob)
+    create_cboard if @game.board
 
-    # Copy Token
-    @game.tokens.each do |token|
-      ctoken = Ctoken.create(clone: @clone, posX: token.posX, posY: token.posY, name: token.name)
-      # Uncomment if needed
-      # ctoken.number_of_tokens = token.number_of_tokens
-      ctoken.photo.attach(token.photo.blob)
-    end
+    # Copy Tokens
+    @game.tokens.each { |token| create_ctoken(token) } unless @game.tokens.empty?
 
     # Copy Pieces
-    @game.pieces.each do |piece|
-      cpiece = Cpiece.create(clone: @clone, posX: piece.posX, posY: piece.posY, name: piece.name)
-      cpiece.photo.attach(piece.photo.blob)
+    @game.pieces.each { |piece| create_cpiece(piece) } unless @game.pieces.empty?
+
+    # Copy Card_decks
+    unless @game.card_decks.empty?
+      @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(card_deck)) } }
     end
-
-    # Copy card_deck
-    @game.card_decks.each do |card_deck|
-      deck = CcardDeck.create(clone: @clone, posX: card_deck.posX, posY: card_deck.posY, name: card_deck.name)
-
-      # Copy cards
-      card_deck.cards.each do |card|
-        ccard = Ccard.create(ccard_deck: deck, posX: card.posX, posY: card.posY, name: card.name, position: card.position)
-        ccard.photo.attach(card.photo.blob)
-      end
-    end
-
     # Save newly cloned Game
-    @clone.save
-    redirect_to game_clone_gameroom_path(@game, @clone)
+    
+    if @clone.save
+      redirect_to game_clone_path(@game, @clone)
+    else
+      redirect_to games_path
+    end
   end
 
   def show
+    if params[:shuffle]
+      Ccard
+    end
   end
 
   private
@@ -51,6 +46,72 @@ class ClonesController < ApplicationController
 
   def set_clone
     @clone = Clone.find(params[:id])
+  end
+
+  def create_cboard
+    @cboard = Cboard.create(
+      clone: @clone,
+      posX: @game.board.posX,
+      posY: @game.board.posY,
+      height: @game.board.height,
+      width: @game.board.width,
+      angle: @game.board.angle
+    )
+    @cboard.photo.attach(@game.board.photo.blob)
+  end
+
+  def create_ctoken(token)
+    # Copy Token
+    ctoken = Ctoken.create(
+      clone: @clone,
+      posX: token.posX,
+      posY: token.posY,
+      name: token.name,
+      height: token.height,
+      width: token.width,
+      angle: token.angle
+    )
+    # Uncomment if needed
+    # ctoken.number_of_tokens = token.number_of_tokens
+    ctoken.photo.attach(token.photo.blob)
+  end
+
+  def create_cpiece(piece)
+    cpiece = Cpiece.create(
+      clone: @clone,
+      posX: piece.posX,
+      posY: piece.posY,
+      name: piece.name,
+      height: piece.height,
+      width: piece.width,
+      angle: piece.angle
+    )
+    cpiece.photo.attach(piece.photo.blob)
+  end
+
+  def create_ccard_deck(card_deck)
+    CcardDeck.create(
+      clone: @clone,
+      posX: card_deck.posX,
+      posY: card_deck.posY,
+      name: card_deck.name,
+      height: card_deck.height,
+      width: card_deck.width,
+      angle: card_deck.angle
+    )
+  end
+
+  def create_ccard(card, ccard_deck)
+    Ccard.create(
+      ccard_deck: ccard_deck,
+      posX: card.posX,
+      posY: card.posY,
+      name: card.name,
+      position: card.position,
+      height: card.height,
+      width: card.width,
+      angle: card.angle
+    ).photo.attach(card.photo.blob)
   end
 
   def clone_params

@@ -24,11 +24,9 @@ class CardDecksController < ApplicationController
 
   def update
     @card_deck.update!(card_deck_params)
-    num = @card_deck.cards.length
     @card_deck.cards.each do |card|
-      card.posX = @card_deck.posX + num
-      card.posY = @card_deck.posY + num
-      num -= 1
+      card.posX = @card_deck.posX
+      card.posY = @card_deck.posY + card.position * 40
       card.save
     end
 
