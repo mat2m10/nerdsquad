@@ -29,7 +29,7 @@ class ClonesController < ApplicationController
     if @clone.save
       # Create gameroom
       @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
-      redirect_to game_gameroom_path(@game, @clone, @gameroom)
+      redirect_to gameroom_path(@gameroom)
     else
       redirect_to games_path
     end
