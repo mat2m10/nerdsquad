@@ -6,20 +6,20 @@ class GameroomsController < ApplicationController
   end
 
   def create
-      @gameroom = Gameroom.new(gameroom_params)
+    @gameroom = Gameroom.new(gameroom_params)
   end
 
   def show
-      @gameroom = Gameroom.find(params[:id])
-      @clone = @gameroom.clone
-      @game = @clone.game
-      @message = Message.new
+    @gameroom = Gameroom.find(params[:id])
+    @clone = @gameroom.clone
+    @game = @clone.game
+    @message = Message.new
   end
 
   def update
-      @gameroom = Gameroom.find(params[:id])
-      @gameroom.update(gameroom_params)
-      redirect_to gameroom_path(params[:id])
+    @gameroom = Gameroom.find(params[:id])
+    @gameroom.update(gameroom_params)
+    redirect_to gameroom_path(params[:id])
   end
 
   private
