@@ -9,14 +9,12 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @card.card_deck = @card_deck
-    @card.position = @card_deck.cards.count + 1
-    @card.posX = @card_deck.posX
-    @card.posY = @card_deck.posY + @card.position * 40
-    if @card.save && @card_deck.cards.count > 1
+    @card.assign_attributes(card_deck: @deck, height: @deck.height, width: @deck.width)
+    @card.position = @deck.cards.count + 1
+    if @card.save && @deck.cards.count > 1
       redirect_to @game
     else
-      redirect_to game_card_deck_path(@game, @card_deck)
+      redirect_to game_card_deck_path(@game, @deck)
     end
   end
 
@@ -32,7 +30,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    @card_deck.destroy if @card_deck.cards.empty?
+    @deck.destroy if @deck.cards.empty?
     redirect_to @game
   end
 
@@ -43,7 +41,7 @@ class CardsController < ApplicationController
   end
 
   def set_card_deck
-    @card_deck = CardDeck.find(params[:card_deck_id])
+    @deck = CardDeck.find(params[:card_deck_id])
   end
 
   def set_card
@@ -51,6 +49,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:photo, :name, :position, :posX, :posY)
+    params.require(:card).permit(:photo, :name, :position, :posX, :posY, :width, :height, :angle, :visibility)
   end
 end
