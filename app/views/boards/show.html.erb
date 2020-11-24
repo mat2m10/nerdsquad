@@ -21,7 +21,8 @@
 
 <div class="movablecontainer" data-posx="<%= @board.posX %>" data-posy="<%= @board.posY %>" >
 
-  <%= cl_image_tag @board.photo.key, class: "movable board" %>
+  <%= cl_image_tag @board.photo.key, class: "movable board", style:"height: #{@board
+.height}px; width:#{@board.width}px; transform:rotate(#{@board.angle}deg);" %>
 
   <%= simple_form_for [@board.game, @board] do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
@@ -34,6 +35,15 @@
 
 
 <div class = "table">
+</div>
+
+<div class = "sizeform">
+  <%= simple_form_for [@board.game, @board] do |f| %>
+    <%= f.input :height %>
+    <%= f.input :width %>
+    <%= f.input :angle %>
+    <%= f.button :submit %>
+  <% end %>
 </div>
 
 <div class = "bottom-right btn btn-primary">

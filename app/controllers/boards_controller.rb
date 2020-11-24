@@ -32,7 +32,7 @@ class BoardsController < ApplicationController
 
   def destroy
     if @board.destroy
-      flash[:success] = 'board was successfully deleted.'
+      flash[:success] = 'Board was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
     end
@@ -50,6 +50,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:photo, :posX, :posY)
+    params.require(:board).permit(:photo, :posX, :posY, :height, :width, :angle)
   end
 end

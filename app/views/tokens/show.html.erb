@@ -23,8 +23,11 @@
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
   <% end %>
-
 </div>
+
+<div class = "table">
+</div>
+
 <div class = "bottom-right btn btn-primary">
   <%= link_to "Save token placement", game_path(params[:game_id]) %>
 </div>
