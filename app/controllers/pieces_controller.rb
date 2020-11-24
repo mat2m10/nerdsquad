@@ -25,12 +25,7 @@ class PiecesController < ApplicationController
 
   def update
     @piece.update!(piece_params)
-    if @piece.game.gamerooms.last
-      GameroomChannel.broadcast_to(@piece.game.gamerooms.last, "moved")
-      redirect_back(fallback_location: gameroom_path(@piece.game.gamerooms.last))
-    else
-      redirect_to request.referrer
-    end
+    redirect_to request.referrer
   end
 
   def destroy

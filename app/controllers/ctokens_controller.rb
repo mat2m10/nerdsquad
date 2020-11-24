@@ -4,6 +4,7 @@ class CtokensController < ApplicationController
 
   def update
     @ctoken.update!(ctoken_params)
+    GameroomChannel.broadcast_to(@clone.gameroom, "moved")
     redirect_to request.referrer
   end
 
