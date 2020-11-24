@@ -5,11 +5,8 @@ class CcardsController < ApplicationController
 
   def update
     @ccard.update!(ccard_params)
-    if @ccard.ccard_deck.clone.gameroom
-      GameroomChannel.broadcast_to(@ccard.ccard_deck.clone.gameroom, "moved")
-      redirect_back(fallback_location: gameroom_path(@ccard.ccard_deck.clone.gameroom))
-    else
-      redirect_to request.referrer
+    GameroomChannel.broadcast_to(@ccard.ccard_deck.clone.gameroom, "moved")
+    redirect_to request.referrer
   end
 
   private

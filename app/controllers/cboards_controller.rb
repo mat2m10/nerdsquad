@@ -5,8 +5,10 @@ class CboardsController < ApplicationController
   def update
     @cboard.update!(cboard_params)
     if @cboard.clone.gameroom
+      raise
       GameroomChannel.broadcast_to(@cboard.clone.gameroom, "moved")
-      redirect_back(fallback_location: gameroom_path(@cboard.clone.gameroom))
+      redirect_to request.referrer
+      # redirect_back(fallback_location: gameroom_path(@cboard.clone.gameroom))
     else
       redirect_to request.referrer
     end

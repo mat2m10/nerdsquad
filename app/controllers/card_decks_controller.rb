@@ -29,14 +29,6 @@ class CardDecksController < ApplicationController
       card.posY = @card_deck.posY + card.position * 40
       card.save
     end
-
-    if @game.gamerooms.last
-      GameroomChannel.broadcast_to(
-        @game.gamerooms.last,
-        "moved"
-      )
-      redirect_back(fallback_location: gameroom_path(@game.gamerooms.last)) and return
-    end
     redirect_to request.referrer
   end
 

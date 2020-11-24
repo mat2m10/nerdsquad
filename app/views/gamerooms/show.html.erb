@@ -1,50 +1,54 @@
-<h1><%= @gameroom.name %></h1>
 
-<div class="main-container">
-  <div class="the-game">
-    <div class="movablecontainer" data-posx="<%= @gameroom.game.board.posX %>" data-posy="<%= @gameroom.game.board.posY %>" id="elements" data-gameroom-id="<%= @gameroom.id %>" >
-
-      <%= cl_image_tag @gameroom.game.board.photo.key, class: "movable board grab" %>
-
-      <%= simple_form_for [@gameroom.game, @gameroom.game.board] do |f| %>
-        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-      <% end %>
-
-    </div>
-
-    <% @gameroom.game.pieces.each do |piece| %>
-      
-      <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>">
-
-        <%= cl_image_tag piece.photo.key, class: "movable piece grab" %>
-
-        <%= simple_form_for [@gameroom.game, piece] do |f| %>
-          <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-          <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-        <% end %>
-
-      </div>
-
-    <% end %>
-
-    <% @gameroom.game.tokens.each do |token| %>
-      
-      <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>">
-
-        <%= cl_image_tag token.photo.key, class: "movable token grab" %>
-
-        <%= simple_form_for [@gameroom.game, token] do |f| %>
-          <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-          <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-        <% end %>
-
-      </div>
-
+<% if @clone.cboard %>
+  <div class="movablecontainer" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
+    <%=cl_image_tag @clone.cboard.photo.key , { class: "movable board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};"} %>
+    <%= simple_form_for [@game, @clone, @clone.cboard] do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
     <% end %>
   </div>
+<% end %>
 
-  <div class="the-chat d-flex">
+<% unless @clone.ctokens.empty? %>
+  <% @clone.ctokens.each do |token| %>
+  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
+    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY};", width: '40px'}%>
+    <%= simple_form_for [@game, @clone, token] do |f| %>
+    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+
+<% unless @clone.cpieces.empty? %>
+  <% @clone.cpieces.each do |piece| %>
+  <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
+    <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "left: #{piece.posX}; top: #{piece.posY};", width: '60px'}%>
+    <%= simple_form_for [@game, @clone, piece] do |f| %>
+      <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+      <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+
+<% unless @clone.ccard_decks.empty? %>
+  <% @clone.ccard_decks.each do |deck| %>
+  <%= link_to "Shuffle!", game_gameroom_path(@game, @clone.gameroom, params: { shuffle: true }) %>
+    <% deck.ccards.each do |card| %>
+      <div class="movablecontainer">
+        <%= cl_image_tag card.photo.key, { class: "card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px; z-index: #{card.position + 1}", width: '120px'} %>
+        <%= simple_form_for [@game, @clone, deck, card] do |f| %>
+          <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+          <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="the-chat d-flex">
     <div class="chat-container" id="messages">
           <% @gameroom.messages.each do |message| %>
             <%= render "messages/message", message: message %>
@@ -52,13 +56,12 @@
     </div>
 
     <div class="message-form">
-      <%= simple_form_for [ @gameroom, @message ] do |f| %>
+      <%= simple_form_for [ @game, @clone, @gameroom, @message ], url: game_gameroom_messages_path(@game, @clone, @gameroom) do |f| %>
         <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
       <% end %>
     </div>
-  </div>
-
 </div>
 
-<p class="btn btn-primary" id="bigger">Increase size</p>
-<p class="btn btn-primary" id="smaller">Decrease size</p>
+
+<div class = "table">
+</div>

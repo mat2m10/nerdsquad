@@ -4,6 +4,7 @@ class CpiecesController < ApplicationController
 
   def update
     @cpiece.update!(cpiece_params)
+    GameroomChannel.broadcast_to(@clone.gameroom, "moved")
     redirect_to request.referrer
   end
 
