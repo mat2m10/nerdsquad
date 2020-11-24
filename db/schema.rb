@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_090224) do
 
   create_table "cards", force: :cascade do |t|
     t.float "posX"
-    t.float "posY"
+    t.float "posYµ"
     t.string "visibility"
     t.bigint "card_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
