@@ -56,10 +56,13 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    authorize @game
     @game = Game.find(params[:id])
-    @game.destroy
-    redirect_to @game
+    if @game.destroy
+      flash[:success] = 'Game was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to user_path(current_user)
   end
 
   private
