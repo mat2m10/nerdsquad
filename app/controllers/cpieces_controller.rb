@@ -1,8 +1,8 @@
 class CpiecesController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action :set_cpiece, only: %i[update]
 
   def update
-    @cpiece = Cpiece.find(params[:id])
     @cpiece.update!(cpiece_params)
     redirect_to request.referrer
   end
@@ -11,6 +11,10 @@ class CpiecesController < ApplicationController
 
   def set_clone
     @clone = Clone.find(params[:clone_id])
+  end
+
+  def set_cpiece
+    @cpiece = Cpiece.find(params[:id])
   end
 
   def cpiece_params

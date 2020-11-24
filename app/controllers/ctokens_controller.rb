@@ -1,8 +1,8 @@
 class CtokensController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action :set_ctoken, only: %i[update]
 
   def update
-    @ctoken = Ctoken.find(params[:id])
     @ctoken.update!(ctoken_params)
     redirect_to request.referrer
   end
@@ -11,6 +11,10 @@ class CtokensController < ApplicationController
 
   def set_clone
     @clone = Clone.find(params[:clone_id])
+  end
+
+  def set_ctoken
+    @ctoken = Ctoken.find(params[:id])
   end
 
   def ctoken_params
