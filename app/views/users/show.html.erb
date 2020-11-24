@@ -2,7 +2,7 @@
 %>
 
 <% if @user == current_user %>
-  <div class="user">
+  <div class="user" id="user">
     <div class="row">
       <h1>Dashboard</h1>
           <% if current_user.photo.attached? != false %>

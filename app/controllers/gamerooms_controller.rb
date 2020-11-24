@@ -7,7 +7,7 @@ class GameroomsController < ApplicationController
         @gameroom = Gameroom.new(gameroom_params)
     end
 
-    def show
+    def show        
         @gameroom = Gameroom.find(params[:id])
         @message = Message.new
     end

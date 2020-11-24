@@ -22,12 +22,7 @@ class BoardsController < ApplicationController
   def update
     @game.board = @board
     @board.update!(board_params)
-    if @board.game.gamerooms.last
-      GameroomChannel.broadcast_to(@board.game.gamerooms.last, "moved")
-      redirect_back(fallback_location: gameroom_path(@board.game.gamerooms.last))
-    else
-      redirect_to request.referrer
-    end
+    redirect_to request.referrer
   end
 
   def destroy
