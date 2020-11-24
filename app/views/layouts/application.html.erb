@@ -13,8 +13,8 @@
 
   <body>
     <%= render 'shared/flashes' %>
-    <% if controller_name == 'games' || controller_name == 'pages' || controller_name == 'users' %>
-    <%= render 'shared/navbar' %>
+    <% if controller_name == 'games' && action_name == 'index'|| controller_name == 'pages' || controller_name == 'users' %>
+      <%= render 'shared/navbar' %>
     <% end %>
        
     <%= yield %>
