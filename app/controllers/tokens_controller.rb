@@ -10,6 +10,8 @@ class TokensController < ApplicationController
     params[:token][:number_of_tokens].to_i.times do
       @token = Token.new(token_params)
       @token.game = @game
+      @token.posX = 400
+      @token.posY = 400
       @token.save
     end
     redirect_to game_token_path(params[:game_id], @token.id)
