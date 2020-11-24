@@ -1,7 +1,8 @@
 class ClonesController < ApplicationController
   before_action :set_game, only: %i[create show]
   before_action :set_clone, only: %i[show]
-
+  def new
+  end
   def create
     @clone = Clone.new(game: @game, name: @game.name, number_of_players: @game.number_of_players,
                        description: @game.description)
