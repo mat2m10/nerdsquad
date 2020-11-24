@@ -1,7 +1,6 @@
 class TokensController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
-
-  before_action :set_token, only: %i[update destroy]
+  before_action :set_token, only: %i[show edit update destroy]
 
   def new
     @token = Token.new
@@ -51,16 +50,6 @@ class TokensController < ApplicationController
     redirect_to @game
   end
 
-  def destroy
-    @token = Token.find(params[:id])
-    if @token.destroy
-      flash[:success] = 'Piece was successfully deleted.'
-    else
-      flash[:error] = 'Something went wrong'
-    end
-    redirect_to @game
-  end
-
   private
 
   def set_game
@@ -72,6 +61,6 @@ class TokensController < ApplicationController
   end
 
   def token_params
-    params.require(:token).permit(:photo, :name, :number_of_tokens, :posX, :posY)
+    params.require(:token).permit(:photo, :name, :number_of_tokens, :posX, :posY, :height, :width, :angle)
   end
 end

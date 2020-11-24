@@ -39,13 +39,13 @@
 
 <div class = "sizeform">
   <%= simple_form_for [@board.game, @board] do |f| %>
-    <%= f.input :height %>
-    <%= f.input :width %>
-    <%= f.input :angle %>
-    <%= f.button :submit %>
+    <%= f.input :height, input_html: {value: '500'} %>
+    <%= f.input :width, input_html: {value: '500'} %>
+    <%= f.input :angle, input_html: {value: '0'} %>
+    <%= f.button :submit, 'Save dimensions' %>
   <% end %>
 </div>
 
 <div class = "bottom-right btn btn-primary">
-  <%= link_to "Save board placement", game_path(params[:game_id]) %>
+  <%= link_to "Save placement", game_path(params[:game_id]) %>
 </div>

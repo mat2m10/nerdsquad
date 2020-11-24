@@ -24,54 +24,58 @@ document.addEventListener('turbolinks:load', () => {
   // dice;
 });
 
-let board = document.querySelectorAll(`.board`);
-let heightBoard = document.getElementById('board_height')
-let widthBoard = document.getElementById('board_width')
-let angleBoard = document.getElementById('board_angle')
 
-board.forEach((board) => {
-  heightBoard.addEventListener('input', (e) => {
-    board.style.height = `${e.currentTarget.value}px`
+let movable = document.querySelectorAll(`.movable`);
+if (movable) {
+  let componentName = movable[0].className.substr(8)
+  movable.forEach((i) => {
+    let height = document.getElementById(`${componentName}_height`)
+    let width = document.getElementById(`${componentName}_width`)
+    let angle = document.getElementById(`${componentName}_angle`)
+    height.addEventListener('input', (e) => {
+      i.style.height = `${e.currentTarget.value}px`
+    })
+    width.addEventListener('input', (e) => {
+      i.style.width = `${e.currentTarget.value}px`
+    })
+    angle.addEventListener('input', (e) => {
+      i.style.transform = `rotate(${e.currentTarget.value}deg)`
+    })
   })
-  widthBoard.addEventListener('input', (e) => {
-    board.style.width = `${e.currentTarget.value}px`
-  })
-  angleBoard.addEventListener('input', (e) => {
-    board.style.transform = `rotate(${e.currentTarget.value}deg)`
-  })
-})
+}
+// if (piece) {
+//   piece.forEach((piece) => {
+//     let heightPiece = document.getElementById('piece_height')
+//     let widthPiece = document.getElementById('piece_width')
+//     let anglePiece = document.getElementById('piece_angle')
+//     heightPiece.addEventListener('input', (e) => {
+//       console.log("hi")
+//       piece.style.height = `${e.currentTarget.value}px`
+//     })
+//     widthPiece.addEventListener('input', (e) => {
+//       piece.style.width = `${e.currentTarget.value}px`
+//     })
+//     anglePiece.addEventListener('input', (e) => {
+//       piece.style.transform = `rotate(${e.currentTarget.value}deg)`
+//     })
+//   })
+// }
+// if (token) {
+//     token.forEach((token) => {
+//     let heightToken = document.getElementById('token_height')
+//     let widthToken = document.getElementById('token_width')
+//     let angleToken = document.getElementById('token_angle')
+//     heightToken.addEventListener('input', (e) => {
+//       token.style.height = `${e.currentTarget.value}px`
+//     })
+//     widthToken.addEventListener('input', (e) => {
+//       token.style.width = `${e.currentTarget.value}px`
+//     })
+//     angleToken.addEventListener('input', (e) => {
+//       token.style.transform = `rotate(${e.currentTarget.value}deg)`
+//     })
+//   })
+// }
 
-let piece = document.querySelectorAll(`.piece`);
-let heightPiece = document.getElementById('piece_height')
-let widthPiece = document.getElementById('piece_width')
-let anglePiece = document.getElementById('piece_angle')
 
-piece.forEach((piece) => {
-  heightPiece.addEventListener('input', (e) => {
-    piece.style.height = `${e.currentTarget.value}px`
-  })
-  widthPiece.addEventListener('input', (e) => {
-    piece.style.width = `${e.currentTarget.value}px`
-  })
-  anglePiece.addEventListener('input', (e) => {
-    piece.style.transform = `rotate(${e.currentTarget.value}deg)`
-  })
-})
-
-let token = document.querySelectorAll(`.token`);
-let heightToken = document.getElementById('token_height')
-let widthToken = document.getElementById('token_width')
-let angleToken = document.getElementById('token_angle')
-
-token.forEach((token) => {
-  heightToken.addEventListener('input', (e) => {
-    token.style.height = `${e.currentTarget.value}px`
-  })
-  widthToken.addEventListener('input', (e) => {
-    token.style.width = `${e.currentTarget.value}px`
-  })
-  angleToken.addEventListener('input', (e) => {
-    token.style.transform = `rotate(${e.currentTarget.value}deg)`
-  })
-})
   
