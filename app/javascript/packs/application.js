@@ -16,20 +16,19 @@ import { moveAround } from "../plugins/moveAround";
 import { positionElement } from "../plugins/positionElement";
 import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
-// import { incsize } from "../plugins/resizing";
-import { decsize } from "../plugins/resizing";
+import { incsize } from "../plugins/resizing";
+// import { decsize } from "../plugins/resizing";
 document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
   initGameroomCable();
-  // incsize();
   // dice;
 });
 
-// const bigger = document.querySelector('#bigger')
 // const smaller = document.querySelector('#smaller')
-// bigger.addEventListener('click', incsize)
 // smaller.addEventListener('click', decsize)
+const bigger = document.querySelector('#bigger')
+bigger.addEventListener('click', incsize)
 
 
 import { navbar } from '../components/navbar';
