@@ -32,7 +32,7 @@ class BoardsController < ApplicationController
 
   def destroy
     if @board.destroy
-      flash[:success] = 'board was successfully deleted.'
+      flash[:success] = 'Board was successfully deleted.'
     else
       flash[:error] = 'Something went wrong'
     end

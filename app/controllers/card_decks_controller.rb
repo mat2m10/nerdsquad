@@ -42,19 +42,6 @@ class CardDecksController < ApplicationController
     redirect_to request.referrer
   end
 
-  def draw!(deck, number)
-    temp = CardDeck.new(game: @game, name: 'temp')
-    drawn_cards = deck.cards.pop(number)
-    drawn_cards.each do |card|
-      card.deck = temp
-    end
-    temp.save
-  end
-
-  def shuffle!
-    @card_deck.cards
-  end
-
   private
 
   def card_deck_params

@@ -11,6 +11,8 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     @card.card_deck = @card_deck
     @card.position = @card_deck.cards.count + 1
+    @card.posX = @card_deck.posX
+    @card.posY = @card_deck.posY + @card.position * 40
     if @card.save && @card_deck.cards.count > 1
       redirect_to @game
     else
