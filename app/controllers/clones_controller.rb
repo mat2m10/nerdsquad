@@ -28,7 +28,7 @@ class ClonesController < ApplicationController
 
     if @clone.save
       # Create gameroom
-      @gameroom = Gameroom.create(name:"#{@clone.name}-#{@clone.id}", clone: @clone)
+      @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
       redirect_to game_gameroom_path(@game, @clone, @gameroom)
     else
       redirect_to games_path
@@ -36,9 +36,7 @@ class ClonesController < ApplicationController
   end
 
   def show
-    if params[:shuffle]
-      Ccard
-    end
+    Ccard if params[:shuffle]
   end
 
   private
