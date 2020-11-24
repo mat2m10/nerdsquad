@@ -10,6 +10,7 @@ class CcardsController < ApplicationController
       redirect_back(fallback_location: gameroom_path(@ccard.ccard_deck.clone.gameroom))
     else
       redirect_to request.referrer
+    end
   end
 
   private
