@@ -36,7 +36,8 @@
         <% if @games != nil %>
           <% @games.each do |game| %>
             <li><%= link_to "#{game.name}", game_preview_path(game) %></li>     
-            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>                
+            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>
+            <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_path(game), method: :delete %> 
           <% end %>
         <% else %>      
           <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   
