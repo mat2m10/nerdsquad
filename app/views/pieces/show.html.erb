@@ -25,6 +25,18 @@
 <div class="table">
 </div>
 
+
+<div class = "sizeform">
+  <%= simple_form_for [@game, @piece] do |f| %>
+    <%= f.input :height, input_html: {value: '50'} %>
+    <%= f.input :width, input_html: {value: '50'} %>
+    <%= f.input :angle, input_html: {value: '0'} %>
+    <%= f.button :submit, 'Save dimensions' %>
+  <% end %>
+</div>
+
+
+
 <div class = "bottom-right btn btn-primary">
-  <%= link_to "Save piece placement", game_path(params[:game_id]) %>
+  <%= link_to "Save placement", game_path(params[:game_id]) %>
 </div>

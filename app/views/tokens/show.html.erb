@@ -18,7 +18,7 @@
 <% end %>
 
 <div class="movablecontainer" data-posx="<%= @game.tokens.last.posX %>" data-posy="<%= @game.tokens.last.posY %>" >
-  <%= cl_image_tag @game.tokens.last.photo.key, {width: '60px', class: "token"}%>
+  <%= cl_image_tag @game.tokens.last.photo.key, {width: '60px', class: "movable token"}%>
   <%= simple_form_for([@game, @game.tokens.last]) do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
@@ -28,6 +28,15 @@
 <div class = "table">
 </div>
 
+<div class = "sizeform">
+  <%= simple_form_for [@game, @token] do |f| %>
+    <%= f.input :height, input_html: {value: '50'} %>
+    <%= f.input :width, input_html: {value: '50'} %>
+    <%= f.input :angle, input_html: {value: '0'} %>
+    <%= f.button :submit, 'Save dimensions' %>
+  <% end %>
+</div>
+
 <div class = "bottom-right btn btn-primary">
-  <%= link_to "Save token placement", game_path(params[:game_id]) %>
+  <%= link_to "Save placement", game_path(params[:game_id]) %>
 </div>
