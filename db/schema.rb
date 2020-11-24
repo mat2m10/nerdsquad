@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_223334) do
+ActiveRecord::Schema.define(version: 2020_11_24_090224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["game_id"], name: "index_boards_on_game_id"
   end
 
@@ -52,6 +55,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["game_id"], name: "index_card_decks_on_game_id"
   end
 
@@ -64,6 +70,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "position"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
   end
 
@@ -73,6 +82,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["clone_id"], name: "index_cboards_on_clone_id"
   end
 
@@ -83,6 +95,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["clone_id"], name: "index_ccard_decks_on_clone_id"
   end
 
@@ -95,6 +110,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["ccard_deck_id"], name: "index_ccards_on_ccard_deck_id"
   end
 
@@ -106,6 +124,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["clone_id"], name: "index_cdices_on_clone_id"
   end
 
@@ -127,6 +148,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["clone_id"], name: "index_cpieces_on_clone_id"
   end
 
@@ -138,6 +162,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["clone_id"], name: "index_ctokens_on_clone_id"
   end
 
@@ -149,6 +176,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "number_of_dices"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
 
@@ -188,6 +218,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["game_id"], name: "index_pieces_on_game_id"
   end
 
@@ -199,6 +232,9 @@ ActiveRecord::Schema.define(version: 2020_11_23_223334) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "number_of_tokens"
+    t.float "height"
+    t.float "width"
+    t.integer "angle"
     t.index ["game_id"], name: "index_tokens_on_game_id"
   end
 
