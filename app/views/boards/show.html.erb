@@ -10,6 +10,15 @@
   <% end %>
 <% end %>
 
+<% unless @game.card_decks.empty? %>
+  <% @game.card_decks.each do |deck| %>
+      <% deck.cards.each do |card| %>
+        <%= cl_image_tag card.photo.key, { class: "card greyed", style: "position: absolute; left: #{deck.posX}px; top: #{deck.posY + card.position * 40}px;", width: '120px'} %>
+      <% end %>
+  <% end %>
+<% end %>
+
+
 <div class="movablecontainer" data-posx="<%= @board.posX %>" data-posy="<%= @board.posY %>" >
 
   <%= cl_image_tag @board.photo.key, class: "movable board" %>
