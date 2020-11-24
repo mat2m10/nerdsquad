@@ -6,4 +6,5 @@ class Clone < ApplicationRecord
   has_many :cdices, dependent: :destroy
   has_many :cpieces, dependent: :destroy
   has_many :ctokens, dependent: :destroy
+  has_one :gameroom
 end

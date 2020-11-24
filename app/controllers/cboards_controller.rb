@@ -4,7 +4,12 @@ class CboardsController < ApplicationController
 
   def update
     @cboard.update!(cboard_params)
-    redirect_to request.referrer
+    if @cboard.clone.gameroom
+      GameroomChannel.broadcast_to(@cboard.clone.gameroom, "moved")
+      redirect_back(fallback_location: gameroom_path(@cboard.clone.gameroom))
+    else
+      redirect_to request.referrer
+    end
   end
 
   private

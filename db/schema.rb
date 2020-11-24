@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_090224) do
+ActiveRecord::Schema.define(version: 2020_11_24_124116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,8 +186,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_090224) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "game_id"
-    t.index ["game_id"], name: "index_gamerooms_on_game_id"
+    t.bigint "clone_id"
+    t.index ["clone_id"], name: "index_gamerooms_on_clone_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -266,7 +266,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_090224) do
   add_foreign_key "cpieces", "clones"
   add_foreign_key "ctokens", "clones"
   add_foreign_key "dices", "games"
-  add_foreign_key "gamerooms", "games"
+  add_foreign_key "gamerooms", "clones"
   add_foreign_key "games", "users"
   add_foreign_key "messages", "gamerooms"
   add_foreign_key "messages", "users"

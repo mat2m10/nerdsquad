@@ -24,6 +24,7 @@ class ClonesController < ApplicationController
       @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(card_deck)) } }
     end
     # Save newly cloned Game
+    
     if @clone.save
       redirect_to game_clone_path(@game, @clone)
     else
