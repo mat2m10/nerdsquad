@@ -12,7 +12,8 @@
 
   h2 {
     color: #f3d9bb;
-    font-family: 'Permanent Marker', cursive !important; 
+    font-family: 'Permanent Marker', cursive !important;
+    padding-top:70px;
   }
 
   .right {
@@ -23,7 +24,7 @@
 
   .left{
     border: 2px solid white;
-    margin: 50px;
+    margin: 90px;
   }
 
   a {
@@ -37,6 +38,7 @@
     border-radius: 4px;
     background: #6987ac;
     transition: background 0.3s ease;
+    margin: 20px;
   }
   
   .btn-flat:hover {
