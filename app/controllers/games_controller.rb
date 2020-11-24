@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     else
       @games = Game.all
     end
-      @boards = Board.all
+    @boards = Board.all
   end
 
   def new

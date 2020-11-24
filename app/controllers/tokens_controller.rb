@@ -16,21 +16,17 @@ class TokensController < ApplicationController
   end
 
   def update
-    current_path = request.referrer
-    if current_path.include? 'tokens'
-      @token.update!(token_params)
+    if request.referrer.include? 'tokens'
       num = @token.number_of_tokens + 1
-      @game.tokens[(-@token.number_of_tokens)..-2].each do |token|
-        token.posX = @token.posX + num*5
-        token.posY = @token.posY + num*5
+      @game.tokens[-@token.number_of_tokens..-2].each do |token|
+        token.posX = @token.posX + num * 5
+        token.posY = @token.posY + num * 5
         num -= 1
         token.save
       end
-      redirect_to current_path
-    else
-      @token.update!(token_params)
-      redirect_to current_path
     end
+    @token.update!(token_params)
+    redirect_to request.referrer
   end
 
   def destroy
