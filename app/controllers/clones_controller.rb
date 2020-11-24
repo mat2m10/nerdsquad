@@ -11,8 +11,26 @@ class ClonesController < ApplicationController
     @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
     redirect_to games_path and return unless @clone.save
 
-    @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
-    redirect_to game_gameroom_path(@game, @clone, @gameroom)
+    # Copy Tokens
+    @game.tokens.each { |token| create_ctoken(token) } unless @game.tokens.empty?
+
+    # Copy Pieces
+    @game.pieces.each { |piece| create_cpiece(piece) } unless @game.pieces.empty?
+
+    # Copy Card_decks
+    unless @game.card_decks.empty?
+      @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
+    end
+    # Save newly cloned Game
+
+    if @clone.save
+      # Create gameroom
+      @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
+      redirect_to gameroom_path(@gameroom)
+    else
+      redirect_to games_path
+    end
+
   end
 
   def show
