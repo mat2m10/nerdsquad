@@ -11,78 +11,82 @@ class ClonesController < ApplicationController
     )
 
     # Copy Board
-    @cboard = Cboard.create(
-      clone: @clone,
-      posX: @game.board.posX,
-      posY: @game.board.posY,
-      height: @game.board.height,
-      width: @game.board.width,
-      angle: @game.board.angle
-    )
-    @cboard.photo.attach(@game.board.photo.blob)
-
+    if @game.board
+      @cboard = Cboard.create(
+        clone: @clone,
+        posX: @game.board.posX,
+        posY: @game.board.posY,
+        height: @game.board.height,
+        width: @game.board.width,
+        angle: @game.board.angle
+      )
+      @cboard.photo.attach(@game.board.photo.blob)
+    end
     # Copy Tokens
-    @game.tokens.each do |token|
-      # Copy Token
-      ctoken = Ctoken.create(
-        clone: @clone,
-        posX: token.posX,
-        posY: token.posY,
-        name: token.name,
-        height: token.height,
-        width: token.width,
-        angle: token.angle
-      )
-      # Uncomment if needed
-      # ctoken.number_of_tokens = token.number_of_tokens
-      ctoken.photo.attach(token.photo.blob)
-    end
-
-    # Copy Pieces
-    @game.pieces.each do |piece|
-      # Copy Piece
-      cpiece = Cpiece.create(
-        clone: @clone,
-        posX: piece.posX,
-        posY: piece.posY,
-        name: piece.name,
-        height: piece.height,
-        width: piece.width,
-        angle: piece.angle
-      )
-      cpiece.photo.attach(piece.photo.blob)
-    end
-
-    # Copy Card_decks
-    @game.card_decks.each do |card_deck|
-      # Copy Card_deck
-      ccard_deck = CcardDeck.create(
-        clone: @clone,
-        posX: card_deck.posX,
-        posY: card_deck.posY,
-        name: card_deck.name,
-        height: card_deck.height,
-        width: card_deck.width,
-        angle: card_deck.angle
-      )
-
-      # Copy cards
-      card_deck.cards.each do |card|
-        # Copy Card
-        ccard = Ccard.create(
-          ccard_deck: ccard_deck,
-          posX: card.posX,
-          posY: card.posY,
-          name: card.name,
-          position: card.position,
+    unless @game.tokens.empty?
+      @game.tokens.each do |token|
+        # Copy Token
+        ctoken = Ctoken.create(
+          clone: @clone,
+          posX: token.posX,
+          posY: token.posY,
+          name: token.name,
           height: token.height,
           width: token.width,
           angle: token.angle
         )
-        ccard.photo.attach(card.photo.blob)
+        # Uncomment if needed
+        # ctoken.number_of_tokens = token.number_of_tokens
+        ctoken.photo.attach(token.photo.blob)
       end
     end
+    # Copy Pieces
+    unless @game.pieces.empty?
+      @game.pieces.each do |piece|
+        # Copy Piece
+        cpiece = Cpiece.create(
+          clone: @clone,
+          posX: piece.posX,
+          posY: piece.posY,
+          name: piece.name,
+          height: piece.height,
+          width: piece.width,
+          angle: piece.angle
+        )
+        cpiece.photo.attach(piece.photo.blob)
+      end
+    end
+    # Copy Card_decks
+    unless @game.card_decks.empty?
+      @game.card_decks.each do |card_deck|
+        # Copy Card_deck
+        ccard_deck = CcardDeck.create(
+          clone: @clone,
+          posX: card_deck.posX,
+          posY: card_deck.posY,
+          name: card_deck.name,
+          height: card_deck.height,
+          width: card_deck.width,
+          angle: card_deck.angle
+        )
 
+        # Copy cards
+        card_deck.cards.each do |card|
+          # Copy Card
+          ccard = Ccard.create(
+            ccard_deck: ccard_deck,
+            posX: card.posX,
+            posY: card.posY,
+            name: card.name,
+            position: card.position,
+            height: card.height,
+            width: card.width,
+            angle: card.angle
+          )
+          ccard.photo.attach(card.photo.blob)
+        end
+      end
+    end
     # Save newly cloned Game
     if @clone.save
       redirect_to game_clone_path(@game, @clone)
