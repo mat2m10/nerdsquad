@@ -29,7 +29,7 @@
 </div>
 
 <div class = "sizeform">
-  <%= simple_form_for [@game, @token] do |f| %>
+  <%= simple_form_for [@game, @game.tokens.last] do |f| %>
     <%= f.input :height, input_html: {value: '50'} %>
     <%= f.input :width, input_html: {value: '50'} %>
     <%= f.input :angle, input_html: {value: '0'} %>
