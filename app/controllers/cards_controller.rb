@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_game, only: %i[new create update destroy]
   before_action :set_card_deck, only: %i[new create show update destroy]
-  before_action :set_card, only: %i[destroy]
+  before_action :set_card, only: %i[destroy update]
 
   def new
     @card = Card.new

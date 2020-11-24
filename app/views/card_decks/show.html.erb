@@ -36,6 +36,15 @@
 
 </div>
 
+<div class = "sizeform">
+  <%= simple_form_for [@game, @card_deck, @card] do |f| %>
+    <%= f.input :height, input_html: {value: '50'} %>
+    <%= f.input :width, input_html: {value: '50'} %>
+    <%= f.input :angle, input_html: {value: '0'} %>
+    <%= f.button :submit, 'Save dimensions' %>
+  <% end %>
+</div>
+
 <div class = "bottom-right btn btn-primary">
   <%= link_to "Save card deck placement", game_path(params[:game_id]) %>
 </div>

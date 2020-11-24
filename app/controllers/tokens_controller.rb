@@ -18,9 +18,12 @@ class TokensController < ApplicationController
   def update
     if request.referrer.include? 'tokens'
       num = @token.number_of_tokens + 1
-      @game.tokens[-@token.number_of_tokens..-2].each do |token|
-        token.posX = @token.posX + num * 5
-        token.posY = @token.posY + num * 5
+      @game.tokens[(-@token.number_of_tokens)..-2].each do |token|
+        token.posX = @token.posX + num*5
+        token.posY = @token.posY + num*5
+        token.width = @token.width
+        token.height = @token.height
+        token.angle = @token.angle
         num -= 1
         token.save
       end
