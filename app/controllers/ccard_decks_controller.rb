@@ -13,8 +13,6 @@ class CcardDecksController < ApplicationController
     redirect_to request.referrer
   end
 
-
-
   private
 
   def set_clone
