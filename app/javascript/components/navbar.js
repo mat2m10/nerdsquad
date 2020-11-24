@@ -1,21 +1,24 @@
-$(document).ready(function() {
-    $(".menu-icon").on("click", function() {
-          $("nav ul").toggleClass("showing");
-    });
-});
+function navbar() {
+      const element = document.querySelector('.menu-icon');
+      element.addEventListener('click', () => {        
+        element.classList.toggle("showing");        
+      });
 
-// Scrolling Effect
-
-$(window).on("scroll", function() {
-    
-    
-    if($(window).scrollTop()) {
+      document.addEventListener('scroll', (event) => {
+            console.log(window.pageYOffset)
+            const menu = document.querySelector('.menu');
           
-          $('nav').addClass('black');
-    }
+            if (window.pageYOffset >= 276){
+             console.log("hello")
+              menu.classList.add('black');
+              }
+            else {
+              
+              menu.classList.remove('black');
+              }      
+          
+          });
+};
 
-    else {
-          $('nav').removeClass('black');          
-    }
-})
 
+export { navbar };

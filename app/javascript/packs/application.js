@@ -18,10 +18,13 @@ import { dice } from '../components/dice';
 import { initGameroomCable } from "../channels/gameroom_channel";
 // import { incsize } from "../plugins/resizing";
 import { decsize } from "../plugins/resizing";
+import { navbar } from '../components/navbar';
+
 document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
   initGameroomCable();
+  navbar();
   // incsize();
   // dice;
 });
@@ -32,4 +35,3 @@ document.addEventListener('turbolinks:load', () => {
 // smaller.addEventListener('click', decsize)
 
 
-import { navbar } from '../components/navbar';
