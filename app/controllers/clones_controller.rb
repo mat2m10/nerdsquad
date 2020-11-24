@@ -37,7 +37,7 @@ class ClonesController < ApplicationController
 
     # Save newly cloned Game
     @clone.save
-    redirect_to game_clone_path(@game, @clone)
+    redirect_to game_clone_gameroom_path(@game, @clone)
   end
 
   def show

@@ -22,10 +22,6 @@ class CardsController < ApplicationController
 
   def update
     @card.update!(card_params)
-    return unless @card.card_deck.game.gamerooms.last
-
-    GameroomChannel.broadcast_to(@card.card_deck.game.gamerooms.last, "moved")
-    redirect_back(fallback_location: gameroom_path(@card.game.gamerooms.last))
   end
 
   def show; end
