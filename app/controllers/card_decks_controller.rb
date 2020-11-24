@@ -18,7 +18,9 @@ class CardDecksController < ApplicationController
     end
   end
 
-  def show; end
+  def show 
+    @card = @card_deck.cards.first
+  end
 
   def edit; end
 
