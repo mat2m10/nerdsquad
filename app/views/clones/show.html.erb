@@ -35,6 +35,7 @@
 
 <% unless @clone.ccard_decks.empty? %>
   <% @clone.ccard_decks.each do |deck| %>
+  <%= link_to "Shuffle!", game_clone_path(@game, @clone, params: { shuffle: true }) %>
     <% deck.ccards.each do |card| %>
       <div class="movablecontainer">
         <%= cl_image_tag card.photo.key, { class: "card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px; z-index: #{card.position + 1}", width: '120px'} %>

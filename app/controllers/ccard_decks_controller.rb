@@ -7,22 +7,7 @@ class CcardDecksController < ApplicationController
     redirect_to request.referrer
   end
 
-  def draw!(deck, number)
-    temp = CardDeck.new(game: @game, name: 'temp')
-    drawn_cards = deck.cards.pop(number)
-    drawn_cards.each do |card|
-      card.deck = temp
-    end
-    temp.save
-  end
 
-  def shuffle!(ccard_deck)
-    ccard_deck.ccards.each do |ccard|
-      range = Range.new(0...@ccard_deck.ccards.size)
-      ccard.update position: range.to_a.sample
-    end
-    flash.now "Deck shuffled!"
-  end
 
   private
 
