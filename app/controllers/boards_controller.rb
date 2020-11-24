@@ -50,6 +50,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:photo, :posX, :posY)
+    params.require(:board).permit(:photo, :posX, :posY, :height, :width, :angle)
   end
 end
