@@ -1,21 +1,29 @@
 <% if @game.board %>
-  <%=cl_image_tag @game.board.photo.key , { class: "board greyed", style: "position: absolute; left: #{@game.board.posX}px; top: #{@game.board.posY}px;"} %>
+  <%=cl_image_tag @game.board.photo.key , { class: "board greyed", style: "position: absolute; left: #{@game.board.posX}px; top: #{@game.board.posY}px; height: #{@game.board.height}px; width:#{@game.board.width}px; transform:rotate(#{@game.board.angle}deg);"} %>
 <% end %>
 
 <% unless @game.pieces.empty? %>
   <% @game.pieces[0..-2].each do |piece| %>
-    <%= cl_image_tag piece.photo.key, { class: "piece greyed", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px;", width: '60px'}%>
+    <%= cl_image_tag piece.photo.key, { class: "piece greyed", style: "position: absolute; left: #{piece.posX}px; top: #{piece.posY}px; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}%>
   <% end %>
 <% end %>
 
 <% unless @game.tokens.empty? %>
   <% @game.tokens.each do |token| %>
-    <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px;", width: '40px'}%>
+    <%= cl_image_tag token.photo.key, { class: "token greyed", style: "position: absolute; left: #{token.posX}px; top: #{token.posY}px; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"} %>
+  <% end %>
+<% end %>
+
+<% unless @game.card_decks.empty? %>
+  <% @game.card_decks.each do |deck| %>
+      <% deck.cards.each do |card| %>
+        <%= cl_image_tag card.photo.key, { class: "card greyed", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px; height: #{card.height}px; width:#{card.width}px; transform:rotate(#{card.angle}deg);"} %>
+      <% end %>
   <% end %>
 <% end %>
 
 <div class="movablecontainer" data-posx="<%= @piece.posX %>" data-posy="<%= @piece.posY %>" >
-  <%= cl_image_tag @piece.photo.key, { width: "60px", class: "movable piece"} %>
+  <%= cl_image_tag @piece.photo.key, { class: "movable piece", style: "position: absolute; left: #{@piece.posX}; top: #{@piece.posY}; height: #{@piece.height}px; width:#{@piece.width}px; transform:rotate(#{@piece.angle}deg);"}  %>
     <%= simple_form_for [@piece.game, @piece] do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>

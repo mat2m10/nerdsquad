@@ -16,27 +16,27 @@
   </div>
 <% end %>
 
-<% unless @game.pieces.empty? %>
-  <% @game.pieces.each do |piece| %>
-  <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
-    <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "left: #{piece.posX}; top: #{piece.posY};", width: '60px'}%>
-    <%= simple_form_for [@game, piece] do |f| %>
-    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-    <% end %>
-  </div>
+<% unless @game.tokens.empty? %>
+  <% @game.tokens.each do |token| %>
+    <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
+      <%= cl_image_tag token.photo.key, {class: "movable token", style: "top: #{token.posY}; left: #{token.posX}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
+      <%= simple_form_for([@game, token]) do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 
-<% unless @game.tokens.empty? %>
-  <% @game.tokens.each do |token| %>
-  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
-    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY};", width: '40px'}%>
-    <%= simple_form_for [@game, token] do |f| %>
-    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-    <% end %>
-  </div>
+<% unless @game.pieces.empty? %>
+  <% @game.pieces.each do |piece| %>
+    <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
+      <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}  %>
+        <%= simple_form_for [piece.game, piece] do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 

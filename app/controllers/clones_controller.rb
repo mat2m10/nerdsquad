@@ -1,18 +1,16 @@
 class ClonesController < ApplicationController
   before_action :set_game, only: %i[create show]
   before_action :set_clone, only: %i[show]
-
+  def new
+  end
   def create
-    # Copy Game
-    @clone = Clone.new(
-      game: @game,
-      name: @game.name,
-      number_of_players: @game.number_of_players,
-      description: @game.description
-    )
-
-    # Copy Board
+    @clone = Clone.new(game: @game, name: @game.name, number_of_players: @game.number_of_players,
+                       description: @game.description)
     create_cboard if @game.board
+    @game.tokens.each { |token| create_ctoken(token) }
+    @game.pieces.each { |piece| create_cpiece(piece) }
+    @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
+    redirect_to games_path and return unless @clone.save
 
     # Copy Tokens
     @game.tokens.each { |token| create_ctoken(token) } unless @game.tokens.empty?
@@ -28,17 +26,15 @@ class ClonesController < ApplicationController
 
     if @clone.save
       # Create gameroom
-      @gameroom = Gameroom.create(name:"#{@clone.name}-#{@clone.id}", clone: @clone)
-      redirect_to game_gameroom_path(@game, @clone, @gameroom)
+      @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
+      redirect_to gameroom_path(@gameroom)
     else
       redirect_to games_path
     end
+
   end
 
   def show
-    if params[:shuffle]
-      Ccard
-    end
   end
 
   private
