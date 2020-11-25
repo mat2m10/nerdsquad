@@ -17,8 +17,12 @@
             <li><a href='<%= user_path(current_user) %>'>Dashboard</a></li>
           <% else %>
             <li><a href='#'>Dashboard</a></li>
-          <% end %>          
-          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% end %>  
+          <% if user_signed_in? %>      
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", user_session_path %></li>
+          <% end %>
         </ul>
       </div>
     </nav>
