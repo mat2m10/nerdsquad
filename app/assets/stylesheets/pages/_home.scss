@@ -30,8 +30,7 @@
   .intro h1 {
     font-family: 'Permanent Marker', cursive;
     font-size: 100px;
-    color: #112d4e;
-   
+    color: #112d4e;   
   }
   
   h2 {
@@ -96,8 +95,6 @@
     box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.4px 0 0 var(--colorShadeB);  
     text-decoration:none;
   }
-
-
 
   // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
