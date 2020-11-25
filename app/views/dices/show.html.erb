@@ -16,7 +16,7 @@
   <div class = "movablecontainer" data-posx="<%= @game.dices.last.posX %>" data-posy="<%= @game.dices.last.posY %>">
       <div>
         <h1 class = "dicenumber">
-          <% @game.dices.last.value = rand(@game.dices.last.faces) %>
+          <% @game.dices.last.value = rand(@game.dices.last.faces - 1) + 1%>
           <%= @game.dices.last.value %>
         </h1>
       </div>

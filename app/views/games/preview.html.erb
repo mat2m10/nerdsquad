@@ -39,26 +39,37 @@
   <% end %>
 <% end %>
 
-  <%# unless @game.dices.empty? %>
-    <%#= cl_image_tag("dices.png", :quality=>50, :width=>72, :crop=>"scale") %>
-    <%# <ul> %>
-      <%# @game.dices.each do |dice| %>
-      <%# <li><%#= dice.faces %>   <%#faces</li> %>
-      <%# end %>
-    <%#</ul>
-  <%# end %>
-
-<% unless @game.card_decks.empty? %>
-  <% @game.card_decks.each do |deck| %>
-    <div class="movablecontainer" data-posx="<%= deck.posX %>" data-posy="<%= deck.posY %>">
-      <% deck.cards.each do |card| %>
-
-        <%= cl_image_tag card.photo.key, { class: "movable card", style: "position: absolute; left: #{card.posX}px; top: #{card.posY}px;", width: '120px'} %>
-
+<% unless @game.dices.empty? %>
+  <% @game.dices.each do |dice| %>
+    <div class="movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>" >
+      <%= cl_image_tag dice.photo.key, {class: "movable dice", style: "top: #{dice.posY}; left: #{dice.posX}; height: #{dice.height}px; width:#{dice.width}px; transform:rotate(#{dice.angle}deg);"}%>
+      <%= simple_form_for([@game, dice]) do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
       <% end %>
     </div>
   <% end %>
 <% end %>
+
+<% unless @game.dices.empty? %>
+  <% @game.dices.each do |dice| %>
+  <div class = "movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>">
+      <div>
+        <h1 class = "dicenumber">
+          <%= dice.value %>
+        </h1>
+      </div>
+      <%= cl_image_tag dice.photo.key, {class: "movable dice", style: "position: absolute; top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
+      <%= simple_form_for([@game, dice]) do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+        <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)} %>
+      <% end %>
+  </div>
+
+  <% end %>
+<% end %>
+
 
 <div class = "bottom-right btn btn-primary">
   <%= simple_form_for @game do |f| %>
