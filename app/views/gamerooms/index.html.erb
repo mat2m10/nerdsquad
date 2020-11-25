@@ -11,7 +11,7 @@
         <tbody>
             <% @gamerooms.each do |gameroom| %>          
             <tr>
-                <td><%= "#{gameroom.name}"%></td>
+                <td><%= "#{gameroom.clone.name}"%></td>
                 <td><%= link_to "Join", gameroom_path(gameroom) %></td>           
             <% end %>
             </tr>       
