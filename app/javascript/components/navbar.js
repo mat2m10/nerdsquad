@@ -9,7 +9,7 @@ function navbar() {
     const menu = document.querySelector('.menu');
           
       if (window.pageYOffset >= 190){
-        console.log("hello")
+        
         menu.classList.add('black');
       }
       else {              

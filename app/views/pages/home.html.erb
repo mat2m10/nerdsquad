@@ -8,12 +8,12 @@
 
       <div class="options">
         <% if @gamerooms.length > 0 %>
-          <a href='<%= gamerooms_path %>'><button class="big-button">PLAY</button></a>
+          <a href='<%= gamerooms_path(anchor: 'gameroom-index') %>'><button class="big-button">PLAY</button></a>
         <% else %>
           <a href='<%= new_game_path %>'><button class="big-button">PLAY</button></a>         
         <% end %>
         <a href='<%= new_game_path %>'><button class="big-button">CREATE</button></a>
-        <a href='<%= games_path %>'><button class="big-button">BROWSE</button></a>
+        <a href='<%= games_path(anchor: 'index') %>'><button class="big-button">BROWSE</button></a>
       </div>
       
     </div>
