@@ -20,7 +20,7 @@ class DicesController < ApplicationController
     @game = Game.find(params[:game_id])
     @dice = @game.dices.last
     @dice.update(dice_params)
-    redirect_to game_dice_path(@dice)
+    redirect_to game_dice_path(@game, @dice)
   end
 
   def show
