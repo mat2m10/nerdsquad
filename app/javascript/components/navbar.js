@@ -7,17 +7,16 @@ function navbar() {
 
     document.addEventListener('scroll', (event) => {
       const menu = document.querySelector('.menu');
-
-        if (window.pageYOffset >= 190){
-          menu.classList.add('black');
+        if (menu) {
+          if (window.pageYOffset >= 190){
+            menu.classList.add('black');
+          }
+          else {
+            menu.classList.remove('black');
+          }
         }
-        else {
-          menu.classList.remove('black');
-        }
-
-        });
+    });
   };
-
-    }
+}
 
 export { navbar };
