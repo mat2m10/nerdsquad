@@ -1,4 +1,12 @@
 class GameroomsController < ApplicationController
+    
+    def index
+        @game = Game.find(params[:game_id])
+        @gameroom = Gameroom.find(params[:id])
+        @clone = @gameroom.clone
+        @clones = Clone.all    
+    end
+    
     def new
         @gameroom = Gameroom.new
     end
