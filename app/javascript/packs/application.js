@@ -14,6 +14,7 @@ document.addEventListener('turbolinks:load', () => {
   moveAround();
   positionElement();
   initGameroomCable();
+  navbar();
   // dice;
 });
 
