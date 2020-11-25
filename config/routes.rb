@@ -28,12 +28,11 @@ Rails.application.routes.draw do
       end
 
       member do
-        resources :gamerooms, only: [:new, :create, :show, :update] do
-          resources :messages, only: :create
-        end
       end
-
     end
+  end
+  resources :gamerooms, only: [:new, :create, :show, :update] do
+    resources :messages, only: :create
   end
 
 end

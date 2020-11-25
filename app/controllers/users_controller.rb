@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = current_user  
+    @user = current_user
     @games = @user.games
   end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params    
+  def user_params
     params.require(:user).permit(:email, :username, :photo)
   end
 end
