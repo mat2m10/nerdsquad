@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
 
   create_table "boards", force: :cascade do |t|
     t.float "posX", default: 500.0
-    t.float "posY", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
 
   create_table "cboards", force: :cascade do |t|
     t.float "posX", default: 500.0
-    t.float "posY", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
