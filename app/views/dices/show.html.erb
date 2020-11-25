@@ -1,4 +1,6 @@
 <div class="table">
+</div>
+
   <% if  @game.board %>
     <%= cl_image_tag @game.board.photo.key , { class: "board"} %>
   <% end %>
@@ -10,9 +12,15 @@
     <% end %>
   <% end %>
   <h2>Place your dices on the table</h2>
+
   <div class = "movablecontainer">
-    <% @game.dices.each do |dice| %>
-      <%= cl_image_tag("dices.png", :quality=>50, :width=>50, :crop=>"scale") %>
-    <% end %>
+      <%= cl_image_tag @game.dices.last.photo.key, {class: "movable dice", style: "position: absolute; top: #{@game.dices.last.posY}; left: #{@game.dices.last.posX}; height: #{@game.dices.last.height}px; width:#{@game.dices.last.width}px; transform:rotate(#{@game.dices.last.angle}deg);"} %>
+      <%= simple_form_for([@game, @game.dices.last]) do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+      <% end %>
   </div>
+
+<div class = "bottom-right btn btn-primary">
+  <%= link_to "Save placement", game_path(params[:game_id]) %>
 </div>

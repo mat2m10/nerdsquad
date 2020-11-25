@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_095805) do
+ActiveRecord::Schema.define(version: 2020_11_25_131608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
 
   create_table "boards", force: :cascade do |t|
     t.float "posX", default: 500.0
-    t.float "posY", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
 
   create_table "cboards", force: :cascade do |t|
     t.float "posX", default: 500.0
-    t.float "posY", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
     t.float "height", default: 150.0
     t.float "width", default: 150.0
     t.integer "angle"
+    t.integer "value", default: 1
     t.index ["clone_id"], name: "index_cdices_on_clone_id"
   end
 
@@ -190,6 +191,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_095805) do
     t.float "height", default: 150.0
     t.float "width", default: 150.0
     t.integer "angle"
+    t.integer "value", default: 1
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
 
