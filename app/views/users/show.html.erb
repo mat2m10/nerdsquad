@@ -32,12 +32,24 @@
     </div>
 
     <div class="history">
-      <h2>My games</h2>
+      <h2>My created games</h2>
         <% if @games != nil %>
           <% @games.each do |game| %>
             <li><%= link_to "#{game.name}", game_preview_path(game) %></li>     
             <%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game, anchor: 'show') %>
             <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_path(game), method: :delete %> 
+          <% end %>
+        <% else %>      
+          <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   
+      <% end %>
+
+    </div>
+    <div class="history">
+      <h2>My gamerooms</h2>
+        <% if current_user.gamerooms != nil %>
+          <% current_user.gamerooms.each do |gameroom| %>    
+            <li><%= link_to gameroom.name, gameroom_path(gameroom) %></li>
+            <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, gameroom_path(gameroom), method: :delete %> 
           <% end %>
         <% else %>      
           <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   

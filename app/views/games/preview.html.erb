@@ -6,8 +6,7 @@
 
 <% if @game.board %>
   <div class="movablecontainer" data-posx="<%= @game.board.posX %>" data-posy="<%= @game.board.posY %>" >
-    <%=cl_image_tag @game.board.photo.key , { class: "movable board", style: " left: #{@game.board.posX}; top: #{@game.board.posY};height: #{@game.board
-.height}px; width:#{@game.board.width}px; transform:rotate(#{@game.board.angle}deg);"} %>
+    <%=cl_image_tag @game.board.photo.key , { class: "movable board", style: " left: #{@game.board.posX}; top: #{@game.board.posY};height: #{@game.board.height}px; width:#{@game.board.width}px; transform:rotate(#{@game.board.angle}deg);"} %>
 
     <%= simple_form_for [@game, @game.board] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>

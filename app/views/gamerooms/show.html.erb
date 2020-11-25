@@ -1,7 +1,7 @@
 
 <% if @clone.cboard %>
   <div class="movablecontainer" id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
-    <%=cl_image_tag @clone.cboard.photo.key , { class: "movable board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};"} %>
+    <%=cl_image_tag @clone.cboard.photo.key , { class: "movable board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};height: #{@clone.cboard.height}px; width:#{@clone.cboard.width}px; transform:rotate(#{@clone.cboard.angle}deg);"} %>
     <%= simple_form_for [@game, @clone, @clone.cboard] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
       <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
@@ -12,7 +12,7 @@
 <% unless @clone.ctokens.empty? %>
   <% @clone.ctokens.each do |token| %>
   <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
-    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY};", width: '40px'}%>
+    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
     <%= simple_form_for [@game, @clone, token] do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
@@ -24,7 +24,7 @@
 <% unless @clone.cpieces.empty? %>
   <% @clone.cpieces.each do |piece| %>
   <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
-    <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "left: #{piece.posX}; top: #{piece.posY};", width: '60px'}%>
+    <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}%>
     <%= simple_form_for [@game, @clone, piece] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
       <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
