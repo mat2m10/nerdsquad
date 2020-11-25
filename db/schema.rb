@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "boards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,36 +49,36 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "card_decks", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 200.0
+    t.float "width", default: 120.0
     t.integer "angle"
     t.index ["game_id"], name: "index_card_decks_on_game_id"
   end
 
   create_table "cards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.string "visibility"
     t.bigint "card_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "position"
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 200.0
+    t.float "width", default: 120.0
     t.integer "angle"
     t.index ["card_deck_id"], name: "index_cards_on_card_deck_id"
   end
 
   create_table "cboards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -89,43 +89,43 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "ccard_decks", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.string "name"
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 200.0
+    t.float "width", default: 120.0
     t.integer "angle"
     t.index ["clone_id"], name: "index_ccard_decks_on_clone_id"
   end
 
   create_table "ccards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.string "visibility"
     t.string "name"
     t.bigint "ccard_deck_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 200.0
+    t.float "width", default: 120.0
     t.integer "angle"
     t.index ["ccard_deck_id"], name: "index_ccards_on_ccard_deck_id"
   end
 
   create_table "cdices", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.integer "faces"
     t.integer "number_of_dices"
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 150.0
+    t.float "width", default: 150.0
     t.integer "angle"
     t.index ["clone_id"], name: "index_cdices_on_clone_id"
   end
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "cpieces", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.string "name"
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "ctokens", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.string "name"
     t.integer "number_of_tokens"
     t.bigint "clone_id", null: false
@@ -169,15 +169,15 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "dices", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.integer "faces"
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "number_of_dices"
-    t.float "height"
-    t.float "width"
+    t.float "height", default: 150.0
+    t.float "width", default: 150.0
     t.integer "angle"
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
@@ -212,8 +212,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "pieces", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -225,8 +225,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "tokens", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

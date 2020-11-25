@@ -1,8 +1,8 @@
 class GameroomsController < ApplicationController
   def new
-      @gameroom = Gameroom.new
-      @gameroom.save
-      redirect_to gameroom_path(@gameroom)
+    @gameroom = Gameroom.new
+    @gameroom.save
+    redirect_to gameroom_path(@gameroom)
   end
 
   def create
