@@ -1,6 +1,5 @@
 .user {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   text-align: center;
   margin: 20px;
@@ -12,8 +11,15 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 16px;
+  margin: 10px;
   border: 2px solid white;  
+  text-align: left;
 }
+
+.boxes {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 
 .user-info {
   margin: 0 100px 0 100px; 
