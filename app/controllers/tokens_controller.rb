@@ -10,24 +10,22 @@ class TokensController < ApplicationController
     params[:token][:number_of_tokens].to_i.times do
       @token = Token.new(token_params)
       @token.game = @game
-      @token.posX = 400
-      @token.posY = 400
       @token.save
     end
     redirect_to game_token_path(params[:game_id], @token.id)
   end
 
   def update
-    if request.referrer.include? 'tokens'
-      num = @token.number_of_tokens + 1
-      @game.tokens.last(@token.number_of_tokens).each do |token|
-        token.assign_attributes(posX: @token.posX + num * 5, posY: @token.posY + num * 5,
-                                width: @token.width, height: @token.height, angle: @token.angle)
-        num -= 1
-        token.save
-      end
+    @token.update(token_params)
+    redirect_to request.referrer and return unless request.referrer.include? 'tokens'
+
+    num = @token.number_of_tokens
+    @game.tokens[-num..].each do |token|
+      token.assign_attributes(posX: @token.posX + num * 5, posY: @token.posY + num * 5,
+                              width: @token.width, height: @token.height, angle: @token.angle)
+      num -= 1
+      token.save
     end
-    @token.update!(token_params)
     redirect_to request.referrer
   end
 

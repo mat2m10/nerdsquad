@@ -3,6 +3,7 @@ class ClonesController < ApplicationController
   before_action :set_clone, only: %i[show]
   def new
   end
+
   def create
     @clone = Clone.new(game: @game, name: @game.name, number_of_players: @game.number_of_players,
                        description: @game.description)
@@ -12,26 +13,8 @@ class ClonesController < ApplicationController
     @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
     redirect_to games_path and return unless @clone.save
 
-    # Copy Tokens
-    @game.tokens.each { |token| create_ctoken(token) } unless @game.tokens.empty?
-
-    # Copy Pieces
-    @game.pieces.each { |piece| create_cpiece(piece) } unless @game.pieces.empty?
-
-    # Copy Card_decks
-    unless @game.card_decks.empty?
-      @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
-    end
-    # Save newly cloned Game
-
-    if @clone.save
-      # Create gameroom
-      @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
-      redirect_to gameroom_path(@gameroom)
-    else
-      redirect_to games_path
-    end
-
+    @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
+    redirect_to gameroom_path(@gameroom)
   end
 
   def show
@@ -111,9 +94,5 @@ class ClonesController < ApplicationController
       width: card.width,
       angle: card.angle
     ).photo.attach(card.photo.blob)
-  end
-
-  def clone_params
-    params.require(:clone).permit(:name)
   end
 end
