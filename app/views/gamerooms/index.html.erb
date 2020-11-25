@@ -1,19 +1,26 @@
-<table>
-  <thead>
-    <tr>
-      <th><h2>Games</h2></th>
-      <th><h2>Gamerooms</h2></th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<div class="index">
+    <table>
+    <thead>
+        <tr>
+        <th><h2>Games</h2></th>
+        <th><h2>Gamerooms</h2></th>
+        <th colspan="2"></th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <% @gamerooms.each do |gameroom| %>          
-      <tr>
-        <td><%= "#{gameroom.name}"%></td>
-        <td><%= link_to "Join", gameroom_path(gameroom) %></td>           
-    <% end %>
-      </tr>            
-       
-  </tbody>
-</table>
+    <tbody>
+        <% @gamerooms.each do |gameroom| %>          
+        <tr>
+            <td><%= "#{gameroom.name}"%></td>
+            <td><%= link_to "Join", gameroom_path(gameroom) %></td>           
+        <% end %>
+        </tr>       
+        
+    </tbody>
+    </table>
+
+<div class= "button">
+  <%= link_to "Homepage", "/", class: "btn btn-flat" %>
+</div>
+
+</div>
