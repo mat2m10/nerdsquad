@@ -7,8 +7,8 @@
       </div>
 
       <div class="options">
-        <% if @gameroom != nil %>
-          <a href='<%= game_gamerooms_path(@game) %>'><button class="big-button">PLAY</button></a>
+        <% if @gamerooms.length > 0 %>
+          <a href='<%= gamerooms_path %>'><button class="big-button">PLAY</button></a>
         <% else %>
           <a href='<%= new_game_path %>'><button class="big-button">PLAY</button></a>         
         <% end %>

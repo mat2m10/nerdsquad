@@ -1,9 +1,7 @@
 class GameroomsController < ApplicationController
-  before_action :set_gameroom, only: %i[index show update]
-  before_action :set_game, only: %i[index]
-  def index
-    @clone = @gameroom.clone
-    @clones = Clone.all
+  before_action :set_gameroom, only: %i[show update]
+  def index    
+    @gamerooms = Gameroom.all    
   end
 
   def new
@@ -35,9 +33,5 @@ class GameroomsController < ApplicationController
 
   def set_gameroom
     @gameroom = Gameroom.find(params[:id])
-  end
-
-  def set_game
-    @game = Game.find(params[:game_id])
   end
 end
