@@ -37,7 +37,7 @@ class CardDecksController < ApplicationController
   private
 
   def card_deck_params
-    params.require(:card_deck).permit(:name, :posX, :posY, :width, :height)
+    params.require(:card_deck).permit(:name, :posX, :posY, :width, :height, :blind?)
   end
 
   def set_game
