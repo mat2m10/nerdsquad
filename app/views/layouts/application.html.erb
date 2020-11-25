@@ -52,7 +52,7 @@
 
   <body>
     <%= render 'shared/flashes' %>
-    <% if controller_name == 'games' && action_name == 'index' || controller_name == 'games' && action_name == 'show'|| controller_name == 'pages' || controller_name == 'users' %>
+    <% if controller_name == 'games' && action_name == 'index' || controller_name == 'games' && action_name == 'show'|| controller_name == 'pages' || controller_name == 'users' && action_name == 'show' || controller_name == 'gamerooms' && action_name == 'index' %>
       <%= render 'shared/navbar' %>
     <% end %>
 

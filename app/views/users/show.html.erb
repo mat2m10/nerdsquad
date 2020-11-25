@@ -38,7 +38,6 @@
           <% @games.each do |game| %>
             <li class="text-left py-1"><%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>  
             <%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, game_path(game), method: :delete %><%= link_to "#{game.name}", game_preview_path(game) %></li>     
-            
           <% end %>
         <% else %>      
           <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>   

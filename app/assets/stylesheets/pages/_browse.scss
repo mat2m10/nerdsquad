@@ -1,7 +1,7 @@
 .index {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #1d2d4f;   
+    background-color: $background;   
     text-align: center;
  
   h1 {
@@ -30,20 +30,6 @@
   a {
     text-decoration: none;
     color: #e6dbcd;
-  }
-
-  .btn-flat {
-    color: white;
-    padding: 8px 24px;
-    border-radius: 4px;
-    background: #6987ac;
-    transition: background 0.3s ease;
-    margin: 20px;
-  }
-  
-  .btn-flat:hover {
-    background: #e6dbcd;
-    color: white;
   }
  
   .title {
