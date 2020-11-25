@@ -14,6 +14,17 @@ class GameroomsController < ApplicationController
     @clone = @gameroom.clone
     @game = @clone.game
     @message = Message.new
+    # Check the number of users
+    number_connected_users = @gameroom.users.length
+    if @gameroom.users.include? current_user
+      @connection = Connection.find_by(user: current_user, gameroom:@gameroom)
+    else
+      if number_connected_users < @clone.number_of_players
+        @connection = Connection.create(user: current_user, gameroom:@gameroom)
+      else
+        redirect_to games_path
+      end
+    end
   end
 
   def update

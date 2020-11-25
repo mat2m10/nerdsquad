@@ -7,7 +7,6 @@ class Game < ApplicationRecord
   has_many :tokens, dependent: :destroy
   has_many :pieces, dependent: :destroy
   has_many :gamerooms, dependent: :destroy
-  has_many :users, through: :session
   has_many :clones, dependent: :destroy
 
   include PgSearch::Model

@@ -34,5 +34,4 @@ Rails.application.routes.draw do
   resources :gamerooms, only: [:new, :create, :show, :update] do
     resources :messages, only: :create
   end
-
 end
