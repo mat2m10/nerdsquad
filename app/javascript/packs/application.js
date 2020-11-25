@@ -19,7 +19,7 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 let movable = document.querySelectorAll(`.movable`);
-if (movable) {
+if (movable.length > 0) {
   let componentName = movable[0].className.substr(8)
   movable.forEach((i) => {
     let height = document.getElementById(`${componentName}_height`)
@@ -35,4 +35,4 @@ if (movable) {
       i.style.transform = `rotate(${e.currentTarget.value}deg)`
     })
   })
-} 
+}
