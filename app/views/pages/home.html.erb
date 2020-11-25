@@ -7,16 +7,11 @@
       </div>
 
       <div class="options">
-<<<<<<< HEAD
-        <a href='#'><button class="big-button">PLAY</button></a>
-        <%#= link_to  "PLAY", gameroom_path(@gameroom), class: "big-button" %>
-=======
         <% if @gameroom != nil %>
           <a href='<%= game_gamerooms_path(@game) %>'><button class="big-button">PLAY</button></a>
         <% else %>
           <a href='<%= new_game_path %>'><button class="big-button">PLAY</button></a>         
         <% end %>
->>>>>>> master
         <a href='<%= new_game_path %>'><button class="big-button">CREATE</button></a>
         <a href='<%= games_path %>'><button class="big-button">BROWSE</button></a>
       </div>
