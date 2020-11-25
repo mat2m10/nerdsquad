@@ -3,7 +3,7 @@ class CcardDeck < ApplicationRecord
   has_many :ccards, dependent: :destroy
 
   def draw!
-    temp = CcardDeck.new(game: clone.game, name: 'temp')
+    temp = CcardDeck.new(game: clone.game, name: 'temp', blind?: true)
     drawn_ccard = ccards.pop
     drawn_ccard.deck = temp
     drawn_ccard.save
@@ -11,8 +11,8 @@ class CcardDeck < ApplicationRecord
   end
 
   def shuffle!
+    range = Range.new(0...ccards.size)
     ccards.each do |ccard|
-      range = Range.new(0...ccards.size)
       ccard.update position: range.to_a.sample
     end
     flash.now "Deck shuffled!"
