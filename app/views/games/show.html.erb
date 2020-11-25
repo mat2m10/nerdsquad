@@ -69,7 +69,7 @@
               <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', width: '100px' %>
             <% else %>
               <p>This piece should have an image and/or a name</p>
-            <% end %>            
+            <% end %>
             <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
             <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
           </div>
@@ -78,14 +78,22 @@
     </div>
   <% end %>
 
-
-  <div id="display-dices">
-    <ul>
-    <% @game.dices.each do |dice| %>
-      <li>A dice that rolls <%= dice.faces %> faces.</li>
-    <% end %>
-    </ul>
-  </div>
+  <% unless @game.dices.empty? %>
+    <div id="display-dices" class="mb-5">
+      <h3>Dices</h3>
+      <% @game.dices.each do |dice| %>
+        <div class="d-flex justify-content-left">
+          <h4>Dice number: <%= dice.id %></h4>
+          <% if dice.photo.attached? %>
+            <%= cl_image_tag dice.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
+            <%= link_to "", game_dice_path(@game, dice), method: :delete, class: "btn btn-danger close", style: "width: 20px; height: 20px;" %>
+          <% else %>
+            <p>This Dice should have an image</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
 
