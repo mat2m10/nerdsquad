@@ -1,0 +1,5 @@
+meta_product_name: "Nerdsquad"
+meta_title: "Nerdsquad - A stay safe & roll initiative"
+meta_description: "Depressed from COVID? Miss playing your favorite boardgames with friends? Say goodbye to crippling loniless and create your customised boardgames with Nerdsquad."
+meta_image: "nerdog.png" # should exist in `app/assets/images/`
+twitter_account: "#"   # required for Twitter Cards
