@@ -27,11 +27,9 @@ Rails.application.routes.draw do
         resources :ccards, only: [:create, :show, :update, :destroy]
       end
 
-      member do
-      end
     end
   end
-  resources :gamerooms, only: [:new, :create, :show, :update] do
+  resources :gamerooms, only: [:new, :create, :show, :update, :index] do
     resources :messages, only: :create
   end
 
