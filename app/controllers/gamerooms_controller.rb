@@ -12,6 +12,7 @@ class GameroomsController < ApplicationController
 
   def create
     @gameroom = Gameroom.new(gameroom_params)
+    @gameroom.name = @gameroom.clone.name
   end
 
   def show
@@ -34,6 +35,16 @@ class GameroomsController < ApplicationController
   def update
     @gameroom.update(gameroom_params)
     redirect_to @gameroom
+  end
+
+  def destroy
+    @gameroom = Gameroom.find(params[:id])
+    if @gameroom.destroy
+      flash[:success] = 'Game was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to user_path(current_user)
   end
 
   private
