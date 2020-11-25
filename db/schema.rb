@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_124116) do
+ActiveRecord::Schema.define(version: 2020_11_25_131608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,20 +37,21 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "boards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 500.0
+    t.float "width", default: 500.0
+    t.integer "angle", default: 0
     t.index ["game_id"], name: "index_boards_on_game_id"
   end
 
   create_table "card_decks", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
+    t.boolean "blind?", default: false
     t.bigint "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,20 +78,21 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   end
 
   create_table "cboards", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 200.0
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 500.0
+    t.float "width", default: 500.0
+    t.integer "angle", default: 0
     t.index ["clone_id"], name: "index_cboards_on_clone_id"
   end
 
   create_table "ccard_decks", force: :cascade do |t|
-    t.float "posX"
-    t.float "posY"
+    t.float "posX", default: 500.0
+    t.float "posY", default: 500.0
+    t.boolean "blind?", default: false
     t.string "name"
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.float "height"
     t.float "width"
     t.integer "angle"
+    t.integer "value", default: 1
     t.index ["clone_id"], name: "index_cdices_on_clone_id"
   end
 
@@ -141,6 +144,15 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.index ["game_id"], name: "index_clones_on_game_id"
   end
 
+  create_table "connections", force: :cascade do |t|
+    t.bigint "gameroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gameroom_id"], name: "index_connections_on_gameroom_id"
+    t.index ["user_id"], name: "index_connections_on_user_id"
+  end
+
   create_table "cpieces", force: :cascade do |t|
     t.float "posX"
     t.float "posY"
@@ -148,9 +160,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 50.0
+    t.float "width", default: 50.0
+    t.integer "angle", default: 0
     t.index ["clone_id"], name: "index_cpieces_on_clone_id"
   end
 
@@ -162,9 +174,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.bigint "clone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 50.0
+    t.float "width", default: 50.0
+    t.integer "angle", default: 0
     t.index ["clone_id"], name: "index_ctokens_on_clone_id"
   end
 
@@ -179,6 +191,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.float "height"
     t.float "width"
     t.integer "angle"
+    t.integer "value", default: 1
     t.index ["game_id"], name: "index_dices_on_game_id"
   end
 
@@ -218,9 +231,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 50.0
+    t.float "width", default: 50.0
+    t.integer "angle", default: 0
     t.index ["game_id"], name: "index_pieces_on_game_id"
   end
 
@@ -232,9 +245,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "number_of_tokens"
-    t.float "height"
-    t.float "width"
-    t.integer "angle"
+    t.float "height", default: 50.0
+    t.float "width", default: 50.0
+    t.integer "angle", default: 0
     t.index ["game_id"], name: "index_tokens_on_game_id"
   end
 
@@ -263,6 +276,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_124116) do
   add_foreign_key "ccards", "ccard_decks"
   add_foreign_key "cdices", "clones"
   add_foreign_key "clones", "games"
+  add_foreign_key "connections", "gamerooms"
+  add_foreign_key "connections", "users"
   add_foreign_key "cpieces", "clones"
   add_foreign_key "ctokens", "clones"
   add_foreign_key "dices", "games"

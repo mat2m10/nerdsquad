@@ -19,20 +19,22 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 let movable = document.querySelectorAll(`.movable`);
-if (movable) {
+if (movable.length > 0) {
   let componentName = movable[0].className.substr(8)
   movable.forEach((i) => {
     let height = document.getElementById(`${componentName}_height`)
     let width = document.getElementById(`${componentName}_width`)
     let angle = document.getElementById(`${componentName}_angle`)
-    height.addEventListener('input', (e) => {
-      i.style.height = `${e.currentTarget.value}px`
-    })
-    width.addEventListener('input', (e) => {
-      i.style.width = `${e.currentTarget.value}px`
-    })
-    angle.addEventListener('input', (e) => {
-      i.style.transform = `rotate(${e.currentTarget.value}deg)`
-    })
+    if (height != null) {
+      height.addEventListener('input', (e) => {
+        i.style.height = `${e.currentTarget.value}px`
+      })
+      width.addEventListener('input', (e) => {
+        i.style.width = `${e.currentTarget.value}px`
+      })
+      angle.addEventListener('input', (e) => {
+        i.style.transform = `rotate(${e.currentTarget.value}deg)`
+      })
+    }
   })
-} 
+}

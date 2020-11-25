@@ -2,8 +2,10 @@
   <h2>Does your game needs dices?</h2>
     <p>Time to toss the dice but first, mention the number of dices needed and how many faces you need your dices to have.</p>
 
-    <%= simple_form_for([@game, @dice]) do |f| %>    
+    <%= simple_form_for([@game, @dice]) do |f| %>
         <%= f.input :number_of_dices, collection: 1..8 %>
+        <%= f.input :faces %>
+        <%= f.input :photo, as: :file %>
         <%= f.button :submit %>
     <% end %>
 </div>

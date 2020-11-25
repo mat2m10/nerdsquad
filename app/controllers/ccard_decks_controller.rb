@@ -24,6 +24,6 @@ class CcardDecksController < ApplicationController
   end
 
   def ccard_deck_params
-    params.require(:ccard_deck).permit(:name, :posX, :posY)
+    params.require(:ccard_deck).permit(:name, :posX, :posY, :width, :height, :blind?)
   end
 end
