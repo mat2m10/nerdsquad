@@ -11,7 +11,7 @@ class PiecesController < ApplicationController
     @piece = Piece.new(piece_params)
     @piece.game = @game
     @piece.save ? (redirect_to game_piece_path(@game, @piece) and return) : (redirect_to @piece and return)
-    end
+    
   end
 
   def show
@@ -47,4 +47,5 @@ class PiecesController < ApplicationController
   def piece_params
     params.require(:piece).permit(:photo, :name, :posX, :posY, :height, :width, :angle)
   end
+  
 end

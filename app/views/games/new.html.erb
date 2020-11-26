@@ -3,7 +3,7 @@
     <%= simple_form_for(@game) do |f| %>
       <%= f.input :name %>
       <%= f.input :number_of_players, collection: 1..6 %>      
-      <button class="big-button"><%= f.button :submit %></button>
+      <%= f.button :submit, class: "btn-flat" %>
     <% end %>
 </div>
 

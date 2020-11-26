@@ -2,5 +2,5 @@
 
 <%= simple_form_for([@game, @dice], remote: true) do |f| %>
 <%= f.input :faces %>
-    <%= f.button :submit %>
+<%= f.button :submit, class:'btn-flat'  %>
 <% end %>
