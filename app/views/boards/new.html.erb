@@ -1,14 +1,15 @@
+
 <div class = "homepage">
   <div class = "intro">
-  <h1>Create your board</h1>
-  <div class = "cardwow">
-    <%= simple_form_for([@game, @board], url: game_boards_path, remote: true) do |f| %>
-      <%= f.input :photo, as: :file %>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <h1>Create your board</h1>
+    <div class = "cardwow">
+      <%= simple_form_for([@game, @board], url: game_boards_path, remote: true) do |f| %>
+        <%= f.input :photo, as: :file, required: true %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button class = "big-button">
           <%= f.button :submit  %>
         </button>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
   </div>
 </div>

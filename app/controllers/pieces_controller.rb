@@ -6,14 +6,11 @@ class PiecesController < ApplicationController
   end
 
   def create
+    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:piece][:photo].nil?
+
     @piece = Piece.new(piece_params)
     @piece.game = @game
-    if @piece.save
-      flash[:success] = "Piece successfully created"
-      redirect_to game_piece_path(@game, @piece)
-    else
-      flash[:error] = "Something went wrong"
-      redirect_to @piece
+    @piece.save ? (redirect_to game_piece_path(@game, @piece) and return) : (redirect_to @piece and return)
     end
   end
 
