@@ -3,7 +3,9 @@
 
   <% if  @game.board %>
     <%= cl_image_tag @game.board.photo.key , { class: "board greyed"} %>
+
   <% end %>
+
   <% @game.dices.each do |dice| %>
     <%= simple_form_for([@game, dice]) do |f| %>
       <%= f.input :posX, id: "posX", as: :hidden %>
