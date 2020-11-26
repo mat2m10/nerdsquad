@@ -26,20 +26,19 @@
 
 <div class = "movablecontainer" data-posx="<%= @card_deck.posX %>" data-posy="<%= @card_deck.posY %>">
   <%# deck (represented by its first card) to be positioned %>
-  <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "carddeck", width: '120px'} %>
+  <%= cl_image_tag @card_deck.cards.first.photo.key, { class: "card", style: "top: #{@card_deck.cards.first.posY}; left: #{@card_deck.cards.first.posX}; height: #{@card_deck.cards.first.height}px; width:#{@card_deck.cards.first.width}px; transform:rotate(#{@card_deck.cards.first.angle}deg);"} %>
 
   <%# form to submit deck position %>
     <%= simple_form_for [@game, @card_deck] do |f| %>
     <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
     <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
   <% end %>
-
 </div>
 
 <div class = "sizeform">
   <%= simple_form_for [@game, @card_deck, @card] do |f| %>
-    <%= f.input :height, input_html: {value: '50'} %>
-    <%= f.input :width, input_html: {value: '50'} %>
+    <%= f.input :height, input_html: {value: '200'} %>
+    <%= f.input :width, input_html: {value: '120'} %>
     <%= f.input :angle, input_html: {value: '0'} %>
     <%= f.button :submit, 'Save dimensions' %>
   <% end %>
