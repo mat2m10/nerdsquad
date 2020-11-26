@@ -4,6 +4,6 @@
     <%= f.input :name %>
     <%= f.input :photo, as: :file %>
     <%= f.input :number_of_tokens, collection: 1..30 %>
-    <%= f.button :submit %>
+    <button class="big-button"><%= f.button :submit %></button>
   <% end %>
 </div>

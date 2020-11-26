@@ -5,6 +5,6 @@
   <%= simple_form_for([@game, @card_deck]) do |f| %>
     <%= f.input :name %>
     <%= f.input :blind?, as: :radio_buttons %>
-    <%= f.button :submit %>
+    <button class="big-button"><%= f.button :submit %></button>
   <% end %>
 </div>

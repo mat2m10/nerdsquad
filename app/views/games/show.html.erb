@@ -2,12 +2,12 @@
   <div class="container">
     <h1 class="show-title"><%= @game.name %> box</h1>
     <h2><%= @game.name %> is played with:</h2>
-    <%= link_to "Board", new_game_board_path(@game), class: "btn btn-primary" %>
-    <%= link_to "Deck", new_game_card_deck_path(@game), class: "btn btn-primary" %>
-    <%= link_to "Piece", new_game_piece_path(@game), class: "btn btn-primary" %>
-    <%= link_to "Token", new_game_token_path(@game), class: "btn btn-primary" %>
-    <%= link_to "Dice", new_game_dice_path(@game), class: "btn btn-primary" %>
-    <%= link_to "Game preview", game_preview_path(@game), class: "btn btn-primary" %>
+    <%= link_to "Board", new_game_board_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Deck", new_game_card_deck_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Piece", new_game_piece_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Token", new_game_token_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Dice", new_game_dice_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Game preview", game_preview_path(@game), class: "btn btn-flat" %>
   </div>
 
   <div class="container justify-content-left">
