@@ -64,6 +64,6 @@
 <div class = "bottom-right btn">
   <%= simple_form_for @game do |f| %>
   <%= f.input :saved, input_html: {value: true}, as: :hidden%>
-  <button class="big-button"><%= f.button :submit %></button>
+  <%= f.button :submit, class: "btn-flat" %>
   <% end %>
 </div>

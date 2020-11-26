@@ -24,11 +24,10 @@
       <div class="user-info">
         <p class="text-left">Username: <%= @user.username %></p>
         <p class="text-left">Email: <%= @user.email %></p>
-        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_path, class: "btn btn-user" %>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_path, class: "btn btn-flat" %>
       </div>
-      <br>
-
-      <li><a href='<%= new_game_path %>'><button class="big-button">New game</button></a></li>
+      <br> 
+      <li><%= link_to "New game", new_game_path, class: 'btn-flat' %></li>
     </div>
 
     <div class="history">
@@ -59,5 +58,5 @@
   </div>
 <% else %>
    <p>You cannot access this page.</p>
-  <p><%= link_to "Homepage", "/", class: "btn btn-user" %></p>
+  <p><%= link_to "Homepage", "/", class: "btn btn-flat" %></p>
 <% end %>

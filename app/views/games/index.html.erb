@@ -1,4 +1,4 @@
-<div class="index" id="index">
+<div class="index" >
   <div class="left">
 
     <div class="title">
@@ -13,8 +13,8 @@
           %>
       <% end %>
     <br>
-    <div class= "button">
-      <a href='<%= root_path %>'><button class="big-button">HOME</button></a>
+    <div>
+      <%= link_to "Home", root_path, class: 'btn-flat' %> 
     </div>
 
   </div>
@@ -35,7 +35,7 @@
           <% @games.each do |game| %>
             <% if game.saved %>
               <tr>
-                <td><%= link_to "Play #{game.name}", game_clones_path(game), method: :post%></td>
+                <td><%= link_to "Play #{game.name}", game_clones_path(game), method: :post %></td>
                 <% if game.board%>
                   <td><%= cl_image_tag game.board.photo.key, width: '100px', height: '100px' %></td>
                 <% end %>
