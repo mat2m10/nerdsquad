@@ -4,8 +4,8 @@
 
     <%= simple_form_for([@game, @dice]) do |f| %>
         <%= f.input :number_of_dices, collection: 1..8 %>
-        <%= f.input :faces, collection: 2..100 %>
-        <%= f.input :photo, as: :file, required: true %>
-        <%= f.button :submit %>
+        <%= f.input :faces %>
+        <%= f.input :photo, as: :file %>
+        <button class="big-button"><%= f.button :submit %></button>
     <% end %>
 </div>
