@@ -1,9 +1,11 @@
-.gameroom-index {
-    display: grid;   
-    background-color: $background;   
+.gameroomindex {  
+  .container {
+    display: grid;    
     text-align: center;
     width: 100%;
     height: 100%;
+    grid-column-gap: 50px;
+  }
  
   h2 {
     color: #f3d9bb;
@@ -11,7 +13,7 @@
     padding-top:70px;
   }
 
-  a {
+  a, td {
   text-decoration: none;
   color: #e6dbcd;
  }
