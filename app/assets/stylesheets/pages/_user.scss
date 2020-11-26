@@ -4,7 +4,6 @@
   text-align: center;
   margin: 10px;
   padding: 10px;
-  
 
 .settings, .history, .user-info {
   list-style-type: none;
@@ -13,7 +12,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 16px;
   margin: 10px;
-  border: 2px solid white;  
+  border: 2px solid white;
   text-align: left;
 }
 
@@ -23,7 +22,7 @@
 
 
 .user-info {
-  margin: 0 100px 0 100px; 
+  margin: 0 100px 0 100px;
 }
 
 .row {
@@ -33,17 +32,17 @@
 h1 {
   color: #374863;
   font-family: 'Permanent Marker', cursive;
-  font-size: 80px;   
+  font-size: 80px;
 }
 
 h2 {
   color: #374863;
-  font-family: 'Permanent Marker', cursive !important; 
+  font-family: 'Permanent Marker', cursive !important;
 }
 
 a {
   text-decoration: none;
-  color: #374863; 
+  color: #374863;
 }
 
 // Smallest device
@@ -59,21 +58,21 @@ a {
       grid-template-columns: 1fr;
     }
   }
-  
+
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {
     .user {
       grid-template-columns: 1fr;
     }
   }
-  
+
   // Large devices (desktops, 992px and up)
   @media (min-width: 992px) {
     .user {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
-  
+
   // Extra large devices (large desktops, 1200px and up)
   @media (min-width: 1200px) {
     .user {
