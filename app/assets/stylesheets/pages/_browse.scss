@@ -1,13 +1,13 @@
 .index {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: $background;   
+    background-color: $background;
     text-align: center;
- 
+
   h1 {
     color: #f3d9bb;
     font-family: 'Permanent Marker', cursive;
-    font-size: 80px;   
+    font-size: 80px;
   }
 
   h2 {
@@ -31,7 +31,7 @@
     text-decoration: none;
     color: #e6dbcd;
   }
- 
+
   .title {
     text-align: center;
     padding: 40px;

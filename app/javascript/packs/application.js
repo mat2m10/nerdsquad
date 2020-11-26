@@ -9,6 +9,7 @@ import { moveAround } from "../plugins/moveAround";
 import { positionElement } from "../plugins/positionElement";
 import { initGameroomCable } from "../channels/gameroom_channel";
 // import { dice } from '../components/dice';
+import { popItUp } from '../components/dice';
 import { navbar } from '../components/navbar';
 document.addEventListener('turbolinks:load', () => {
   moveAround();

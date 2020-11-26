@@ -2,5 +2,15 @@
   position:absolute;
   bottom:10px;
   right:10px;
-  color: white;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.bottom-left {
+  position:absolute;
+  bottom:10px;
+  left:10px;
+
 }

@@ -7,7 +7,8 @@ class MessagesController < ApplicationController
     @message.gameroom = @gameroom
     @message.user = current_user
     if @message.save
-      GameroomChannel.broadcast_to(@gameroom, { message: render_to_string(partial: "message", locals: { message: @message }) })
+      GameroomChannel.broadcast_to(@gameroom, { message: render_to_string(partial: "message",
+                                                                          locals: { message: @message }) })
       redirect_to gameroom_path(@gameroom, anchor: "message-#{@message.id}")
     else
       render "gamerooms/show"

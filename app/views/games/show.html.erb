@@ -1,101 +1,100 @@
-<div class="container" id="show">
-  <h1 class="show-title"><%= @game.name %> box</h1>
-  <h2><%= @game.name %> is played with:</h2>
-  <%= link_to "Board", new_game_board_path(@game), class: "btn btn-primary" %>
-  <%= link_to "Deck", new_game_card_deck_path(@game), class: "btn btn-primary" %>
-  <%= link_to "Piece", new_game_piece_path(@game), class: "btn btn-primary" %>
-  <%= link_to "Token", new_game_token_path(@game), class: "btn btn-primary" %>
-  <%= link_to "Dice", new_game_dice_path(@game), class: "btn btn-primary" %>
-  <%= link_to "Game preview", game_preview_path(@game), class: "btn btn-primary" %>
-</div>
-
-<div class="container justify-content-left">
-  <div id="display-board" class="mb-5">
-  <% if @game.board %>
-    <% if @game.board.photo.attached? %>
-      <h3>Board</h3>
-      <p><%= cl_image_tag @game.board.photo.key , { width: '120px' } %></p>
-      <%= link_to '<i class="fas fa-edit"></i>'.html_safe, new_game_board_path(@game, @game.board) %>
-      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_board_path(@game, @game.board), method: :delete %>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="container">
+    <h1 class="show-title"><%= @game.name %> box</h1>
+    <h2><%= @game.name %> is played with:</h2>
+    <%= link_to "Board", new_game_board_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Deck", new_game_card_deck_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Piece", new_game_piece_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Token", new_game_token_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Dice", new_game_dice_path(@game), class: "btn btn-flat" %>
+    <%= link_to "Game preview", game_preview_path(@game), class: "btn btn-flat" %>
   </div>
 
-  <% unless @game.card_decks.empty? %>
-    <div id="display-decks" class="mb-5">
-      <h3>Card decks</h3>
-      <% @game.card_decks.each do |card_deck| %>
-        <h4><%= card_deck.name %></h4>
-        <div class="d-flex justify-content-left">
-          <% card_deck.cards.each do |card| %>
-            <div class="mx-3">
-              <p><%= card.name %> <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_card_deck_card_path(@game, card_deck, card), method: :delete %></p>
-              <% if card.photo.attached? %>
-                <%= cl_image_tag card.photo.key , class: 'rounded img-fluid', width: '90px', height: '150px' %>
-              <% end %>
-            </div>
-          <% end %>
-          <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_game_card_deck_card_path(@game, card_deck) %>
-        </div>
+  <div class="container justify-content-left">
+    <div id="display-board" class="mb-5">
+    <% if @game.board %>
+      <% if @game.board.photo.attached? %>
+        <h3>Board</h3>
+        <p><%= cl_image_tag @game.board.photo.key , { width: '120px' } %></p>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, new_game_board_path(@game, @game.board) %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_board_path(@game, @game.board), method: :delete %>
       <% end %>
+    <% end %>
     </div>
-  <% end %>
 
-  <% unless @game.tokens.empty? %>
-    <div id="display-tokens" class="mb-5">
-      <h3>Tokens</h3>
-      <% @game.tokens.each do |token| %>
-        <div class="d-flex justify-content-left">
-          <h4><%= token.name %></h4>
-          <% if token.photo.attached? %>
-            <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
-            <%= link_to "", game_token_path(@game, token), method: :delete, class: "btn btn-danger close", style: "width: 20px; height: 20px;" %>
-          <% else %>
-            <p>This token should have an image</p>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  <% unless @game.pieces.empty? %>
-    <div id="display-pieces" class="mb-5">
-      <h3>Pieces</h3>
-      <div class="d-flex justify-content-left flex-wrap">
-        <% @game.pieces.each do |piece| %>
-          <div class="mx-3">
-            <h4><%= piece.name %></h4>
-            <% if piece.photo.attached? %>
-              <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', width: '100px' %>
-            <% else %>
-              <p>This piece should have an image and/or a name</p>
+    <% unless @game.card_decks.empty? %>
+      <div id="display-decks" class="mb-5">
+        <h3>Card decks</h3>
+        <% @game.card_decks.each do |card_deck| %>
+          <h4><%= card_deck.name %></h4>
+          <div class="d-flex justify-content-left">
+            <% card_deck.cards.each do |card| %>
+              <div class="mx-3">
+                <p><%= card.name %> <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_card_deck_card_path(@game, card_deck, card), method: :delete %></p>
+                <% if card.photo.attached? %>
+                  <%= cl_image_tag card.photo.key , class: 'rounded img-fluid', width: '90px', height: '150px' %>
+                <% end %>
+              </div>
             <% end %>
-            <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
-            <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
+            <%= link_to '<i class="fas fa-plus-circle"></i>'.html_safe, new_game_card_deck_card_path(@game, card_deck) %>
           </div>
         <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% unless @game.dices.empty? %>
-    <div id="display-dices" class="mb-5">
-      <h3>Dices</h3>
-      <% @game.dices.each do |dice| %>
-        <div class="d-flex justify-content-left">
-          <h4>Dice number: <%= dice.id %></h4>
-          <% if dice.photo.attached? %>
-            <%= cl_image_tag dice.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
-            <%= link_to "", game_dice_path(@game, dice), method: :delete, class: "btn btn-danger close", style: "width: 20px; height: 20px;" %>
-          <% else %>
-            <p>This Dice should have an image</p>
+    <% unless @game.tokens.empty? %>
+      <div id="display-tokens" class="mb-5">
+        <h3>Tokens</h3>
+        <% @game.tokens.each do |token| %>
+          <div class="d-flex justify-content-left">
+            <h4><%= token.name %></h4>
+            <% if token.photo.attached? %>
+              <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
+              <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_token_path(@game, token), method: :delete %>
+            <% else %>
+              <p>This token should have an image</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% unless @game.pieces.empty? %>
+      <div id="display-pieces" class="mb-5">
+        <h3>Pieces</h3>
+        <div class="d-flex justify-content-left flex-wrap">
+          <% @game.pieces.each do |piece| %>
+            <div class="mx-3">
+              <h4><%= piece.name %></h4>
+              <% if piece.photo.attached? %>
+                <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', width: '100px' %>
+              <% else %>
+                <p>This piece should have an image and/or a name</p>
+              <% end %>
+              <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_game_piece_path(@game, piece) %>
+              <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_piece_path(@game, piece), method: :delete %>
+            </div>
           <% end %>
         </div>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 
+    <% unless @game.dices.empty? %>
+      <div id="display-dices" class="mb-5">
+        <h3>Dices</h3>
+        <% @game.dices.each do |dice| %>
+          <div class="d-flex justify-content-left">
+            <h4>Dice number: <%= dice.id %></h4>
+            <% if dice.photo.attached? %>
+              <%= cl_image_tag dice.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
+              <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_dice_path(@game, dice), method: :delete %>
+            <% else %>
+              <p>This Dice should have an image</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
 </div>
-
-
-

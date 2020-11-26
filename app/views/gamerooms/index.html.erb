@@ -1,26 +1,32 @@
-<div class="gameroom-index" id="gameroom-index">
-    <table>
-    <thead>
-        <tr>
-        <th><h2>Games</h2></th>
-        <th><h2>Gamerooms</h2></th>
-        <th colspan="2"></th>
-        </tr>
-    </thead>
-  <div class="games">
-        <tbody>
-            <% @gamerooms.each do |gameroom| %>          
+<div class="container d-flex justify-content-center">
+    <div class="gameroomindex">
+        <table>
+        <thead>
             <tr>
-                <td><%= "#{gameroom.clone.name}"%></td>
-                <td><%= link_to "Join", gameroom_path(gameroom) %></td>           
-            <% end %>
-            </tr>       
-            
-        </tbody>
-        </table>
+            <th><h2 class="px-3">Games</h2></th>
+            <br>
+            <th><h2 class="px-3">Gamerooms</h2></th>
+            <th colspan="2"></th>
+            </tr>
+        </thead>
+    <div class="games">
+            <tbody>
+                <% @gamerooms.each do |gameroom| %>          
+                <tr>
+                    <td><%= "#{gameroom.clone.name}"%></td>
+                    <td><%= link_to "Join", gameroom_path(gameroom) %></td>           
+                <% end %>
+                </tr>       
+                
+            </tbody>
+            </table>
 
-    <div class= "button">
-    <%= link_to "Homepage", "/", class: "btn btn-flat" %>
+        <div class= "button">        
+        <a href='<%= root_path %>'><button class="big-button">HOME</button></a>
+        </div>
+
     </div>
-
 </div>
+
+
+

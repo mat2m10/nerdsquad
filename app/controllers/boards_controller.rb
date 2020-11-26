@@ -7,13 +7,14 @@ class BoardsController < ApplicationController
   end
 
   def create
+    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:board].nil?
+
     @board = Board.new(board_params)
+    @board.attach(params[:board][:photo])
+    @game.board&.destroy
     @board.game = @game
-    if @board.save
-      redirect_to game_board_path(params[:game_id], @board.id)
-    else
-      render 'games/new'
-    end
+    @board.save
+    redirect_to @game
   end
 
   def show
