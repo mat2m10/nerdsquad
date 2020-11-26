@@ -35,65 +35,7 @@
   h2 {
     color: var( --colorShadeA);
   }
-  button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;  
-    margin: 30px;
-    border: 0;
-    outline: none;   
-    vertical-align: middle; // vertically aligned in the middle of the parent container
-    text-decoration: none;
-    font-size: 24px;    
-    color:var(--colorShadeA);
-    font-weight: 900;    
-    font-family: $body-font , sans-serif;
-  }
-  
-  button.big-button {
-    padding: 16px 40px;
-    border: 2px solid  var(--colorShadeA);
-    border-radius: 16px;
-    background: var(--colorShadeE);
-    transform-style: preserve-3d; // preserve position
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
-    outline:none;
-  }
-  button.big-button::before {
-    position: absolute;
-    content: ''; // insert space inside the buttons
-    width: 100%;
-    height: 100%;
-    top: 0; // first layer is aligned with others
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--colorShadeC);
-    border-radius: 16px;
-    box-shadow: 0 0 0 2px var(--colorShadeB), 0 16px 0 0 var(--colorShadeA);
-    transform: translate3d(0, 16px, -16px);
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
-  }  
-  
-  button.big-button:hover {
-    background: var(--colorShadeD);
-    transform: translate(0, 6px);
-  }
-  
-  button.big-button:hover::before {
-    transform: translate3d(0, 16px, -16px);
-  }
-  
-  button.big-button:active {
-    transform: translate(0em, 16px);
-    text-decoration:none;
-  }
-  
-  button.big-button:active::before {
-    transform: translate3d(0, 0, -16px);
-    box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.4px 0 0 var(--colorShadeB);  
-    text-decoration:none;
-  }
+
 
   // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
