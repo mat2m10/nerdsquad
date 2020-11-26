@@ -4,6 +4,6 @@
     <%= f.input :name %>
     <%= f.input :photo, as: :file, required: true %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-    <button class="btn-flat"><%= f.button :submit %></button>
+    <%= f.button :submit, class:'btn-flat'  %>
   <% end %>
 </div>

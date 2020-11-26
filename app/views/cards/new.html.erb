@@ -2,5 +2,5 @@
 <%= simple_form_for([@game, @deck, @card]) do |f| %>
   <%= f.input :name %>
   <%= f.input :photo, as: :file, required: true %>
-  <button class="btn-flat"><%= f.button :submit %></button>
+  <%= f.button :submit, class:'btn-flat'  %>
 <% end %>
