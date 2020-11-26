@@ -21,5 +21,4 @@ class CdicesController < ApplicationController
   def cdice_params
     params.require(:cdice).permit(:name, :posX, :posY, :photo, :value, :faces, :angle, :width, :height)
   end
-
 end
