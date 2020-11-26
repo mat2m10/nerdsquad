@@ -1,12 +1,11 @@
 class DicesController < ApplicationController
-
+  before_action :set_game, only: %i[new create update]
+  before_action :set_dice, only: %i[show update]
   def new
-    @game = Game.find(params[:game_id])
     @dice = Dice.new
   end
 
   def create
-    @game = Game.find(params[:game_id])
     number_of_dices = params[:dice][:number_of_dices].to_i
     number_of_dices.times do
       @dice = Dice.new(dice_params)
@@ -17,8 +16,6 @@ class DicesController < ApplicationController
   end
 
   def update
-    @game = Game.find(params[:game_id])
-    @dice = Dice.find(params[:id])
     @dice.update(dice_params)
     redirect_to request.referrer and return unless request.referrer.include? 'dices'
 
@@ -31,13 +28,19 @@ class DicesController < ApplicationController
     redirect_to request.referrer
   end
 
-  def show
-    @game = Game.find(params[:game_id])
-  end
+  def show; end
 
   private
 
   def dice_params
     params.require(:dice).permit(:faces, :posX, :posY, :photo, :number_of_dices, :value)
+  end
+
+  def set_game
+    @game = Game.find(params[:game_id])
+  end
+
+  def set_dice
+    @dice = Dice.find(params[:id])
   end
 end
