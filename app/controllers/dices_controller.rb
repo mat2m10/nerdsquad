@@ -1,5 +1,5 @@
 class DicesController < ApplicationController
-  before_action :set_game, only: %i[new create update]
+  before_action :set_game, only: %i[new create show update]
   before_action :set_dice, only: %i[show update]
   def new
     @dice = Dice.new
@@ -21,7 +21,7 @@ class DicesController < ApplicationController
 
     num = @dice.number_of_dices
     @game.dices[-num..].each do |dice|
-      dice.assign_attributes(posX: @dice.posX + num * 100, posY: @dice.posY + num * 100)
+      dice.assign_attributes(posX: @dice.posX + num * 50, posY: @dice.posY + num * 50)
       num -= 1
       dice.save
     end
