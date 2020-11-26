@@ -292,8 +292,8 @@ offsetdice = 0
     dice = Dice.new(
         game: game,
         faces: 6,
-        posY: 200 + offsetdice,
-        posX: 400,
+        posY: 135 + offsetdice,
+        posX: 410,
         number_of_dices: 2)
     dice.photo.attach(io: File.open('app/assets/images/monopoly/dice_blank.png'), filename:"dice-image")
     dice.save
@@ -318,7 +318,7 @@ board_chess = Board.new(
   width: 750,
   height: 750,
   posX: 450,
-  posY: 130,
+  posY: 125,
   angle: 0,
   game: game_chess
 )
