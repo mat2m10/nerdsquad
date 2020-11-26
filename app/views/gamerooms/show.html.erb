@@ -68,7 +68,7 @@
   </div>
 <% end %>
 
-<div class="the-chat d-flex">
+<div class="the-chat">
     <div class="chat-container" id="messages">
           <% @gameroom.messages.each do |message| %>
             <%= render "messages/message", message: message %>
