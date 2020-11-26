@@ -1,28 +1,22 @@
 
 <% if @clone.cboard %>
-  <div class="movablecontainer" id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
-    <%=cl_image_tag @clone.cboard.photo.key , { class: "movable board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};height: #{@clone.cboard.height}px; width:#{@clone.cboard.width}px; transform:rotate(#{@clone.cboard.angle}deg);"} %>
-    <%= simple_form_for [@game, @clone, @clone.cboard] do |f| %>
+  <div id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
+    <%=cl_image_tag @clone.cboard.photo.key , { class: "board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};height: #{@clone.cboard.height}px; width:#{@clone.cboard.width}px; transform:rotate(#{@clone.cboard.angle}deg);"} %>
+  </div>
+<% end %>
+
+<% @clone.ctokens.each do |token| %>
+  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
+    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
+    <%= simple_form_for [@game, @clone, token] do |f| %>
       <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
       <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
     <% end %>
   </div>
 <% end %>
 
-<% unless @clone.ctokens.empty? %>
-  <% @clone.ctokens.each do |token| %>
-  <div class="movablecontainer" data-posx="<%= token.posX %>" data-posy="<%= token.posY %>" >
-    <%= cl_image_tag token.photo.key, { class: "movable token", style: "left: #{token.posX}; top: #{token.posY}; height: #{token.height}px; width:#{token.width}px; transform:rotate(#{token.angle}deg);"}%>
-    <%= simple_form_for [@game, @clone, token] do |f| %>
-    <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-    <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-    <% end %>
-  </div>
-  <% end %>
-<% end %>
 
-<% unless @clone.cpieces.empty? %>
-  <% @clone.cpieces.each do |piece| %>
+<% @clone.cpieces.each do |piece| %>
   <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
     <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}%>
     <%= simple_form_for [@game, @clone, piece] do |f| %>
@@ -30,7 +24,6 @@
       <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
     <% end %>
   </div>
-  <% end %>
 <% end %>
 
 <% @clone.ccard_decks.each do |deck| %>
@@ -60,20 +53,14 @@
 <% end %>
 
 
-<% unless @clone.cdices.empty? %>
-  <% @clone.cdices.each do |dice| %>
+<% @clone.cdices.each do |dice| %>
   <div class = "movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>">
-        <h1 class = "dicenumber">
-          <%= dice.value %>
-        </h1>
-        <%= cl_image_tag dice.photo.key, {class: "movable dice", style: " top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
-        <%= simple_form_for([@clone, dice]) do |f| %>
-          <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
-          <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-          <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)} %>
-        <% end %>
-      </div>
-  <% end %>
+    <span class="dicenumber"><%= dice.value %></span>
+    <%= cl_image_tag dice.photo.key, {class: "movable dice", style: " top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
+    <%= simple_form_for([@clone, dice]) do |f| %>
+      <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)} %>
+    <% end %>
+  </div>
 <% end %>
 
 
