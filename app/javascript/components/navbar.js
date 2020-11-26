@@ -8,7 +8,7 @@ function navbar() {
     document.addEventListener('scroll', (event) => {
       const menu = document.querySelector('.menu');
         if (menu) {
-          if (window.pageYOffset >= 190){
+          if (window.pageYOffset >= 10){
             menu.classList.add('black');
           }
           else {
