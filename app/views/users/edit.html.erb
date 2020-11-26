@@ -4,6 +4,6 @@
   <%= simple_form_for([@user]) do |f| %>
     <%= f.input :username %>
     <%= f.input :email %>
-    <button class="big-button"><%= f.button :submit %></button>
+    <%= f.button :submit, class: "btn-flat" %>
   <% end %>
 </div>
