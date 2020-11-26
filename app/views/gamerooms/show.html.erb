@@ -1,7 +1,13 @@
 
 <% if @clone.cboard %>
-  <div id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
-    <%=cl_image_tag @clone.cboard.photo.key , { class: "board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};height: #{@clone.cboard.height}px; width:#{@clone.cboard.width}px; transform:rotate(#{@clone.cboard.angle}deg);"} %>
+  <div class="movablecontainer" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
+    <div id="elements" data-gameroom-id="<%= @gameroom.id %>" data-posx="<%= @clone.cboard.posX %>" data-posy="<%= @clone.cboard.posY %>" >
+      <%=cl_image_tag @clone.cboard.photo.key , { class: "board", style: " left: #{@clone.cboard.posX}; top: #{@clone.cboard.posY};height: #{@clone.cboard.height}px; width:#{@clone.cboard.width}px; transform:rotate(#{@clone.cboard.angle}deg);"} %>
+          <%= simple_form_for [@game, @clone, @clone.cboard] do |f| %>
+        <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+        <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+    <% end %>
+    </div>
   </div>
 <% end %>
 
@@ -52,7 +58,6 @@
   <% end %>
 <% end %>
 
-
 <% @clone.cdices.each do |dice| %>
   <div class = "movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>">
     <span class="dicenumber"><%= dice.value %></span>
@@ -63,20 +68,19 @@
   </div>
 <% end %>
 
-
 <div class="the-chat d-flex">
     <div class="chat-container" id="messages">
           <% @gameroom.messages.each do |message| %>
             <%= render "messages/message", message: message %>
           <% end %>
     </div>
-
     <div class="message-form">
       <%= simple_form_for [ @gameroom, @message ] do |f| %>
         <%= f.input :content, label: false, placeholder: "Message ##{@gameroom.name}" %>
       <% end %>
     </div>
 </div>
+
 <div class = "bottom-right btn btn-primary">
   <%= link_to "Leave Game temporarly", games_path %>
 </div>
