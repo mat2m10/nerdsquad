@@ -1,6 +1,6 @@
 class DicesController < ApplicationController
-  before_action :set_game, only: %i[new create show update]
-  before_action :set_dice, only: %i[show update]
+  before_action :set_game, only: %i[new create show update destroy]
+  before_action :set_dice, only: %i[show update destroy]
   def new
     @dice = Dice.new
   end
@@ -29,6 +29,15 @@ class DicesController < ApplicationController
   end
 
   def show; end
+
+  def destroy
+    if @dice.destroy
+      flash[:success] = 'Object was successfully deleted.'
+    else
+      flash[:error] = 'Something went wrong'
+    end
+    redirect_to @game
+  end
 
   private
 
