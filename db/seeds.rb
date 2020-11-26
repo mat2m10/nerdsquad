@@ -295,10 +295,10 @@ offsetdice = 0
         posY: 200 + offsetdice,
         posX: 400,
         number_of_dices: 2)
-    dice.photo.attach(io: File.open('app/assets/images/monopoly/dice_blank.png'), filename:"#{dice.name}-#{y}-image")
+    dice.photo.attach(io: File.open('app/assets/images/monopoly/dice_blank.png'), filename:"dice-image")
     dice.save
-    puts "Created #{dice.name}"
-    offsetdice += 30
+    puts "Created dice #{dice.id}"
+    offsetdice += 60
 end
 
 puts "Creating Chess game..."
