@@ -5,6 +5,7 @@ var dice = {
      return randomNumber;
   }
 }
+
 // var img1 = document.getElementById('dice-1.png');
 // var img2 = document.getElementById('dice-2.png');
 // var img3 = document.getElementById('dice-3.png');
@@ -81,5 +82,5 @@ if (button) {
 // if result === 5 console.log <id="dice_five">
 // if result === 6 console.log <id="dice_six">
 
-export { dice }
-;
+export { dice };
+
