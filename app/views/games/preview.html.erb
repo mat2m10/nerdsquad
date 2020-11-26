@@ -30,7 +30,7 @@
 <% unless @game.pieces.empty? %>
   <% @game.pieces.each do |piece| %>
     <div class="movablecontainer" data-posx="<%= piece.posX %>" data-posy="<%= piece.posY %>" >
-      <%= cl_image_tag piece.photo.key, { class: "movable piece", style: "position: absolute; left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}  %>
+      <%= cl_image_tag piece.photo.key, { class: "movable piece", style: " left: #{piece.posX}; top: #{piece.posY}; height: #{piece.height}px; width:#{piece.width}px; transform:rotate(#{piece.angle}deg);"}  %>
         <%= simple_form_for [piece.game, piece] do |f| %>
         <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
         <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
@@ -42,16 +42,14 @@
 <% unless @game.dices.empty? %>
   <% @game.dices.each do |dice| %>
   <div class = "movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>">
-      <div>
         <h1 class = "dicenumber">
           <%= dice.value %>
         </h1>
-      </div>
-        <%= cl_image_tag dice.photo.key, {class: "movable dice", style: "position: absolute; top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
+        <%= cl_image_tag dice.photo.key, {class: "movable dice", style: " top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
         <%= simple_form_for([@game, dice]) do |f| %>
           <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
           <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
-          <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)} %>
+          <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)}, as: :hidden %>
         <% end %>
       </div>
 

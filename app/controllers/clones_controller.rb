@@ -95,4 +95,7 @@ class ClonesController < ApplicationController
       angle: card.angle
     ).photo.attach(card.photo.blob)
   end
+
+  def create_cdice(dice)
+  end
 end

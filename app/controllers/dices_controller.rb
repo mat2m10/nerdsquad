@@ -18,13 +18,15 @@ class DicesController < ApplicationController
 
   def update
     @game = Game.find(params[:game_id])
-    @dice = @game.dices.last
+    @dice = Dice.find(params[:id])
     @dice.update(dice_params)
-    redirect_to request.referrer and return unless request.referrer.include? 'dice'
+    redirect_to request.referrer and return unless request.referrer.include? 'dices'
 
     num = @dice.number_of_dices
     @game.dices[-num..].each do |dice|
       dice.assign_attributes(posX: @dice.posX + num * 100, posY: @dice.posY + num * 100)
+      num -= 1
+      dice.save
     end
     redirect_to request.referrer
   end

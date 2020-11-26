@@ -59,6 +59,24 @@
   <% end %>
 <% end %>
 
+
+<% unless @clone.cdices.empty? %>
+  <% @clone.cdices.each do |dice| %>
+  <div class = "movablecontainer" data-posx="<%= dice.posX %>" data-posy="<%= dice.posY %>">
+        <h1 class = "dicenumber">
+          <%= dice.value %>
+        </h1>
+        <%= cl_image_tag dice.photo.key, {class: "movable dice", style: " top: #{dice.posY}; left: #{dice.posX}; height: 50px; width:50px; transform:rotate(#{dice.angle}deg);"} %>
+        <%= simple_form_for([@clone, dice]) do |f| %>
+          <%= f.input :posX, input_html: { id: "posX" }, as: :hidden %>
+          <%= f.input :posY, input_html: { id: "posY" }, as: :hidden %>
+          <%= f.input :value, input_html: {value: (rand(dice.faces - 1) + 1)} %>
+        <% end %>
+      </div>
+  <% end %>
+<% end %>
+
+
 <div class="the-chat d-flex">
     <div class="chat-container" id="messages">
           <% @gameroom.messages.each do |message| %>
