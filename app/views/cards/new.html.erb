@@ -1,6 +1,6 @@
 <h2>Add a card in your deck</h2>
 <%= simple_form_for([@game, @deck, @card]) do |f| %>
   <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photo, as: :file, required: true %>
   <%= f.button :submit %>
 <% end %>
