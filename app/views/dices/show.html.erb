@@ -1,8 +1,9 @@
 <div class="table">
 </div>
 
-  <% if @game.board %>
-    <%= cl_image_tag @game.board.photo.key, { class: "board"} %>
+  <% if  @game.board %>
+    <%= cl_image_tag @game.board.photo.key , { class: "board greyed"} %>
+
   <% end %>
 
   <% @game.dices.each do |dice| %>
