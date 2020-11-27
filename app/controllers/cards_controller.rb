@@ -8,13 +8,16 @@ class CardsController < ApplicationController
   end
 
   def create
-    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:card][:photo].nil?
     @card = Card.new(card_params)
     @card.assign_attributes(card_deck: @deck, height: @deck.height, width: @deck.width)
     @card.position = @deck.cards.count + 1
     @card.posX = @deck.posX
     @card.posY = @deck.posY + @card.position * 40
-    @deck.cards.count > 1 ? (redirect_to @game and return) : (redirect_to game_card_deck_path(@game, @deck)) and return
+    if @card.save && @deck.cards.count > 1
+      redirect_to @game
+    else
+      redirect_to game_card_deck_path(@game, @deck)
+    end
   end
 
   def update

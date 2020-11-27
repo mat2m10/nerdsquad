@@ -7,8 +7,6 @@ class TokensController < ApplicationController
   end
 
   def create
-    (redirect_to request.referrer, alert: 'Fill tokens field' and return) if params[:token][:number_of_tokens].empty?
-    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:token][:photo].nil?
     params[:token][:number_of_tokens].to_i.times do
       @token = Token.new(token_params)
       @token.game = @game

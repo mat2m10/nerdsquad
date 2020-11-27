@@ -6,12 +6,15 @@ class PiecesController < ApplicationController
   end
 
   def create
-    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:piece][:photo].nil?
-
     @piece = Piece.new(piece_params)
     @piece.game = @game
-    @piece.save ? (redirect_to game_piece_path(@game, @piece) and return) : (redirect_to @piece and return)
-    
+    if @piece.save
+      flash[:success] = "Piece successfully created"
+      redirect_to game_piece_path(@game, @piece)
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to @piece
+    end
   end
 
   def show
@@ -47,5 +50,5 @@ class PiecesController < ApplicationController
   def piece_params
     params.require(:piece).permit(:photo, :name, :posX, :posY, :height, :width, :angle)
   end
-  
+
 end

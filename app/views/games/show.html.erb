@@ -15,7 +15,7 @@
     <% if @game.board %>
       <% if @game.board.photo.attached? %>
         <h3>Board</h3>
-        <p><%= cl_image_tag @game.board.photo.key , { width: '120px' } %></p>
+        <p><%= cl_image_tag @game.board.photo.key , { width: '220px' } %></p>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, new_game_board_path(@game, @game.board) %>
         <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_board_path(@game, @game.board), method: :delete %>
       <% end %>
