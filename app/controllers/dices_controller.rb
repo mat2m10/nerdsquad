@@ -6,9 +6,6 @@ class DicesController < ApplicationController
   end
 
   def create
-    (redirect_to request.referrer, alert: 'Join a picture' and return) if params[:dice][:photo].nil?
-    (redirect_to request.referrer, alert: 'Fill faces field' and return) if params[:dice][:faces].empty?
-
     number_of_dices = params[:dice][:number_of_dices].to_i
     number_of_dices.times do
       @dice = Dice.new(dice_params)
