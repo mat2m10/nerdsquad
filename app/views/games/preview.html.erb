@@ -2,7 +2,7 @@
 </div>
 
 <h1><%= @game.name %> game preview </h1>
-<h2><%= @game.number_of_players %> players</h2>
+<h2>Game for <%= @game.number_of_players %> players</h2>
 
 <% if @game.board %>
   <div class="movablecontainer" data-posx="<%= @game.board.posX %>" data-posy="<%= @game.board.posY %>" >
@@ -59,11 +59,9 @@
   </div>
 <% end %>
 
-
-
 <div class = "bottom-right btn">
   <%= simple_form_for @game do |f| %>
   <%= f.input :saved, input_html: {value: true}, as: :hidden%>
-  <%= f.button :submit, class: "btn-flat" %>
+  <%= f.button :submit, 'Save Game',class: "btn-flat" %>
   <% end %>
 </div>

@@ -1,10 +1,14 @@
-<div class="container">
-  <h2>Does your deck need cards?</h2>
+<div class = "homepage">
+  <div class = "intro">
+  <h1>Create your deck</h1>
+  <br>
   <h3>Cards come in decks. Create decks first, then populate them with cards.</h3>
-
+  <br>
+    <div class = "cardwow">
   <%= simple_form_for([@game, @card_deck]) do |f| %>
     <%= f.input :name %>
-    <%= f.input :blind?, as: :radio_buttons %>
     <%= f.button :submit, class:'btn-flat'  %>
   <% end %>
+    </div>
+  </div>
 </div>
