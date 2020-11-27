@@ -11,37 +11,36 @@
 	transition: all 200ms ease;
 	cursor: text;
 	
-	&:after {
-		content: "";
-		position: absolute;
-		width: 200px;
-		height: 20px;
-		right: -5px;
-		top: 21px;
-		background:  #FFFFFF;
-		border-radius: 3px;
-		transform: rotate(-45deg);
-		transition: all 200ms ease;
-	}
+&:after {
+    content: "";
+	position: absolute;
+	width: 200px;
+	height: 20px;
+	right: -5px;
+	top: 21px;
+	background:  #FFFFFF;
+	border-radius: 3px;
+	transform: rotate(-45deg);
+	transition: all 200ms ease;
+}
 	
-	&.active,
-	&:hover {
-		width: 350px;
-		margin-right: 0px;
+&.active, &:hover {
+	width: 350px;
+	margin-right: 0px;
 		
-		&:after {
-			height: 0px;	
+&:after {
+	height: 0px;	
 		}
-	}
+}
 	
-	.form-control {
-		width: 100%;
-		border: none;
-		box-sizing: border-box;
-		font-family: Helvetica;
-		font-size: 15px;
-		color: inherit;
-		background: transparent;
-		outline-width: 0px;
+.form-control {
+	width: 100%;
+	border: none;
+	box-sizing: border-box;
+	font-family: "Catamaran", sans-serif;
+	font-size: 15px;
+	color: inherit;
+	background: transparent;
+	outline-width: 0px;
 	}
 }
