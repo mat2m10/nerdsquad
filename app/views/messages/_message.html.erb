@@ -1,7 +1,20 @@
-<div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-        <strong><span><%= message.user.username %></span></strong>
-        <small>[<%= message.created_at.strftime("%l:%M%p") %> ]:</small>
+<div class="message-container d-flex" id="message-<%= message.id %>">
+          <% if current_user.photo.attached? != false %>
+            <!-- If user has a photo attached, use this photo -->
+            <%= cl_image_tag current_user.photo.key, class: "avatar-small", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <% github_avatar = URI.open("https://kitt.lewagon.com/placeholder/users/#{current_user.username}") %>
+              <%if github_avatar.base_uri.to_s[-6..-1] == "random"%>
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.username}", class: "avatar-small dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% else %>
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{current_user.username}", class: "avatar-small dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
+          <% end %>
+      <div class="anotherdiv text-left ml-0">
+      <i class="author text-left">
+        <strong><span class="text-left"><%= message.user.username %></span></strong>
+        <small>[<%= message.created_at.strftime("%l:%M%p") %>]:</small>
       </i>
-      <p class="content-container"><%= message.content %></p>
+      <p class="content-container author"><%= message.content %></p>
+      </div>
 </div>
