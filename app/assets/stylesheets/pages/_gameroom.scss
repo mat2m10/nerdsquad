@@ -14,9 +14,9 @@
 
 .the-chat {
   position: absolute;
-  right: 35px;
+  right: 50px;
   top: 15%;
-  width: 22%;
+  width: 18%;
   flex-direction: column;
 }
 
@@ -26,6 +26,13 @@
   direction: ltr;
   background-color: white;
   border: 1px solid rgb(212, 212, 212);
+  box-shadow: 0.5px 0.5px 8px;
+}
+
+.message-form {
+  margin-top: 5px;
+  box-shadow: 0.5px 1px 8px;
+
 }
 
 .message-container {
@@ -38,9 +45,6 @@
   margin: 7px;
 }
 
-.message-form {
-  margin-top: 5px;
-}
 
 #messages {
   font-size: 15px;
