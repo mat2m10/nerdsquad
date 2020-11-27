@@ -1,10 +1,12 @@
-<div class="container">
-    <h1>Create your game</h1>
-    <%= simple_form_for(@game) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :number_of_players, collection: 1..6 %>      
-      <%= f.button :submit, class: "btn-flat" %>
-    <% end %>
+<div class = "homepage">
+  <div class = "intro">
+  <div class="container">
+      <h1>Create your game</h1>
+      <%= simple_form_for(@game) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :number_of_players, collection: 1..6 %>      
+        <%= f.button :submit, class: "btn-flat" %>
+      <% end %>
+  </div>
+  </div>
 </div>
-
-
