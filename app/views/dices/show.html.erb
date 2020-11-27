@@ -26,15 +26,6 @@
   <% end %>
 <% end %>
 
-
-<% @game.dices.each do |dice| %>
-  <%= simple_form_for([@game, dice]) do |f| %>
-    <%= f.input :posX, id: "posX", as: :hidden %>
-    <%= f.input :posY, id: "posY", as: :hidden %>
-    <%= f.button :submit, class: "btn btn-primary bottom-right", value: "Confirm position"  %>
-  <% end %>
-<% end %>
-
   <h2>Place your dices on the table</h2>
 
   <div class = "movablecontainer" data-posx="<%= @game.dices.last.posX %>" data-posy="<%= @game.dices.last.posY %>">
@@ -45,6 +36,6 @@
       <% end %>
   </div>
 
-<div class = "bottom-right btn btn-flat">
+<div class = "bottom-right btn-flat">
   <%= link_to "Save placement", game_path(params[:game_id]) %>
 </div>
