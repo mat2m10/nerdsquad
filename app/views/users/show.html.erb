@@ -19,40 +19,40 @@
     </div>
     <br>
     <div class="boxes d-flex justify-content-center">
-    <div class="settings">
-      <h2>User info</h2>
-      <div class="user-info">
-        <p class="text-left">Username: <%= @user.username %></p>
-        <p class="text-left">Email: <%= @user.email %></p>
-        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_path, class: "btn btn-flat" %>
+      <div class="settings ">
+        <h2>User info</h2>
+        <div class="user-info no-shadow">
+          <p class="text-left">Username: <%= @user.username %> <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_user_path %></p>
+          <p class="text-left">Email: <%= @user.email %></p>
+          
+        </div>
+        <br>
       </div>
-      <br>
-      <li><%= link_to "Create new game", new_game_path, class: 'btn-flat' %></li>
-    </div>
 
-    <div class="history">
-      <h2>My games</h2>
-        <% if @games != nil %>
-          <% @games.each do |game| %>
-            <li class="text-left py-1"><%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>
-            <%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, game_path(game), method: :delete %><%= link_to "#{game.name}", game_preview_path(game) %></li>
-          <% end %>
-        <% else %>
-          <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>
-      <% end %>
+      <div class="history">
+        <h2>My games</h2>
+          <% if @games != nil %>
+            <% @games.each do |game| %>
+              <li class="text-left py-1"><%= link_to '<i class="fas fa-edit"></i>'.html_safe, game_path(game) %>
+              <%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, game_path(game), method: :delete %><%= link_to "#{game.name}", game_preview_path(game) %></li>
+            <% end %>
+          <% else %>
+            <li><%= link_to '<i class="fas fa-gamepad"></i>'.html_safe, new_game_path %> </li>
+        <% end %>
 
-    </div>
-    <div class="history">
-      <h2>My gamerooms</h2>
-        <% if current_user.gamerooms != nil %>
-          <% current_user.gamerooms.each do |gameroom| %>
-            <li class="text-left py-1 my-1"><%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, gameroom_path(gameroom), method: :delete %><%= link_to gameroom.name, gameroom_path(gameroom) %></li>
-          <% end %>
-        <% else %>
-          <li><%= link_to '<i class="fas fa-gamepad my-1"></i>'.html_safe, new_game_path %> </li>
-      <% end %>
+      </div>
 
-    </div>
+      <div class="history">
+        <h2>My gamerooms</h2>
+          <% if current_user.gamerooms != nil %>
+            <% current_user.gamerooms.each do |gameroom| %>
+              <li class="text-left py-1 my-1"><%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, gameroom_path(gameroom), method: :delete %><%= link_to gameroom.name, gameroom_path(gameroom) %></li>
+            <% end %>
+          <% else %>
+            <li><%= link_to '<i class="fas fa-gamepad my-1"></i>'.html_safe, new_game_path %> </li>
+        <% end %>
+
+      </div>
     </div>
 
   </div>
