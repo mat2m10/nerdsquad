@@ -1,6 +1,5 @@
 class GameroomsController < ApplicationController
   before_action :set_gameroom, only: %i[show update destroy]
-  skip_before_action :authenticate_user!
   def index
     @gamerooms = Gameroom.all
   end
