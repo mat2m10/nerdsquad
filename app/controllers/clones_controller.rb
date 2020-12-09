@@ -1,6 +1,7 @@
 class ClonesController < ApplicationController
   before_action :set_game, only: %i[create show]
   before_action :set_clone, only: %i[show]
+  skip_before_action :authenticate_user!
   def new; end
 
   def create
