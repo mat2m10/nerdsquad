@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
   before_action :set_board, only: %i[show update destroy]
-
+  #test
   def new
     @board = Board.new
   end
