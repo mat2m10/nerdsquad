@@ -1,16 +1,17 @@
 <div class="container d-flex justify-content-center">
     <div class="gameroomindex">
-        <table>
+        <table width="250px">
         <thead>
             <tr>
-            <th><h2 class="px-3">Games</h2></th>
+            <th><h2 class="px-5 py-2">Games</h2></th>
             <br>
-            <th><h2 class="px-3">Gamerooms</h2></th>
+            <th><h2 class="px-5 py-2">Gamerooms</h2></th>
             <th colspan="2"></th>
             </tr>
         </thead>
     <div class="games">
             <tbody>
+                <br>
                 <% @gamerooms.each do |gameroom| %>          
                 <tr>
                     <td><%= "#{gameroom.clone.name}"%></td>
@@ -21,7 +22,7 @@
             </tbody>
             </table>
 
-        <div>
+        <div class="mt-5">
         <%= link_to "Home", root_path, class: 'btn-flat' %>        
         </div>
 
