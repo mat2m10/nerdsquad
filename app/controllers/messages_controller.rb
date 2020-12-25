@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
                                                                           locals: { message: @message }) })
       redirect_to gameroom_path(@gameroom, anchor: "message-#{@message.id}")
     else
-      render "gamerooms/show"
+      flash[:alert] = "You must be logged in to use the chat."
     end
   end
 
