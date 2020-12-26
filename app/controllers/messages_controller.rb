@@ -29,5 +29,3 @@ class MessagesController < ApplicationController
     @clone = Gameroom.find(params[:gameroom_id]).clone
   end
 end
-
-
