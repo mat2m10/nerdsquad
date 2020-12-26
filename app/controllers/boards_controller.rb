@@ -48,3 +48,6 @@ class BoardsController < ApplicationController
     params.require(:board).permit(:photo, :posX, :posY, :height, :width, :angle)
   end
 end
+
+
+
