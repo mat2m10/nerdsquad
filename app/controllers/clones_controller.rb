@@ -115,3 +115,6 @@ class ClonesController < ApplicationController
     @game.dices.each { |dice| create_cdice(dice) }
   end
 end
+
+
+
