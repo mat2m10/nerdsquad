@@ -6,3 +6,6 @@ class PagesController < ApplicationController
     @gameroom = Gameroom.offset(offset).first
   end
 end
+
+
+
