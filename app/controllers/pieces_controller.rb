@@ -50,5 +50,4 @@ class PiecesController < ApplicationController
   def piece_params
     params.require(:piece).permit(:photo, :name, :posX, :posY, :height, :width, :angle)
   end
-
 end

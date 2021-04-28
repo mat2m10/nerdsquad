@@ -4,6 +4,7 @@ class CdicesController < ApplicationController
   def update
     @cdice.update!(cdice_params)
     return unless @cdice.clone.gameroom
+
     GameroomChannel.broadcast_to(@cdice.clone.gameroom, "moved")
     redirect_to request.referrer
   end

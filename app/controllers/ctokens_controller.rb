@@ -22,3 +22,6 @@ class CtokensController < ApplicationController
     params.require(:ctoken).permit(:name, :posX, :posY, :photo, :number_of_tokens)
   end
 end
+
+
+

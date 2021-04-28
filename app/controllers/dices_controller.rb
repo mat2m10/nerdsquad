@@ -53,3 +53,6 @@ class DicesController < ApplicationController
     @dice = Dice.find(params[:id])
   end
 end
+
+
+
