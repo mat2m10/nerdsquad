@@ -22,3 +22,6 @@ class CpiecesController < ApplicationController
     params.require(:cpiece).permit(:name, :posX, :posY, :photo)
   end
 end
+
+
+

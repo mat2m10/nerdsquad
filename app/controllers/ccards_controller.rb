@@ -29,3 +29,6 @@ class CcardsController < ApplicationController
     params.require(:ccard).permit(:name, :posX, :posY, :photo, :position, :visible)
   end
 end
+
+
+

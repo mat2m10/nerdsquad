@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
   before_action :set_board, only: %i[show update destroy]
-
+  #test
   def new
     @board = Board.new
   end
@@ -9,7 +9,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.game = @game
-        if @board.save
+    if @board.save
       redirect_to game_board_path(params[:game_id], @board.id)
     else
       render 'games/new'
@@ -48,3 +48,6 @@ class BoardsController < ApplicationController
     params.require(:board).permit(:photo, :posX, :posY, :height, :width, :angle)
   end
 end
+
+
+
