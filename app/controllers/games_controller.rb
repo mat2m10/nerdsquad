@@ -25,7 +25,7 @@ class GamesController < ApplicationController
     @board = Board.new
     @game.user = @user
     @game.save
-    redirect_to @game
+    redirect_to game_path(@game)
   end
 
   def show
