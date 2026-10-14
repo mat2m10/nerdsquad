@@ -24,8 +24,11 @@ class GamesController < ApplicationController
     @user = current_user
     @board = Board.new
     @game.user = @user
-    @game.save
-    redirect_to game_path(@game)
+    if @game.save
+      redirect_to game_path(@game)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -35,7 +38,7 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find(game_params)
+    @game = Game.find(params[:id])
   end
 
   def update
@@ -45,7 +48,7 @@ class GamesController < ApplicationController
       redirect_to games_path
     else
       flash[:error] = "Something went wrong"
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

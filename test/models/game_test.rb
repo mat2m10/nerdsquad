@@ -3,7 +3,7 @@ require 'test_helper'
 class GameTest < ActiveSupport::TestCase
   test "a game needs an owner and a number of players" do
     assert_raises(ActiveRecord::RecordInvalid) { Game.create!(name: "No owner", number_of_players: 2) }
-    assert_raises(ActiveRecord::NotNullViolation) { Game.create!(user: create_user, name: "No players") }
+    assert_raises(ActiveRecord::RecordInvalid) { Game.create!(user: create_user, name: "No players") }
   end
 
   test "search_by_name matches name prefixes" do

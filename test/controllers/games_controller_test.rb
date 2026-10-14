@@ -55,6 +55,31 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "creating a game without a number of players re-renders the form" do
+    sign_in @user
+    assert_no_difference -> { Game.count } do
+      post games_path, params: { game: { name: "Broken", number_of_players: "" } }
+    end
+    assert_response :unprocessable_entity
+    assert_select "form#new_game"
+  end
+
+  test "edit renders the form for the requested game" do
+    sign_in @user
+    game = create_full_game(@user, name: "Monopoly")
+    get edit_game_path(game)
+    assert_response :success
+    assert_select "form#edit_game_#{game.id} input[value='Monopoly']"
+  end
+
+  test "update with invalid data re-renders edit" do
+    sign_in @user
+    game = create_full_game(@user)
+    patch game_path(game), params: { game: { number_of_players: "" } }
+    assert_response :unprocessable_entity
+    assert_equal 2, game.reload.number_of_players
+  end
+
   test "update changes the game" do
     sign_in @user
     game = create_full_game(@user)
