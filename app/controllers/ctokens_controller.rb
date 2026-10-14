@@ -1,5 +1,6 @@
 class CtokensController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
   before_action :set_ctoken, only: %i[update]
 
   def update
@@ -15,7 +16,7 @@ class CtokensController < ApplicationController
   end
 
   def set_ctoken
-    @ctoken = Ctoken.find(params[:id])
+    @ctoken = @clone.ctokens.find(params[:id])
   end
 
   def ctoken_params

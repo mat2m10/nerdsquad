@@ -1,13 +1,14 @@
 class CcardsController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
   before_action :set_deck, only: %i[update]
   before_action :set_card, only: %i[update]
 
   def update
     @ccard.update!(ccard_params)
-    return unless @ccard.ccard_deck.clone.gameroom
+    return unless @ccard.ccard_deck.game_clone.gameroom
 
-    GameroomChannel.broadcast_to(@ccard.ccard_deck.clone.gameroom, "moved")
+    GameroomChannel.broadcast_to(@ccard.ccard_deck.game_clone.gameroom, "moved")
     redirect_to request.referrer
   end
 
@@ -18,11 +19,11 @@ class CcardsController < ApplicationController
   end
 
   def set_deck
-    @ccard_deck = CcardDeck.find(params[:ccard_deck_id])
+    @ccard_deck = @clone.ccard_decks.find(params[:ccard_deck_id])
   end
 
   def set_card
-    @ccard = Ccard.find(params[:id])
+    @ccard = @ccard_deck.ccards.find(params[:id])
   end
 
   def ccard_params

@@ -1,4 +1,4 @@
-import consumer from "./consumer";
+import consumer from "channels/consumer";
 
 const initGameroomCable = () => {
     const elementsContainer = document.getElementById('elements');
@@ -10,7 +10,7 @@ const initGameroomCable = () => {
           console.log(data)
           if (data.message) {
             messagesContainer.insertAdjacentHTML('beforeend', data.message);
-            messagesContainer.lastChild.scrollIntoView();
+            messagesContainer.lastElementChild?.scrollIntoView();
           } else {
             Turbolinks.visit(window.location.pathname);
           }

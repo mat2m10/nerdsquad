@@ -1,11 +1,12 @@
 class CdicesController < ApplicationController
-  before_action :set_dice, only: %i[update]
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
+  before_action :set_dice, only: %i[update]
   def update
     @cdice.update!(cdice_params)
-    return unless @cdice.clone.gameroom
+    return unless @cdice.game_clone.gameroom
 
-    GameroomChannel.broadcast_to(@cdice.clone.gameroom, "moved")
+    GameroomChannel.broadcast_to(@cdice.game_clone.gameroom, "moved")
     redirect_to request.referrer
   end
 
@@ -16,7 +17,7 @@ class CdicesController < ApplicationController
   end
 
   def set_dice
-    @cdice = Cdice.find(params[:id])
+    @cdice = @clone.cdices.find(params[:id])
   end
 
   def cdice_params

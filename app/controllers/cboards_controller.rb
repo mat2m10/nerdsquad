@@ -1,14 +1,15 @@
 class CboardsController < ApplicationController
   before_action :set_clone, only: :update
+  before_action -> { require_player!(@clone.gameroom) }, only: :update
   before_action :set_cboard, only: :update
 
   def update
     @cboard.update!(cboard_params)
-    return unless @cboard.clone.gameroom
+    return unless @cboard.game_clone.gameroom
 
-    GameroomChannel.broadcast_to(@cboard.clone.gameroom, "moved")
+    GameroomChannel.broadcast_to(@cboard.game_clone.gameroom, "moved")
     redirect_to request.referrer
-    # redirect_back(fallback_location: gameroom_path(@cboard.clone.gameroom))
+    # redirect_back(fallback_location: gameroom_path(@cboard.game_clone.gameroom))
   end
 
   private
@@ -18,7 +19,7 @@ class CboardsController < ApplicationController
   end
 
   def set_cboard
-    @cboard = Cboard.find(params[:id])
+    @cboard = Cboard.where(game_clone: @clone).find(params[:id])
   end
 
   def cboard_params

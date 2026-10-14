@@ -1,5 +1,6 @@
 class DicesController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
+  before_action :require_game_owner!, only: %i[new create update destroy]
   before_action :set_dice, only: %i[show update destroy]
   def new
     @dice = Dice.new
@@ -50,7 +51,7 @@ class DicesController < ApplicationController
   end
 
   def set_dice
-    @dice = Dice.find(params[:id])
+    @dice = @game.dices.find(params[:id])
   end
 end
 

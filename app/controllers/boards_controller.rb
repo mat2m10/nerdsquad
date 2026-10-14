@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
+  before_action :require_game_owner!, only: %i[new create update destroy]
   before_action :set_board, only: %i[show update destroy]
   #test
   def new
@@ -37,7 +38,7 @@ class BoardsController < ApplicationController
   private
 
   def set_board
-    @board = Board.find(params[:id])
+    @board = Board.where(game: @game).find(params[:id])
   end
 
   def set_game

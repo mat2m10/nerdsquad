@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :set_game, only: %i[new create update destroy]
+  before_action :set_game, only: %i[new create show update destroy]
+  before_action :require_game_owner!, only: %i[new create update destroy]
   before_action :set_card_deck, only: %i[new create show update destroy]
   before_action :set_card, only: %i[destroy update]
 
@@ -39,11 +40,11 @@ class CardsController < ApplicationController
   end
 
   def set_card_deck
-    @deck = CardDeck.find(params[:card_deck_id])
+    @deck = @game.card_decks.find(params[:card_deck_id])
   end
 
   def set_card
-    @card = Card.find(params[:id])
+    @card = @deck.cards.find(params[:id])
   end
 
   def card_params

@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   belongs_to :user
+  validates :number_of_players, presence: true
   has_many :card_decks, dependent: :destroy
   has_many :cards, through: :card_decks
   has_one :board, dependent: :destroy

@@ -1,5 +1,6 @@
 class PiecesController < ApplicationController
   before_action :set_game, only: %i[new create show edit update destroy]
+  before_action :require_game_owner!, only: %i[new create edit update destroy]
   before_action :set_piece, only: %i[show edit update destroy]
   def new
     @piece = Piece.new
@@ -44,7 +45,7 @@ class PiecesController < ApplicationController
   end
 
   def set_piece
-    @piece = Piece.find(params[:id])
+    @piece = @game.pieces.find(params[:id])
   end
 
   def piece_params

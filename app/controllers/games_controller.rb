@@ -24,28 +24,32 @@ class GamesController < ApplicationController
     @user = current_user
     @board = Board.new
     @game.user = @user
-    @game.save
-    redirect_to game_path(@game)
+    if @game.save
+      redirect_to game_path(@game)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
     @user = current_user
     @game = Game.find(params[:id])
     @board = Board.new
+    @owner = @game.user_id == current_user.id
   end
 
   def edit
-    @game = Game.find(game_params)
+    @game = current_user.games.find(params[:id])
   end
 
   def update
-    @game = Game.find(params[:id])
-    if @game.update_attributes(game_params)
+    @game = current_user.games.find(params[:id])
+    if @game.update(game_params)
       flash[:success] = "Game was successfully updated"
       redirect_to games_path
     else
       flash[:error] = "Something went wrong"
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 
@@ -54,7 +58,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     if @game.destroy
       flash[:success] = 'Game was successfully deleted.'
     else

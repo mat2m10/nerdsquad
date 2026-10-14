@@ -1,5 +1,6 @@
 class CardDecksController < ApplicationController
   before_action :set_game, only: %i[new create show edit update]
+  before_action :require_game_owner!, only: %i[new create edit update]
   before_action :set_deck, only: %i[show edit update]
 
   def new
@@ -45,6 +46,6 @@ class CardDecksController < ApplicationController
   end
 
   def set_deck
-    @card_deck = CardDeck.find(params[:id])
+    @card_deck = @game.card_decks.find(params[:id])
   end
 end

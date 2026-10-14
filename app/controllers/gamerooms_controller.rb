@@ -1,5 +1,8 @@
 class GameroomsController < ApplicationController
   before_action :set_gameroom, only: %i[show update destroy]
+  before_action -> { require_player!(@gameroom) }, only: %i[update]
+  # Anyone may join an open room, so closing it is for the game's owner only.
+  before_action :require_room_owner!, only: %i[destroy]
   def index
     @gamerooms = Gameroom.all
   end
@@ -12,11 +15,11 @@ class GameroomsController < ApplicationController
 
   def create
     @gameroom = Gameroom.new(gameroom_params)
-    @gameroom.name = @gameroom.clone.name
+    @gameroom.name = @gameroom.game_clone.name
   end
 
   def show
-    @clone = @gameroom.clone
+    @clone = @gameroom.game_clone
     @game = @clone.game
     @message = Message.new
     if @gameroom.users.include? current_user
@@ -50,5 +53,9 @@ class GameroomsController < ApplicationController
 
   def set_gameroom
     @gameroom = Gameroom.find(params[:id])
+  end
+
+  def require_room_owner!
+    raise ActiveRecord::RecordNotFound unless @gameroom.game_clone&.game&.user_id == current_user.id
   end
 end

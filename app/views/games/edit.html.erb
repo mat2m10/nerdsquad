@@ -1,2 +1,15 @@
-<%= render 'form_number_of_players' %>
-<%= link_to '#', new_game_path(@game) %>
+<div class = "homepage">
+  <div class = "intro">
+    <h1>Edit your game</h1>
+    <br>
+    <br>
+    <br>
+    <div class = "cardwow">
+      <%= simple_form_for(@game) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :number_of_players, collection: 1..6 %>
+        <%= f.button :submit, class: "btn-flat" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,9 @@ module Nerdsquad
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    # Rails 8 removed the pre-7.0 cache format; use the oldest supported one.
+    config.active_support.cache_format_version = 7.0
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
