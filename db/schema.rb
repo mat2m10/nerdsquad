@@ -2,18 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_131608) do
-
+ActiveRecord::Schema[8.1].define(version: 2026_10_14_162029) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,17 +30,24 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum"
     t.datetime "created_at", null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "boards", force: :cascade do |t|
     t.float "posX", default: 500.0
     t.float "posY", default: 200.0
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 500.0
     t.float "width", default: 500.0
     t.integer "angle", default: 0
@@ -53,8 +59,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posY", default: 500.0
     t.boolean "blind?", default: false
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.float "height", default: 200.0
     t.float "width", default: 120.0
@@ -67,8 +73,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posY", default: 500.0
     t.string "visibility"
     t.bigint "card_deck_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.integer "position"
     t.float "height", default: 200.0
@@ -81,8 +87,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posX", default: 500.0
     t.float "posY", default: 200.0
     t.bigint "clone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 500.0
     t.float "width", default: 500.0
     t.integer "angle", default: 0
@@ -95,8 +101,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.boolean "blind?", default: false
     t.string "name"
     t.bigint "clone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 200.0
     t.float "width", default: 120.0
     t.integer "angle"
@@ -109,8 +115,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "visibility"
     t.string "name"
     t.bigint "ccard_deck_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "position"
     t.float "height", default: 200.0
     t.float "width", default: 120.0
@@ -124,8 +130,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.integer "faces"
     t.integer "number_of_dices"
     t.bigint "clone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 150.0
     t.float "width", default: 150.0
     t.integer "angle"
@@ -139,16 +145,16 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.integer "number_of_players"
     t.integer "connected_players"
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_clones_on_game_id"
   end
 
   create_table "connections", force: :cascade do |t|
     t.bigint "gameroom_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["gameroom_id"], name: "index_connections_on_gameroom_id"
     t.index ["user_id"], name: "index_connections_on_user_id"
   end
@@ -158,8 +164,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posY", default: 500.0
     t.string "name"
     t.bigint "clone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 50.0
     t.float "width", default: 50.0
     t.integer "angle", default: 0
@@ -172,8 +178,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "name"
     t.integer "number_of_tokens"
     t.bigint "clone_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.float "height", default: 50.0
     t.float "width", default: 50.0
     t.integer "angle", default: 0
@@ -185,8 +191,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posY", default: 500.0
     t.integer "faces"
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "number_of_dices"
     t.float "height", default: 150.0
     t.float "width", default: 150.0
@@ -197,8 +203,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
 
   create_table "gamerooms", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "clone_id"
     t.index ["clone_id"], name: "index_gamerooms_on_clone_id"
   end
@@ -208,8 +214,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "description"
     t.integer "number_of_players", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "saved", default: false
     t.index ["user_id"], name: "index_games_on_user_id"
   end
@@ -218,8 +224,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "content"
     t.bigint "gameroom_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["gameroom_id"], name: "index_messages_on_gameroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -228,8 +234,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posX", default: 500.0
     t.float "posY", default: 500.0
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.float "height", default: 50.0
     t.float "width", default: 50.0
@@ -241,8 +247,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.float "posX", default: 500.0
     t.float "posY", default: 500.0
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.integer "number_of_tokens"
     t.float "height", default: 50.0
@@ -258,8 +264,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -268,6 +274,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_131608) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "games"
   add_foreign_key "card_decks", "games"
   add_foreign_key "cards", "card_decks"
