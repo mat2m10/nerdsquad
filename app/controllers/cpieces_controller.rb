@@ -1,5 +1,6 @@
 class CpiecesController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
   before_action :set_cpiece, only: %i[update]
 
   def update
@@ -15,7 +16,7 @@ class CpiecesController < ApplicationController
   end
 
   def set_cpiece
-    @cpiece = Cpiece.find(params[:id])
+    @cpiece = @clone.cpieces.find(params[:id])
   end
 
   def cpiece_params

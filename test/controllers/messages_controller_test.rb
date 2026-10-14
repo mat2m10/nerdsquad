@@ -9,6 +9,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     sign_in user
     post game_clones_path(game)
     gameroom = Gameroom.last
+    get gameroom_path(gameroom) # opening the room joins it as a player
 
     assert_broadcasts(GameroomChannel.broadcasting_for(gameroom), 1) do
       post gameroom_messages_path(gameroom), params: { message: { content: "hello" } }

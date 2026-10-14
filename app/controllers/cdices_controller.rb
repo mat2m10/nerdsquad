@@ -1,6 +1,7 @@
 class CdicesController < ApplicationController
-  before_action :set_dice, only: %i[update]
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
+  before_action :set_dice, only: %i[update]
   def update
     @cdice.update!(cdice_params)
     return unless @cdice.game_clone.gameroom
@@ -16,7 +17,7 @@ class CdicesController < ApplicationController
   end
 
   def set_dice
-    @cdice = Cdice.find(params[:id])
+    @cdice = @clone.cdices.find(params[:id])
   end
 
   def cdice_params

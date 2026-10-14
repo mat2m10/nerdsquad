@@ -1,5 +1,6 @@
 class CboardsController < ApplicationController
   before_action :set_clone, only: :update
+  before_action -> { require_player!(@clone.gameroom) }, only: :update
   before_action :set_cboard, only: :update
 
   def update
@@ -18,7 +19,7 @@ class CboardsController < ApplicationController
   end
 
   def set_cboard
-    @cboard = Cboard.find(params[:id])
+    @cboard = Cboard.where(game_clone: @clone).find(params[:id])
   end
 
   def cboard_params

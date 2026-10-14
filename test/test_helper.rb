@@ -37,4 +37,11 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+
+  # Devise's test sign_in applies on the next request. Make that a normal
+  # request so the session cookie is written even if the next one is a 404.
+  def log_in(user)
+    sign_in user
+    get root_path
+  end
 end

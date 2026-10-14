@@ -38,11 +38,11 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
   end
 
   def update
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     if @game.update(game_params)
       flash[:success] = "Game was successfully updated"
       redirect_to games_path
@@ -57,7 +57,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
     if @game.destroy
       flash[:success] = 'Game was successfully deleted.'
     else

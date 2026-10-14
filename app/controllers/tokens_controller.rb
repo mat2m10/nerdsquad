@@ -1,5 +1,6 @@
 class TokensController < ApplicationController
   before_action :set_game, only: %i[new create show update destroy]
+  before_action :require_game_owner!, only: %i[new create update destroy]
   before_action :set_token, only: %i[show edit update destroy]
 
   def new
@@ -45,7 +46,7 @@ class TokensController < ApplicationController
   end
 
   def set_token
-    @token = Token.find(params[:id])
+    @token = @game.tokens.find(params[:id])
   end
 
   def token_params

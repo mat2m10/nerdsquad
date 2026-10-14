@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_clone, only: %i[create]
   before_action :set_gameroom, only: %i[create]
+  before_action -> { require_player!(@gameroom) }, only: %i[create]
 
   def create
     @message = Message.new(message_params)

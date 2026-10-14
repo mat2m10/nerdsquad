@@ -1,5 +1,6 @@
 class CcardDecksController < ApplicationController
   before_action :set_clone, only: %i[update]
+  before_action -> { require_player!(@clone.gameroom) }, only: %i[update]
   before_action :set_ccard_deck, only: %i[update]
 
   def update
@@ -20,7 +21,7 @@ class CcardDecksController < ApplicationController
   end
 
   def set_ccard_deck
-    @ccard_deck = CcardDeck.find(params[:id])
+    @ccard_deck = @clone.ccard_decks.find(params[:id])
   end
 
   def ccard_deck_params

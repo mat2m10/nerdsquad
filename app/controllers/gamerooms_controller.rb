@@ -1,5 +1,6 @@
 class GameroomsController < ApplicationController
   before_action :set_gameroom, only: %i[show update destroy]
+  before_action -> { require_player!(@gameroom) }, only: %i[update destroy]
   def index
     @gamerooms = Gameroom.all
   end
