@@ -13,7 +13,7 @@ class ClonesController < ApplicationController
     @game.card_decks.each { |deck| deck.cards.each { |card| create_ccard(card, create_ccard_deck(deck)) } }
     redirect_to games_path and return unless @clone.save
 
-    @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", clone: @clone)
+    @gameroom = Gameroom.create(name: "#{@clone.name}-#{@clone.id}", game_clone: @clone)
     redirect_to gameroom_path(@gameroom)
   end
 
@@ -31,7 +31,7 @@ class ClonesController < ApplicationController
 
   def create_cboard
     @cboard = Cboard.create(
-      clone: @clone,
+      game_clone: @clone,
       posX: @game.board.posX,
       posY: @game.board.posY,
       height: @game.board.height,
@@ -43,7 +43,7 @@ class ClonesController < ApplicationController
   def create_ctoken(token)
     # Copy Token
     Ctoken.create(
-      clone: @clone,
+      game_clone: @clone,
       posX: token.posX,
       posY: token.posY,
       name: token.name,
@@ -59,7 +59,7 @@ class ClonesController < ApplicationController
 
   def create_cpiece(piece)
     Cpiece.create(
-      clone: @clone,
+      game_clone: @clone,
       posX: piece.posX,
       posY: piece.posY,
       name: piece.name,
@@ -75,7 +75,7 @@ class ClonesController < ApplicationController
 
   def create_ccard_deck(card_deck)
     CcardDeck.create(
-      clone: @clone,
+      game_clone: @clone,
       posX: card_deck.posX,
       posY: card_deck.posY,
       name: card_deck.name,
@@ -100,7 +100,7 @@ class ClonesController < ApplicationController
 
   def create_cdice(dice)
     Cdice.create(
-      clone: @clone,
+      game_clone: @clone,
       posX: dice.posX,
       posY: dice.posY,
       faces: dice.faces,

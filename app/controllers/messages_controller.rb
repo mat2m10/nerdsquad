@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
   end
 
   def set_clone
-    @clone = Gameroom.find(params[:gameroom_id]).clone
+    @clone = Gameroom.find(params[:gameroom_id]).game_clone
   end
 end
 

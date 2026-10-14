@@ -12,11 +12,11 @@ class GameroomsController < ApplicationController
 
   def create
     @gameroom = Gameroom.new(gameroom_params)
-    @gameroom.name = @gameroom.clone.name
+    @gameroom.name = @gameroom.game_clone.name
   end
 
   def show
-    @clone = @gameroom.clone
+    @clone = @gameroom.game_clone
     @game = @clone.game
     @message = Message.new
     if @gameroom.users.include? current_user

@@ -3,9 +3,9 @@ class CdicesController < ApplicationController
   before_action :set_clone, only: %i[update]
   def update
     @cdice.update!(cdice_params)
-    return unless @cdice.clone.gameroom
+    return unless @cdice.game_clone.gameroom
 
-    GameroomChannel.broadcast_to(@cdice.clone.gameroom, "moved")
+    GameroomChannel.broadcast_to(@cdice.game_clone.gameroom, "moved")
     redirect_to request.referrer
   end
 
