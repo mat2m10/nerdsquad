@@ -32,8 +32,8 @@ come ready-made in the seed data.
   Every move is broadcast to everyone in the room through Action Cable.
 - **Chat** inside each game room.
 - **Search** games by name (Postgres full-text search via `pg_search`).
-- **Accounts** with Devise. Everything except the home page and the sign-in and
-  sign-up pages requires login. Only a game's owner can change it. Only players
+- **Accounts** with Devise. Everything except the home page and the account pages
+  (sign in, sign up, password reset) requires login. Only a game's owner can change it. Only players
   who joined a room can move its pieces, chat, or receive its live updates.
 
 ## Stack
@@ -62,8 +62,8 @@ bin/rails test                               # run the test suite
 Then open http://localhost:3000. The seeds create two test accounts,
 `b@t.man` and `r@b.in`, both with password `123456`. Use them only locally.
 
-In production, Action Cable needs Redis through `REDISCLOUD_URL`, and the
-database comes from `DATABASE_URL`.
+In production, Action Cable needs Redis through `REDISCLOUD_URL`, uploads go to
+Cloudinary through `CLOUDINARY_URL`, and the database comes from `DATABASE_URL`.
 
 ## Team
 
