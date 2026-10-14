@@ -98,6 +98,42 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
+  test "joining a gameroom does not let a player close it; the game owner can" do
+    log_in @owner
+    post game_clones_path(@game)
+    gameroom = Gameroom.last
+    sign_out @owner
+
+    log_in @other
+    get gameroom_path(gameroom) # joins as a player
+    assert gameroom.users.exists?(@other.id)
+    assert_no_difference -> { Gameroom.count } do
+      delete gameroom_path(gameroom)
+    end
+    assert_response :not_found
+    sign_out @other
+
+    log_in @owner
+    assert_difference -> { Gameroom.count }, -1 do
+      delete gameroom_path(gameroom)
+    end
+  end
+
+  test "a draft game cannot be played by other users, only by its owner" do
+    @game.update!(saved: false)
+    log_in @other
+    assert_no_difference -> { Clone.count } do
+      post game_clones_path(@game)
+    end
+    assert_response :not_found
+    sign_out @other
+
+    log_in @owner
+    assert_difference -> { Clone.count }, 1 do
+      post game_clones_path(@game)
+    end
+  end
+
   test "players in the gameroom can move its pieces" do
     log_in @owner
     post game_clones_path(@game)

@@ -1,6 +1,8 @@
 class ClonesController < ApplicationController
   before_action :set_game, only: %i[create show]
   before_action :set_clone, only: %i[show]
+  # Saved games are open to everyone; drafts only to their owner.
+  before_action :require_playable_game!, only: %i[create]
   def new; end
 
   def create
@@ -27,6 +29,10 @@ class ClonesController < ApplicationController
 
   def set_clone
     @clone = Clone.find(params[:id])
+  end
+
+  def require_playable_game!
+    raise ActiveRecord::RecordNotFound unless @game.saved || @game.user_id == current_user.id
   end
 
   def create_cboard
