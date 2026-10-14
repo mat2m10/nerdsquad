@@ -35,6 +35,7 @@ class GamesController < ApplicationController
     @user = current_user
     @game = Game.find(params[:id])
     @board = Board.new
+    @owner = @game.user_id == current_user.id
   end
 
   def edit

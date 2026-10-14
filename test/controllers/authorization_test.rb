@@ -134,6 +134,20 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "the game page shows edit and delete links only to the owner" do
+    log_in @other
+    get game_path(@game)
+    assert_response :success
+    assert_select "a[href=?]", game_piece_path(@game, @game.pieces.first), count: 0
+    assert_select "a[href=?]", new_game_piece_path(@game), count: 0
+    sign_out @other
+
+    log_in @owner
+    get game_path(@game)
+    assert_select "a[href=?]", game_piece_path(@game, @game.pieces.first)
+    assert_select "a[href=?]", new_game_piece_path(@game)
+  end
+
   test "players in the gameroom can move its pieces" do
     log_in @owner
     post game_clones_path(@game)
