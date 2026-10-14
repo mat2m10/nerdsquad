@@ -3,8 +3,8 @@
 Build your own board game in the browser, then play it live with friends.
 
 Nerd Squad is a Rails app made by a five-person team during the
-[Le Wagon](https://www.lewagon.com) coding bootcamp (November 2020). The team kept
-working on it until December 2021. You design a game from its parts: a board,
+[Le Wagon](https://www.lewagon.com) coding bootcamp (November 2020). Raphael Marsan
+kept working on it until December 2021. You design a game from its parts: a board,
 dice, card decks, pieces and tokens. Then you open a game room where everyone
 moves the same pieces in real time and chats while they play. Monopoly and chess
 come ready-made in the seed data.
@@ -20,7 +20,8 @@ _Screenshots coming soon._
 ## Features
 
 - **Game builder:** create a game, then add a board, dice, card decks with cards,
-  pieces and tokens, each with its own uploaded image. You can preview a game
+  pieces and tokens. Boards, dice, cards, pieces and tokens each have their own
+  uploaded image. You can preview a game
   before playing it.
 - **Clones:** playing a game makes a copy of it (a "clone" of every part), so a
   match never changes the original game.
@@ -39,12 +40,12 @@ _Screenshots coming soon._
 | Frontend | Webpacker 4, Bootstrap 4, jQuery, Turbolinks, plain JavaScript for drag and drop |
 | Images | Active Storage on Cloudinary (in development too) |
 
-These versions are end-of-life. An upgrade to a current Ruby and Rails is being
-worked on separately.
+These versions are end-of-life.
 
 ## Running it locally
 
-You need Ruby 2.6.6, Bundler, Node with Yarn, and PostgreSQL. You also need a
+You need Ruby 2.6.6, Bundler, Node 12 or 14 with Yarn (Webpacker 4 and
+node-sass 4 don't build on newer Node), and PostgreSQL. You also need a
 Cloudinary account, because development stores uploads on Cloudinary.
 
 ```bash
