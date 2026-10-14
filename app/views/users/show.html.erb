@@ -46,7 +46,7 @@
         <h2>My gamerooms</h2>
           <% if current_user.gamerooms != nil %>
             <% current_user.gamerooms.each do |gameroom| %>
-              <li class="text-left py-1 my-1"><%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, gameroom_path(gameroom), method: :delete %><%= link_to gameroom.name, gameroom_path(gameroom) %></li>
+              <li class="text-left py-1 my-1"><%= link_to '<i class="fas fa-trash-alt mr-2"></i>'.html_safe, gameroom_path(gameroom), method: :delete if gameroom.game_clone&.game&.user_id == current_user.id %><%= link_to gameroom.name, gameroom_path(gameroom) %></li>
             <% end %>
           <% else %>
             <li><%= link_to '<i class="fas fa-gamepad my-1"></i>'.html_safe, new_game_path %> </li>
