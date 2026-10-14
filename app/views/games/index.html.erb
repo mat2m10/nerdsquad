@@ -38,7 +38,7 @@
               <tr>
                 <td><%= link_to "Play #{game.name}", game_clones_path(game), method: :post %></td>
                 <% if game.board%>
-                  <td><%= cl_image_tag game.board.photo.key, width: '100px', height: '100px' %></td>
+                  <td><%= photo_tag game.board.photo, width: '100px', height: '100px' %></td>
                 <% end %>
               </tr>
             <% end %>

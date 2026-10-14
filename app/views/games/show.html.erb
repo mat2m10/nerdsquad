@@ -15,7 +15,7 @@
     <% if @game.board %>
       <% if @game.board.photo.attached? %>
         <h3>Board</h3>
-        <p><%= cl_image_tag @game.board.photo.key , { width: '220px' } %></p>
+        <p><%= photo_tag @game.board.photo , { width: '220px' } %></p>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, new_game_board_path(@game, @game.board) %>
         <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_board_path(@game, @game.board), method: :delete %>
       <% end %>
@@ -32,7 +32,7 @@
               <div class="mx-3">
                 <p><%= card.name %> <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_card_deck_card_path(@game, card_deck, card), method: :delete %></p>
                 <% if card.photo.attached? %>
-                  <%= cl_image_tag card.photo.key , class: 'rounded img-fluid', width: '90px', height: '150px' %>
+                  <%= photo_tag card.photo , class: 'rounded img-fluid', width: '90px', height: '150px' %>
                 <% end %>
               </div>
             <% end %>
@@ -49,7 +49,7 @@
           <div class="d-flex justify-content-left">
             <h4><%= token.name %></h4>
             <% if token.photo.attached? %>
-              <%= cl_image_tag token.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
+              <%= photo_tag token.photo, class: 'rounded img-fluid', width: '60px', height: '60px' %>
               <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_token_path(@game, token), method: :delete %>
             <% else %>
               <p>This token should have an image</p>
@@ -67,7 +67,7 @@
             <div class="mx-3">
               <h4><%= piece.name %></h4>
               <% if piece.photo.attached? %>
-                <%= cl_image_tag piece.photo.key, class: 'rounded img-fluid', width: '100px' %>
+                <%= photo_tag piece.photo, class: 'rounded img-fluid', width: '100px' %>
               <% else %>
                 <p>This piece should have an image and/or a name</p>
               <% end %>
@@ -86,7 +86,7 @@
           <div class="d-flex justify-content-left">
             <h4>Dice number: <%= dice.id %></h4>
             <% if dice.photo.attached? %>
-              <%= cl_image_tag dice.photo.key, class: 'rounded img-fluid', width: '60px', height: '60px' %>
+              <%= photo_tag dice.photo, class: 'rounded img-fluid', width: '60px', height: '60px' %>
               <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, game_dice_path(@game, dice), method: :delete %>
             <% else %>
               <p>This Dice should have an image</p>
