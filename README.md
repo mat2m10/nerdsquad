@@ -1,5 +1,7 @@
 # Nerd Squad: stay safe & roll initiative
 
+[![CI](https://github.com/mat2m10/nerdsquad/actions/workflows/ci.yml/badge.svg)](https://github.com/mat2m10/nerdsquad/actions/workflows/ci.yml)
+
 Build your own board game in the browser, then play it live with friends.
 
 Nerd Squad is a Rails app made by a five-person team during the
@@ -9,13 +11,14 @@ dice, card decks, pieces and tokens. Then you open a game room where everyone
 moves the same pieces in real time and chats while they play. Monopoly and chess
 come ready-made in the seed data.
 
-> **Status:** not maintained. The last change to the app was in December 2021.
+> **Status:** feature work stopped in December 2021. In 2026 the app was upgraded to
+> Ruby 3.3 and Rails 8.1, with tests, CI and access control added. No new features.
 
 ## Screenshots
 
-<!-- TODO: add 2-3 screenshots or a GIF of a live game room (dragging pieces,
-     rolling dice, chat) once the app runs again. -->
-_Screenshots coming soon._
+![Home page](docs/screenshots/home.jpg)
+
+![A live chess game room, with the chat panel on the right](docs/screenshots/chess-room.png)
 
 ## Features
 
@@ -30,32 +33,30 @@ _Screenshots coming soon._
 - **Chat** inside each game room.
 - **Search** games by name (Postgres full-text search via `pg_search`).
 - **Accounts** with Devise. Everything except the home page and the sign-in and
-  sign-up pages requires login.
+  sign-up pages requires login. Only a game's owner can change it. Only players
+  who joined a room can move its pieces, chat, or receive its live updates.
 
 ## Stack
 
 | | |
 |---|---|
-| Backend | Ruby 2.6.6, Rails 6.0, PostgreSQL, Devise, Action Cable (Redis in production) |
-| Frontend | Webpacker 4, Bootstrap 4, jQuery, Turbolinks, plain JavaScript for drag and drop |
-| Images | Active Storage on Cloudinary (in development too) |
-
-These versions are end-of-life.
+| Backend | Ruby 3.3, Rails 8.1, PostgreSQL, Devise, Action Cable (Redis in production) |
+| Frontend | importmap (no Node build), Bootstrap 4, jQuery, Turbolinks, plain JavaScript for drag and drop |
+| Images | Active Storage: Cloudinary in production, local disk in development unless `CLOUDINARY_URL` is set |
+| Tests | Minitest (models, controllers, channels) and Brakeman, run on GitHub Actions |
 
 ## Running it locally
 
-You need Ruby 2.6.6, Bundler, Node 12 or 14 with Yarn (Webpacker 4 and
-node-sass 4 don't build on newer Node), and PostgreSQL. You also need a
-Cloudinary account, because development stores uploads on Cloudinary.
+You need Ruby 3.3.12 (see `.ruby-version`), Bundler and PostgreSQL. Node is not
+needed. Uploads are stored on local disk unless you set `CLOUDINARY_URL` in `.env`.
 
 ```bash
 git clone https://github.com/mat2m10/nerdsquad.git
 cd nerdsquad
 bundle install
-yarn install
-echo "CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>" > .env
-bin/rails db:create db:migrate db:seed   # seeds upload the Monopoly and chess images
+bin/rails db:create db:schema:load db:seed   # seeds attach the Monopoly and chess images
 bin/rails server
+bin/rails test                               # run the test suite
 ```
 
 Then open http://localhost:3000. The seeds create two test accounts,
